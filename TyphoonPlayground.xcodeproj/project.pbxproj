@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA138DB01CC103FD006A19B6 /* Builders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA138DAF1CC103FD006A19B6 /* Builders.swift */; };
+		FA138DB21CC10D60006A19B6 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA138DB11CC10D60006A19B6 /* StringUtils.swift */; };
 		FA9EFF0B1CC0CC9400BC9AD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF0A1CC0CC9400BC9AD6 /* main.swift */; };
+		FA9EFF121CC0D75C00BC9AD6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF111CC0D75C00BC9AD6 /* Model.swift */; };
+		FAE2198F1CC5D09A009F1691 /* ActivatedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */; };
+		FAE219911CC5ECBF009F1691 /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219901CC5ECBF009F1691 /* AssemblyGenerator.swift */; };
+		FAE219971CCB7116009F1691 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219961CCB7116009F1691 /* Models.swift */; };
+		FAE2199C1CCB750D009F1691 /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE2199B1CCB750D009F1691 /* Terminal.swift */; };
+		FAE2199F1CCBF1F1009F1691 /* output.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219921CC5EEA9009F1691 /* output.swift */; };
+		FAE219A01CCBF1FB009F1691 /* input.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF131CC0D77600BC9AD6 /* input.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +32,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA138DAF1CC103FD006A19B6 /* Builders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builders.swift; sourceTree = "<group>"; };
+		FA138DB11CC10D60006A19B6 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		FA9EFF071CC0CC9400BC9AD6 /* TyphoonPlayground */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TyphoonPlayground; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9EFF0A1CC0CC9400BC9AD6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FA9EFF111CC0D75C00BC9AD6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FA9EFF131CC0D77600BC9AD6 /* input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = input.swift; sourceTree = "<group>"; };
+		FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedAssembly.swift; sourceTree = "<group>"; };
+		FAE219901CC5ECBF009F1691 /* AssemblyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyGenerator.swift; sourceTree = "<group>"; };
+		FAE219921CC5EEA9009F1691 /* output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = output.swift; sourceTree = "<group>"; };
+		FAE219961CCB7116009F1691 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		FAE2199B1CCB750D009F1691 /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +75,58 @@
 		FA9EFF091CC0CC9400BC9AD6 /* TyphoonPlayground */ = {
 			isa = PBXGroup;
 			children = (
+				FAE219A31CCD32F4009F1691 /* Core */,
+				FAE2199A1CCB7504009F1691 /* Utils */,
+				FAE219991CCB7141009F1691 /* Input */,
+				FAE2199D1CCB8B49009F1691 /* Output */,
+				FAE219981CCB7129009F1691 /* Generator */,
 				FA9EFF0A1CC0CC9400BC9AD6 /* main.swift */,
 			);
 			path = TyphoonPlayground;
+			sourceTree = "<group>";
+		};
+		FAE219981CCB7129009F1691 /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				FAE219961CCB7116009F1691 /* Models.swift */,
+				FA138DAF1CC103FD006A19B6 /* Builders.swift */,
+				FAE219901CC5ECBF009F1691 /* AssemblyGenerator.swift */,
+			);
+			name = Generator;
+			sourceTree = "<group>";
+		};
+		FAE219991CCB7141009F1691 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFF131CC0D77600BC9AD6 /* input.swift */,
+			);
+			name = Input;
+			sourceTree = "<group>";
+		};
+		FAE2199A1CCB7504009F1691 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA138DB11CC10D60006A19B6 /* StringUtils.swift */,
+				FAE2199B1CCB750D009F1691 /* Terminal.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FAE2199D1CCB8B49009F1691 /* Output */ = {
+			isa = PBXGroup;
+			children = (
+				FAE219921CC5EEA9009F1691 /* output.swift */,
+			);
+			name = Output;
+			sourceTree = "<group>";
+		};
+		FAE219A31CCD32F4009F1691 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFF111CC0D75C00BC9AD6 /* Model.swift */,
+				FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +186,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE219A01CCBF1FB009F1691 /* input.swift in Sources */,
+				FAE219971CCB7116009F1691 /* Models.swift in Sources */,
+				FAE2199C1CCB750D009F1691 /* Terminal.swift in Sources */,
 				FA9EFF0B1CC0CC9400BC9AD6 /* main.swift in Sources */,
+				FAE219911CC5ECBF009F1691 /* AssemblyGenerator.swift in Sources */,
+				FAE2198F1CC5D09A009F1691 /* ActivatedAssembly.swift in Sources */,
+				FA138DB21CC10D60006A19B6 /* StringUtils.swift in Sources */,
+				FA138DB01CC103FD006A19B6 /* Builders.swift in Sources */,
+				FA9EFF121CC0D75C00BC9AD6 /* Model.swift in Sources */,
+				FAE2199F1CCBF1F1009F1691 /* output.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +317,7 @@
 				FA9EFF101CC0CC9400BC9AD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

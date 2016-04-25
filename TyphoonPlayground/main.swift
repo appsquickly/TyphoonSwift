@@ -8,5 +8,29 @@
 
 import Foundation
 
-print("Hello, World!")
 
+let inputPath = "/Users/alex/Development/TyphoonPlayground/TyphoonPlayground/input.swift"
+let outputPath = "/Users/alex/Development/TyphoonPlayground/TyphoonPlayground/output.swift"
+
+let fileDefinitionBuilder = FileDefinitionBuilder(filePath: inputPath)
+if let file = fileDefinitionBuilder.build() {
+    let generator = FileGenerator(file: file)
+    generator.generate(to: outputPath)
+}
+
+
+Typhoon.activateAssemblies()
+
+
+
+//let controller = CoreComponents.assembly.rootController()
+//
+//class Home {
+//    // Autoinjections
+//    var owner = CoreComponents.assembly.rootController()
+//}
+
+//let home = Home()
+
+
+//print("Owner Name: \(home.owner.name)")
