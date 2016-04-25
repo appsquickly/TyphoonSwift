@@ -18,12 +18,18 @@ if let file = fileDefinitionBuilder.build() {
     generator.generate(to: outputPath)
 }
 
-
 Typhoon.activateAssemblies()
 
 
+//CoreComponents.assembly.
 
-//let controller = CoreComponents.assembly.rootController()
+let controller = CoreComponents.assembly.shareService2()
+
+let controller2 = CoreComponents.assembly.shareService2()
+
+
+print("Controller1: \(controller)")
+print("Controller2: \(controller)")
 //
 //class Home {
 //    // Autoinjections
