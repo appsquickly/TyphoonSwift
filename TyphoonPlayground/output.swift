@@ -2,7 +2,7 @@ import Foundation
 
 class ViewsFactoryImplementation : ActivatedAssembly { 
 
-    override func singletones() -> [()->(AnyObject)]
+    override func singletones() -> [()->(Any)]
     {
         return []
     }
@@ -13,6 +13,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
     func manWith(name: String) -> Man { 
         return component(Man(), key: "manWith:", scope: Definition.Scope.ObjectGraph, configure: { instance in 
             instance.name = name
+            instance.brother = self.man()
         })
     }
 
@@ -33,7 +34,37 @@ class CoreComponentsImplementation : ActivatedAssembly {
         return component(Service(), key: "shareService:", scope: Definition.Scope.WeakSingletone)
     }
 
-    override func singletones() -> [()->(AnyObject)]
+    func man() -> Man { 
+        return component(Man(), key: "man", scope: Definition.Scope.Prototype, configure: { instance in 
+            instance.name = "Vit"
+            instance.brother = self.manWith("Alex")
+        })
+    }
+
+    func name() -> String { 
+        return component(String(), key: "name", scope: Definition.Scope.Prototype)
+    }
+//
+    func component1() -> Component { 
+        return component(Component(withDependency: self.component2()), key: "component1", scope: Definition.Scope.Prototype, configure: { instance in
+//            instance.dependency = self.component2()
+        })
+    }
+
+    func component2() -> Component { 
+        return component(Component(), key: "component2", scope: Definition.Scope.Prototype, configure: { instance in
+            instance.dependency = self.component3()
+        })
+    }
+    
+//
+    func component3() -> Component { 
+        return component(Component(), key: "component3", scope: Definition.Scope.Prototype, configure: { instance in
+            instance.dependency = self.component1()
+        })
+    }
+
+    override func singletones() -> [()->(Any)]
     {
         return [shareService2]
     }

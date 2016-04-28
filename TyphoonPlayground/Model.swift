@@ -12,7 +12,7 @@ class Typhoon {
     
 }
 
-class  Assembly {
+class Assembly {
     
 }
 
@@ -40,35 +40,13 @@ class Definition {
         return _scope
     }
 
-    convenience init(withClass:AnyClass, configuration:(Definition)->()) {
+    convenience init(withClass:Any, configuration:((Definition)->())? = nil) {
         self.init()
     }
     
-    convenience init(withClass:AnyClass) {
-        self.init()
-    }
     
     func injectProperty(property:String, with:Any) {
         
-    }
-    
-}
-
-
-class Man {
-    var name :String?;
-    var age :UInt?;
-}
-
-class Woman : Man {
-    
-}
-
-class Service {
-    var name: String?
-    
-    init() {
-        print("Service created!!")
     }
     
 }

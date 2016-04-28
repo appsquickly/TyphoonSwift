@@ -98,7 +98,7 @@ class FileGenerator
             }
         }
         
-        output += "\n" + indentStep + "override func singletones() -> [()->(AnyObject)]\n"
+        output += "\n" + indentStep + "override func singletones() -> [()->(Any)]\n"
         output += indentStep + "{\n"
         output += indentStep + indentStep + "return [" + methodNames.joinWithSeparator(", ") + "]\n"
         output += indentStep + "}\n"

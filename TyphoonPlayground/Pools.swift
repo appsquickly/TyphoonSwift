@@ -8,70 +8,113 @@
 
 import Foundation
 
+private protocol InstanceContainer : class {
+    associatedtype InstanceType
+    var instance: InstanceType? { get }
+}
+
+private class StrongContainer<C> : InstanceContainer {
+    var strongInstance: C?
+    
+    var instance: C? {
+        return strongInstance
+    }
+    
+    init(instance: C) {
+        strongInstance = instance
+    }
+}
+
+private class WeakContainer<C: AnyObject> : InstanceContainer {
+    weak var weakInstance: C?
+    
+    var instance: C? {
+        return weakInstance
+    }
+    
+    init(instance: C) {
+        weakInstance = instance
+    }
+}
+
+
 protocol ComponentsPool {
     
-    func setObject(anObject: AnyObject, forKey aKey: NSCopying)
+    func setObject(anObject: Any, forKey aKey: String)
     
-    func objectForKey(aKey: AnyObject) -> AnyObject?
+    func objectForKey(aKey: String) -> Any?
     
-    var allValues: [AnyObject] { get }
+    var allValues: [Any] { get }
     
     func removeAllObjects()
 }
 
 class StrongPool : ComponentsPool
 {
-    var dictionary = NSMutableDictionary()
+    private var dictionary :[String: StrongContainer<Any>] = [:]
     
-    func setObject(anObject: AnyObject, forKey aKey: NSCopying)
+    func setObject(anObject: Any, forKey aKey: String)
     {
-        dictionary.setObject(anObject, forKey: aKey)
+        dictionary[aKey] = StrongContainer(instance: anObject)
     }
     
-    func objectForKey(aKey: AnyObject) -> AnyObject?
+    func objectForKey(aKey: String) -> Any?
     {
-        return dictionary.objectForKey(aKey)
+        return dictionary[aKey]?.instance
     }
-    
-    var allValues: [AnyObject] {
+
+    var allValues: [Any] {
         get {
-            return dictionary.allValues
+            var array :[Any] = []
+            for value in dictionary.values {
+                if let instance = value.instance {
+                    array.append(instance)
+                }
+            }
+            return array
         }
     }
     
     func removeAllObjects()
     {
-        dictionary.removeAllObjects()
+        dictionary.removeAll()
     }
     
 }
 
-class WeakPool : ComponentsPool {
+class WeakPool : ComponentsPool
+{
+    private var dictionary :[String: WeakContainer<AnyObject>] = [:]
     
-    var weakTable = NSMapTable.strongToWeakObjectsMapTable()
-    
-    func setObject(anObject: AnyObject, forKey aKey: NSCopying)
+    func setObject(anObject: Any, forKey aKey: String)
     {
-        weakTable.setObject(anObject, forKey: aKey)
+        if let object = anObject as? AnyObject {
+            dictionary[aKey] = WeakContainer(instance: object)
+        } else {
+            fatalError("Cannot use weak singletone scopes with structures, since structures are not referemces")
+        }
     }
     
-    func objectForKey(aKey: AnyObject) -> AnyObject?
+    func objectForKey(aKey: String) -> Any?
     {
-        return weakTable.objectForKey(aKey)
+        return dictionary[aKey]?.instance
     }
     
-    var allValues: [AnyObject] {
+    var allValues: [Any] {
         get {
-            if let allObjects = weakTable.objectEnumerator()?.allObjects {
-                return allObjects
+            var array :[Any] = []
+            for value in dictionary.values {
+                if let instance = value.instance {
+                    array.append(instance)
+                }
             }
-            return []
+            return array
         }
     }
     
     func removeAllObjects()
     {
-        weakTable.removeAllObjects()
+        dictionary.removeAll()
     }
     
 }

@@ -15,7 +15,7 @@ let outputPath = "/Users/alex/Development/TyphoonPlayground/TyphoonPlayground/ou
 let fileDefinitionBuilder = FileDefinitionBuilder(filePath: inputPath)
 if let file = fileDefinitionBuilder.build() {
     let generator = FileGenerator(file: file)
-    generator.generate(to: outputPath)
+//    generator.generate(to: outputPath)
 }
 
 Typhoon.activateAssemblies()
@@ -23,13 +23,35 @@ Typhoon.activateAssemblies()
 
 //CoreComponents.assembly.
 
-let controller = CoreComponents.assembly.shareService2()
+//let controller = CoreComponents.assembly.shareService2()
+//
+//let controller2 = CoreComponents.assembly.shareService2()
+//
+//let man = CoreComponents.assembly.man()
+//print("man: \(man.name)")
+//
+//if man === man.brother!.brother! {
+//    print("Hey bro!")
+//}
+//
+//
+let component = CoreComponents.assembly.component1()
 
-let controller2 = CoreComponents.assembly.shareService2()
+if let backRef = component.dependency?.dependency?.dependency  {
+    if backRef === component {
+        print("Matches!")
+    } else {
+        print("\(backRef) != \(component)")
+    }
+} else {
+    print("Can't get gependency")
+}
+
+//print("bro: \(man == man.brother!.brother!)")
 
 
-print("Controller1: \(controller)")
-print("Controller2: \(controller)")
+//print("Controller1: \(controller)")
+//print("Controller2: \(controller)")
 //
 //class Home {
 //    // Autoinjections

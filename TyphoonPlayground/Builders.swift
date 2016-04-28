@@ -244,12 +244,13 @@ class MethodDefinitionBuilder {
                             block.argumentNames.append(name)
                         }
                     case "source.lang.swift.stmt.brace":
-                        block.content = item["key.substructure"] as! [NSDictionary]
-                        
-                        block.range = makeRange(item, parameter: "body", offset: offset)
-                        block.source = content(block.range, offset: offset)
-                        
-                        
+                        if let blockContent = item["key.substructure"] as? [NSDictionary] {
+                            block.content = blockContent
+                            block.range = makeRange(item, parameter: "body", offset: offset)
+                            block.source = content(block.range, offset: offset)
+                        } else {
+                            return nil
+                        }
                     default:
                         throw DefinitionBuilderError.InvalidBlockNode
                     }

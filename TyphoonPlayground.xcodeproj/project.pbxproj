@@ -18,6 +18,7 @@
 		FAE2199F1CCBF1F1009F1691 /* output.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219921CC5EEA9009F1691 /* output.swift */; };
 		FAE219A01CCBF1FB009F1691 /* input.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF131CC0D77600BC9AD6 /* input.swift */; };
 		FAE219A51CCEA000009F1691 /* Pools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219A41CCEA000009F1691 /* Pools.swift */; };
+		FAE219A71CCF43A9009F1691 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219A61CCF43A9009F1691 /* Stack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 		FAE219961CCB7116009F1691 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FAE2199B1CCB750D009F1691 /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
 		FAE219A41CCEA000009F1691 /* Pools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pools.swift; sourceTree = "<group>"; };
+		FAE219A61CCF43A9009F1691 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				FA9EFF111CC0D75C00BC9AD6 /* Model.swift */,
 				FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */,
 				FAE219A41CCEA000009F1691 /* Pools.swift */,
+				FAE219A61CCF43A9009F1691 /* Stack.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				FAE219971CCB7116009F1691 /* Models.swift in Sources */,
 				FAE2199C1CCB750D009F1691 /* Terminal.swift in Sources */,
 				FA9EFF0B1CC0CC9400BC9AD6 /* main.swift in Sources */,
+				FAE219A71CCF43A9009F1691 /* Stack.swift in Sources */,
 				FAE219911CC5ECBF009F1691 /* AssemblyGenerator.swift in Sources */,
 				FAE219A51CCEA000009F1691 /* Pools.swift in Sources */,
 				FAE2198F1CC5D09A009F1691 /* ActivatedAssembly.swift in Sources */,
