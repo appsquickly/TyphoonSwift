@@ -73,6 +73,7 @@ class FileGenerator
         outputBuffer += "\n\nclass \(assemblyImplClassName(assembly)) : ActivatedAssembly { \n"
         
         for method in assembly.methods {
+            outputBuffer += generateActivatedDefinitions(forMethod: method, indent: indentStep)
             outputBuffer += generateMethod(method, indent: indentStep)
         }
         
@@ -83,6 +84,25 @@ class FileGenerator
 
         return outputBuffer
     }
+    
+    func generateActivatedDefinitions(forMethod method: MethodDefinition, indent: String) -> String
+    {
+        var output = ""
+        
+        let definition = method.returnDefinition
+        
+        output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition.className!)>\n"
+        output += indent + "{\n"
+        output += indent + indent + "let definition = ActivatedGenericDefinition<\(definition.className!)>(withKey: \"\(definition.key)\")\n"
+        let scope = "Definition.Scope.\(definition.scope)"
+        output += indent + indent + "definition.scope = \(scope)\n"
+        output += indent + indent + "return definition\n"
+//        output += indentStep + indentStep + "return [" + methodNames.joinWithSeparator(", ") + "]\n"
+        output += indent + "}\n"
+        
+        return output
+    }
+    
     
     func generateSingletones(fromMethods methods:[MethodDefinition]) -> String
     {

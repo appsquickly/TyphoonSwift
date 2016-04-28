@@ -53,7 +53,7 @@ class CoreComponents : Assembly {
             $0.injectProperty("brother", with: self.man())
         }
     }
-
+    
     func rootController() -> Definition {        
         let definitnion = Definition(withClass:Woman.self, configuration: { (d) -> (Void) in
             d.injectProperty("name", with: "Aleksey")
@@ -93,26 +93,51 @@ class CoreComponents : Assembly {
         }
     }
     
-    func component1() -> Definition
-    {
-        return Definition(withClass: Component.self) { d in
-            d.injectProperty("dependency", with: self.component2())
-        }
+    func arg1(name: String) -> Definition {
+        return Definition(withClass: Man.self)
     }
     
-    func component2() -> Definition
-    {
-        return Definition(withClass: Component.self) { d in
-            d.injectProperty("dependency", with: self.component3())
-        }
+    func arg2(name: String, name2: String,name3:String  , name5   :String) -> Definition {
+        return Definition(withClass: Man.self)
+    }
+
+    func arg3(wname name:String,
+                    name3 name2: String) -> Definition {
+        return Definition(withClass: Man.self)
     }
     
-    func component3() -> Definition
-    {
-        return Definition(withClass: Component.self) { d in
-            d.injectProperty("dependency", with: self.component1())
-        }
+    func arg4(wname name: String, _ name2: String) -> Definition {
+        return Definition(withClass: Man.self)
     }
+    
+    func arg5(inout wname name: String, _ name2: String? = "213") -> Definition {
+        return Definition(withClass: Man.self)
+    }
+    
+    func arg6(inout name: String, _ name2: String? = "213") -> Definition {
+        return Definition(withClass: Man.self)
+    }
+//
+//    func component1() -> Definition
+//    {
+//        return Definition(withClass: Component.self) { d in
+//            d.injectProperty("dependency", with: self.component2())
+//        }
+//    }
+//    
+//    func component2() -> Definition
+//    {
+//        return Definition(withClass: Component.self) { d in
+//            d.injectProperty("dependency", with: self.component3())
+//        }
+//    }
+//    
+//    func component3() -> Definition
+//    {
+//        return Definition(withClass: Component.self) { d in
+//            d.injectProperty("dependency", with: self.component1())
+//        }
+//    }
     
 //
 //    func twoPlusTwo(two: Int, plusTwo: Int) -> Int {

@@ -110,6 +110,25 @@ class InstanceDefinition {
 }
 
 class MethodDefinition {
+    
+    struct Argument : CustomStringConvertible{
+        var attributes: [String] = []
+        var label: String?
+        var ivar: String = ""
+        var type: String = ""
+        var defaultValue: String?
+        
+        var description: String {
+            get {
+                
+                return "\(attributes.joinWithSeparator(" ")) \(label ?? "") \(ivar):\(type)\(defaultValue != nil ? " = \(defaultValue!)": "")"
+            }
+        }
+        
+    }
+    
+    var args : [Argument] = []
+    
     var name : String!
     var source : String!
     
@@ -137,6 +156,7 @@ class MethodDefinition {
     func addDefinition(definition: InstanceDefinition) {
         self.definitions.append(definition)
     }
+    
 }
 
 enum ArgumentIndex {

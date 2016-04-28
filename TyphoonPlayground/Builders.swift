@@ -37,6 +37,7 @@ class MethodDefinitionBuilder {
             let methodOffset = self.node["key.bodyoffset"] as! Int
             
             let methodDefinition = MethodDefinition(name: name, originalSource: self.methodBody)
+            parseArgumentsForMethod(methodDefinition)
             
             let key = keyFromMethodName(self.node["key.name"] as! String)
             
@@ -51,6 +52,99 @@ class MethodDefinitionBuilder {
             }
             return methodDefinition
         }
+    }
+    
+    func regexpForPattern(pattern: String) -> NSRegularExpression
+    {
+        var regexp: NSRegularExpression
+        do {
+            regexp = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.init(rawValue: 0))
+        } catch {
+            fatalError("Error: Can't create regexpt")
+        }
+        return regexp
+    }
+    
+    func matchedGroup(pattern pattern: String, insideString: String, groupIndex:Int = 0, matchIndex:Int = 0) -> String?
+    {
+        let regexp = regexpForPattern(pattern)
+        
+        let stringRange = insideString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        
+        let matches = regexp.matchesInString(insideString, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange))
+        if matches.count > matchIndex {
+            let match = matches[matchIndex]
+            if match.numberOfRanges > groupIndex + 1 {
+                return insideString[match.rangeAtIndex(groupIndex + 1).toRange()!]
+            }
+        }
+        return nil
+        
+    }
+    
+    func parseArgumentsForMethod(method: MethodDefinition)
+    {
+   
+
+//        var argumentsRegexp =
+        
+        if method.numberOfRuntimeArguments() > 0 {
+            
+            let name = method.name!.stringByReplacingOccurrencesOfString("\n", withString: "")
+//            print("Name: '\(name)'")
+            let content = matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
+            let argStrings = content.componentsSeparatedByString(",")
+            
+            var arguments: [MethodDefinition.Argument] = []
+            
+            
+            for argumentString in argStrings {
+                
+                var argument = MethodDefinition.Argument()
+                
+                let argumentComponents = argumentString.componentsSeparatedByString(":")
+                
+                let typePart = argumentComponents[1].strip()
+                if typePart.containsString("=") {
+                    let typeComponents = typePart.componentsSeparatedByString("=")
+                    argument.type = typeComponents[0].strip()
+                    argument.defaultValue = typeComponents[1].strip()
+                } else {
+                    argument.type = typePart
+                }
+                
+                var names = argumentComponents[0].strip().componentsSeparatedByString(" ")
+                argument.ivar = names.popLast() as String!
+                
+                if let label = names.popLast() {
+                    if label == "inout" {
+                        argument.attributes.append(label)
+                    } else if label != "_" {
+                        argument.label = label
+                    }
+                }
+                
+//                MethodDefinition.Argument
+                
+                arguments.append(argument)
+                
+                print("Arg: \(argument)")
+
+            }
+            print("\n")
+            
+//            let argStrings = content.
+//            print(Any)
+            
+            
+//            let matches = regexp.matchesInString(methodBody, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location))
+//            if matches.count == 1 {
+//                let match = matches.first!
+//                return methodBody[match.rangeAtIndex(1).toRange()!]
+//            }
+        }
+     
+
     }
     
     func instanceDefinition(fromCall call: NSDictionary, methodOffset: Int, key: String) -> (InstanceDefinition, Bool)
@@ -151,7 +245,7 @@ class MethodDefinitionBuilder {
     func configurationBlock(fromCall: NSDictionary, offset: Int) -> BlockNode?
     {
         do {
-            print("Trying to get block from call \(fromCall)")
+//            print("Trying to get block from call \(fromCall)")
             if let configurationBlock = try blockFromCall(fromCall, argumentName: "configuration", offset: offset) {
                 return configurationBlock
             }

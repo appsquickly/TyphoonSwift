@@ -11,6 +11,7 @@
 		FA138DB21CC10D60006A19B6 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA138DB11CC10D60006A19B6 /* StringUtils.swift */; };
 		FA9EFF0B1CC0CC9400BC9AD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF0A1CC0CC9400BC9AD6 /* main.swift */; };
 		FA9EFF121CC0D75C00BC9AD6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF111CC0D75C00BC9AD6 /* Model.swift */; };
+		FADE798F1CD23BD000E83617 /* ActivatedDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE798E1CD23BD000E83617 /* ActivatedDefinition.swift */; };
 		FAE2198F1CC5D09A009F1691 /* ActivatedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */; };
 		FAE219911CC5ECBF009F1691 /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219901CC5ECBF009F1691 /* AssemblyGenerator.swift */; };
 		FAE219971CCB7116009F1691 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219961CCB7116009F1691 /* Models.swift */; };
@@ -40,6 +41,7 @@
 		FA9EFF0A1CC0CC9400BC9AD6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FA9EFF111CC0D75C00BC9AD6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FA9EFF131CC0D77600BC9AD6 /* input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = input.swift; sourceTree = "<group>"; };
+		FADE798E1CD23BD000E83617 /* ActivatedDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedDefinition.swift; sourceTree = "<group>"; };
 		FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedAssembly.swift; sourceTree = "<group>"; };
 		FAE219901CC5ECBF009F1691 /* AssemblyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyGenerator.swift; sourceTree = "<group>"; };
 		FAE219921CC5EEA9009F1691 /* output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = output.swift; sourceTree = "<group>"; };
@@ -89,6 +91,15 @@
 			path = TyphoonPlayground;
 			sourceTree = "<group>";
 		};
+		FADE798D1CD23BBF00E83617 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */,
+				FADE798E1CD23BD000E83617 /* ActivatedDefinition.swift */,
+			);
+			name = Runtime;
+			sourceTree = "<group>";
+		};
 		FAE219981CCB7129009F1691 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,8 +138,8 @@
 		FAE219A31CCD32F4009F1691 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FADE798D1CD23BBF00E83617 /* Runtime */,
 				FA9EFF111CC0D75C00BC9AD6 /* Model.swift */,
-				FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */,
 				FAE219A41CCEA000009F1691 /* Pools.swift */,
 				FAE219A61CCF43A9009F1691 /* Stack.swift */,
 			);
@@ -200,6 +211,7 @@
 				FAE219911CC5ECBF009F1691 /* AssemblyGenerator.swift in Sources */,
 				FAE219A51CCEA000009F1691 /* Pools.swift in Sources */,
 				FAE2198F1CC5D09A009F1691 /* ActivatedAssembly.swift in Sources */,
+				FADE798F1CD23BD000E83617 /* ActivatedDefinition.swift in Sources */,
 				FA138DB21CC10D60006A19B6 /* StringUtils.swift in Sources */,
 				FA138DB01CC103FD006A19B6 /* Builders.swift in Sources */,
 				FA9EFF121CC0D75C00BC9AD6 /* Model.swift in Sources */,
