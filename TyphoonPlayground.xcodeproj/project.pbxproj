@@ -12,11 +12,11 @@
 		FA9EFF0B1CC0CC9400BC9AD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF0A1CC0CC9400BC9AD6 /* main.swift */; };
 		FA9EFF121CC0D75C00BC9AD6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF111CC0D75C00BC9AD6 /* Model.swift */; };
 		FADE798F1CD23BD000E83617 /* ActivatedDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE798E1CD23BD000E83617 /* ActivatedDefinition.swift */; };
+		FADE79901CD68F1700E83617 /* output.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219921CC5EEA9009F1691 /* output.swift */; };
 		FAE2198F1CC5D09A009F1691 /* ActivatedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE2198E1CC5D09A009F1691 /* ActivatedAssembly.swift */; };
 		FAE219911CC5ECBF009F1691 /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219901CC5ECBF009F1691 /* AssemblyGenerator.swift */; };
 		FAE219971CCB7116009F1691 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219961CCB7116009F1691 /* Models.swift */; };
 		FAE2199C1CCB750D009F1691 /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE2199B1CCB750D009F1691 /* Terminal.swift */; };
-		FAE2199F1CCBF1F1009F1691 /* output.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219921CC5EEA9009F1691 /* output.swift */; };
 		FAE219A01CCBF1FB009F1691 /* input.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFF131CC0D77600BC9AD6 /* input.swift */; };
 		FAE219A51CCEA000009F1691 /* Pools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219A41CCEA000009F1691 /* Pools.swift */; };
 		FAE219A71CCF43A9009F1691 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE219A61CCF43A9009F1691 /* Stack.swift */; };
@@ -215,7 +215,7 @@
 				FA138DB21CC10D60006A19B6 /* StringUtils.swift in Sources */,
 				FA138DB01CC103FD006A19B6 /* Builders.swift in Sources */,
 				FA9EFF121CC0D75C00BC9AD6 /* Model.swift in Sources */,
-				FAE2199F1CCBF1F1009F1691 /* output.swift in Sources */,
+				FADE79901CD68F1700E83617 /* output.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

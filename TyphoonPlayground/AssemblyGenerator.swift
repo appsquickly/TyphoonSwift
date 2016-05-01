@@ -13,6 +13,8 @@ struct Replacement {
     var string: String! = ""
 }
 
+// TODO: Refactor generators to use one of template enigines..
+
 class FileGenerator
 {
     let indentStep = "    "
@@ -73,11 +75,17 @@ class FileGenerator
         outputBuffer += "\n\nclass \(assemblyImplClassName(assembly)) : ActivatedAssembly { \n"
         
         for method in assembly.methods {
-            outputBuffer += generateActivatedDefinitions(forMethod: method, indent: indentStep)
+            if method.numberOfRuntimeArguments() == 0 {
+                outputBuffer += generateActivatedDefinitionMethod(forMethod: method, indent: indentStep)
+            }
+        }
+
+        
+        for method in assembly.methods {
             outputBuffer += generateMethod(method, indent: indentStep)
         }
         
-        outputBuffer += generateSingletones(fromMethods: assembly.methods)
+        outputBuffer += generateDefinitionsRegistrations(assembly.methods, indent: indentStep)
 
         
         outputBuffer += "}"
@@ -85,7 +93,7 @@ class FileGenerator
         return outputBuffer
     }
     
-    func generateActivatedDefinitions(forMethod method: MethodDefinition, indent: String) -> String
+    func generateActivatedDefinitionMethod(forMethod method: MethodDefinition, indent: String) -> String
     {
         var output = ""
         
@@ -93,16 +101,62 @@ class FileGenerator
         
         output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition.className!)>\n"
         output += indent + "{\n"
-        output += indent + indent + "let definition = ActivatedGenericDefinition<\(definition.className!)>(withKey: \"\(definition.key)\")\n"
-        let scope = "Definition.Scope.\(definition.scope)"
-        output += indent + indent + "definition.scope = \(scope)\n"
+       
+        output += generateActivatedDefinition(forDefinition: definition, indent: indent + indent)
+        
         output += indent + indent + "return definition\n"
-//        output += indentStep + indentStep + "return [" + methodNames.joinWithSeparator(", ") + "]\n"
         output += indent + "}\n"
         
         return output
     }
     
+    func generateActivatedDefinition(forDefinition definition: InstanceDefinition, ivarName: String = "definition", indent: String) -> String
+    {
+        var output = ""
+        
+        output += indent + "let \(ivarName) = ActivatedGenericDefinition<\(definition.className!)>(withKey: \"\(definition.key)\")\n"
+        
+        // scope
+        let scope = "Definition.Scope.\(definition.scope)"
+        output += indent + "\(ivarName).scope = \(scope)\n"
+        
+        // initialization
+        output += indent + "\(ivarName).initialization = {\n"
+        output += indent + indentStep + "return \(definition.className!)()\n"
+        output += indent + "}\n"
+        
+        //configuration
+        if definition.propertyInjections.count > 0 {
+            output += indent + "\(ivarName).configuration = { instance in \n"
+            output += generatePropertyInjections(definition.propertyInjections, ivar: "instance", indent: indent + indentStep)
+            output += indent  + "}\n"
+        }
+        
+        return output
+    }
+    
+    func generateDefinitionsRegistrations(definitions: [MethodDefinition],indent: String) -> String
+    {
+        var output = "\n"
+        output += indent + "override func registerAllDefinitions() {\n"
+        output += indent + indentStep + "super.registerAllDefinitions()\n"
+        for method in definitions {
+            if method.numberOfRuntimeArguments() == 0 {
+                 output += indent + indentStep + "registerDefinition(definitionFor\(method.name.uppercaseFirst))\n"
+            }
+        }
+        
+
+        
+        output += indent + "}"
+//        registerDefinition(definitionForMan())
+//        override func registerAllDefinitions()
+//        {
+//            registerDefinition(definitionForMan())
+//            
+//        }
+        return output
+    }
     
     func generateSingletones(fromMethods methods:[MethodDefinition]) -> String
     {
@@ -122,7 +176,6 @@ class FileGenerator
         output += indentStep + "{\n"
         output += indentStep + indentStep + "return [" + methodNames.joinWithSeparator(", ") + "]\n"
         output += indentStep + "}\n"
-        
         
         return output
     }
@@ -162,9 +215,16 @@ class FileGenerator
         
         let insideIndent = indent + indentStep
         
-        outputBuffer += "\n\(insideIndent)"
+        outputBuffer += "\n"
         
-        outputBuffer += "return " + generateInstance(method.returnDefinition, indent: insideIndent)
+        if method.numberOfRuntimeArguments() > 0 {
+            outputBuffer += generateActivatedDefinition(forDefinition: method.returnDefinition, indent: insideIndent)
+            outputBuffer += insideIndent + "return component(forDefinition: definition)"
+        } else {
+            outputBuffer += insideIndent + "return component(forKey: \"\(method.returnDefinition.key)\") as \(method.returnDefinition.className!)!"
+        }
+        
+//        outputBuffer += generateInstance(method.returnDefinition, indent: insideIndent)
         
         outputBuffer += "\n"
         
@@ -182,24 +242,6 @@ class FileGenerator
         string = lines.filter{!$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty}.joinWithSeparator("\n")
     }
 
-    
-    func generateInstance(definition: InstanceDefinition, indent: String) -> String
-    {
-        var outputBuffer = ""
-        
-        let scope = "Definition.Scope.\(definition.scope)"
-        
-        if definition.propertyInjections.count > 0 {
-            let insideIndent = indent + indentStep
-            outputBuffer += "component(\(definition.className!)(), key: \"\(definition.key)\", scope: \(scope), configure: { instance in \n"
-            outputBuffer += generatePropertyInjections(definition.propertyInjections, ivar: "instance", indent: insideIndent)
-            outputBuffer += "\(indent)})"
-        } else {
-            outputBuffer.appendContentsOf("component(\(definition.className!)(), key: \"\(definition.key)\", scope: \(scope))")
-        }
-        
-        return outputBuffer
-    }
     
     func generatePropertyInjections(injections: [PropertyInjection], ivar: String, indent: String) -> String
     {

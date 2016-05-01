@@ -13,6 +13,8 @@ enum DefinitionBuilderError: ErrorType {
     case InvalidBlockNode
 }
 
+//TODO: Cleanup and refactoring
+
 class MethodDefinitionBuilder {
     
     var source: String!
@@ -84,14 +86,9 @@ class MethodDefinitionBuilder {
     
     func parseArgumentsForMethod(method: MethodDefinition)
     {
-   
-
-//        var argumentsRegexp =
-        
         if method.numberOfRuntimeArguments() > 0 {
             
             let name = method.name!.stringByReplacingOccurrencesOfString("\n", withString: "")
-//            print("Name: '\(name)'")
             let content = matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
             let argStrings = content.componentsSeparatedByString(",")
             
@@ -104,6 +101,7 @@ class MethodDefinitionBuilder {
                 
                 let argumentComponents = argumentString.componentsSeparatedByString(":")
                 
+                //Parse type and default value
                 let typePart = argumentComponents[1].strip()
                 if typePart.containsString("=") {
                     let typeComponents = typePart.componentsSeparatedByString("=")
@@ -113,6 +111,7 @@ class MethodDefinitionBuilder {
                     argument.type = typePart
                 }
                 
+                //Parse name, label and attributes
                 var names = argumentComponents[0].strip().componentsSeparatedByString(" ")
                 argument.ivar = names.popLast() as String!
                 
@@ -123,25 +122,12 @@ class MethodDefinitionBuilder {
                         argument.label = label
                     }
                 }
-                
-//                MethodDefinition.Argument
-                
                 arguments.append(argument)
                 
                 print("Arg: \(argument)")
 
             }
             print("\n")
-            
-//            let argStrings = content.
-//            print(Any)
-            
-            
-//            let matches = regexp.matchesInString(methodBody, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location))
-//            if matches.count == 1 {
-//                let match = matches.first!
-//                return methodBody[match.rangeAtIndex(1).toRange()!]
-//            }
         }
      
 

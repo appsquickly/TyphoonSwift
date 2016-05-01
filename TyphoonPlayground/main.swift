@@ -36,85 +36,15 @@ Typhoon.activateAssemblies()
 //
 //
 
-extension CoreComponentsImplementation
-{
-    
-    func definitionForRootController() -> ActivatedGenericDefinition<String>
-    {
-        let definition = ActivatedGenericDefinition<String>(withKey: "rootController")
-        definition.initialization = { args in
-            return "Hello world"
-        }
-        definition.configuration = { instance, args in
-            instance.appendContentsOf("123")
-        }
-        definition.scope = Definition.Scope.Prototype
-        return definition
-    }
-//
-    private func definitionForFirstViewController() -> ActivatedGenericDefinition<Int>
-    {
-        let definition = ActivatedGenericDefinition<Int>(withKey: "int")
-        definition.initialization = { args in
-            return 1
-        }
-        definition.scope = Definition.Scope.Prototype
-        return definition
-    }
-    
-    func firstViewController() -> Int
-    {
-        return component(forKey: "int") as Int!
-    }
-    
-//
-    func registerAllDefinitions2() {
-        
-//        self.registerDefinition(definitionForRootController())
-//        self.registerDefinition(definitionForFirstViewController())
+let service = CoreComponents.assembly.componentForType() as Service?
 
-        
-        if let result = self.component(forKey: "rootController") as String? {
-            print("Result: \(result)")
-        }
-        
-        if let value1 = self.componentForType() as Int? {
-            print("Int: \(value1)")
-        }
-        
-        if let value2 = self.componentForType() as String? {
-            print("String: \(value2)")
-        }
-        
-//        let definition2 = definitionForFirstViewController()
-//        
-//        let res = self.component(forDefinition: definition2)
-    
-//        self.registerDefinition(definition as ActivatedDefinition<Any> )
-        
-    }
-}
+print("string: \(service)")
+
+var anotherService = Service()
+
+//CoreComponents.assembly.
 
 
-let args = RuntimeArguments(withArguments: [])
-
-args.arguments = ["", 1, ActivatedGenericDefinition<Int>(withKey: "int"), { return "hello" }]
-
-if let str = args.arguments[0] as? String {
-    print("String!")
-}
-
-if let str = args.arguments[1] as? Int {
-    print("Int!")
-}
-
-if let str = args.arguments[2] as? ActivatedGenericDefinition<Int> {
-    print("ActivatedGenericDefinition<int>!")
-}
-
-if let str = args.arguments[3] as? () -> (String) {
-    print("block")
-}
 
 
 //let component = CoreComponents.assembly.component1()
@@ -132,7 +62,7 @@ if let str = args.arguments[3] as? () -> (String) {
 //    print("Can't get gependency")
 //}
 //
-CoreComponents.assembly.registerAllDefinitions2()
+//CoreComponents.assembly.registerAllDefinitions2()
 
 //print("bro: \(man == man.brother!.brother!)")
 

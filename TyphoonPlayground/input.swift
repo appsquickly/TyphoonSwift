@@ -93,30 +93,6 @@ class CoreComponents : Assembly {
         }
     }
     
-    func arg1(name: String) -> Definition {
-        return Definition(withClass: Man.self)
-    }
-    
-    func arg2(name: String, name2: String,name3:String  , name5   :String) -> Definition {
-        return Definition(withClass: Man.self)
-    }
-
-    func arg3(wname name:String,
-                    name3 name2: String) -> Definition {
-        return Definition(withClass: Man.self)
-    }
-    
-    func arg4(wname name: String, _ name2: String) -> Definition {
-        return Definition(withClass: Man.self)
-    }
-    
-    func arg5(inout wname name: String, _ name2: String? = "213") -> Definition {
-        return Definition(withClass: Man.self)
-    }
-    
-    func arg6(inout name: String, _ name2: String? = "213") -> Definition {
-        return Definition(withClass: Man.self)
-    }
 //
 //    func component1() -> Definition
 //    {

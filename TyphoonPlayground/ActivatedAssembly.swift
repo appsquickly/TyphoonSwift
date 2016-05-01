@@ -27,65 +27,26 @@ class ActivatedAssembly
     
     private var registry: [ActivatedDefinition] = []
     
-    func registerDefinition(definition: ActivatedDefinition)
+    private var eagerSingletoneActivations: [() -> ()] = []
+    
+    // Methods to override by ActivatedAssembly subclass
+    
+    internal func registerAllDefinitions()
     {
-        registry.append(definition)
+        
     }
     
-    internal func component<ComponentType: Any>( @autoclosure initialization: () -> ComponentType, key: String, scope: Definition.Scope = Definition.Scope.Prototype, configure: ((inout ComponentType) -> ())? = nil ) -> ComponentType
+    // -----
+    
+    func registerDefinition<ComponentType: Any>(definition: ActivatedGenericDefinition<ComponentType>)
     {
-        if let sharedInstance = sharedInstance(withScope: scope, forKey: key) as? ComponentType {
-            return sharedInstance
+        registry.append(definition)
+        
+        if definition.scope == Definition.Scope.Singletone {
+            eagerSingletoneActivations.append({
+                self.component(forDefinition: definition)
+            })
         }
-        
-        if let stackedInstance = stackedInstance(forKey: key) as? ComponentType {
-            return stackedInstance
-        }
-        
-        let element = StackElement(withKey: key)
-        
-        initializationStack.push(element)
-        let instance = initialization()
-        initializationStack.pop()
-        
-        
-        let configureElement = StackElement(withKey: key)
-        configureElement.instance = instance
-        
-        
-        if let configure = configure {
-            configureElement.configuration = configure
-            configureStack.push(configureElement)
-        }
-        
-        storeSharedInstance(instance, withScope: scope, forKey: key)
-        
-        if initializationStack.isEmpty() {
-            
-            instanceStack.push(StackElement(withInstance: instance, key: key))
-            
-            //Copy and clear configuration stack
-            let configures = configureStack.copy()
-            configureStack.clear()
-            
-            //Run all configuration blocks
-            for element in configures.elements {
-                
-                //Run configuration block
-                if let configureBlock = element.configuration as? (inout ComponentType) -> () {
-                    var configureInstance = element.instance as! ComponentType
-                    configureBlock(&configureInstance)
-                }
-            }
-            
-            instanceStack.pop()
-            
-            if instanceStack.isEmpty() {
-                clearObjectGraphPool()
-            }
-        }
-        
-        return instance
     }
     
     func inject<ComponentType: Any>(inout instance: ComponentType)
@@ -125,6 +86,7 @@ class ActivatedAssembly
         if let definition = definition(forKey: key) as? ActivatedGenericDefinition<ComponentType> {
             return component(forDefinition: definition)
         }
+        print("Couldn't cast definition for key \(key)")
         return nil
     }
     
@@ -156,7 +118,7 @@ class ActivatedAssembly
         instanceStack.push(StackElement(withInstance: instance, key: definition.key))
         
         if let configure = definition.configuration {
-            configure(&instance, nil)
+            configure(&instance)
         }
         
         instanceStack.pop()
@@ -166,7 +128,7 @@ class ActivatedAssembly
         }
     }
     
-    private func component<ComponentType: Any>(forDefinition definition: ActivatedGenericDefinition<ComponentType>, args: RuntimeArguments? = nil) -> ComponentType
+    internal func component<ComponentType: Any>(forDefinition definition: ActivatedGenericDefinition<ComponentType>) -> ComponentType
     {
         if let sharedInstance = sharedInstance(withScope: definition.scope, forKey: definition.key) as? ComponentType {
             return sharedInstance
@@ -179,7 +141,7 @@ class ActivatedAssembly
         let element = StackElement(withKey: definition.key)
         
         initializationStack.push(element)
-        let instance = definition.initialization!(args)
+        let instance = definition.initialization!()
         initializationStack.pop()
         
         
@@ -207,8 +169,10 @@ class ActivatedAssembly
                 
                 //Run configuration block
                 if let configureBlock = element.configuration as? (inout ComponentType) -> () {
-                    var configureInstance = element.instance as! ComponentType
-                    configureBlock(&configureInstance)
+                    var instanceToConifgure = element.instance as! ComponentType
+                    configureBlock(&instanceToConifgure)
+                    // Rewrite configured instance into pool (in case of structure)
+                    storeSharedInstance(instanceToConifgure, withScope: definition.scope, forKey: definition.key)
                 }
             }
             
@@ -222,18 +186,9 @@ class ActivatedAssembly
         return instance
     }
     
-    internal func singletones() -> [()->(Any)]
-    {
-        return []
-    }
-    
-    internal func registerAllDefinitions()
-    {
-    
-    }
-    
     init() {
         self.createPools()
+        self.registerAllDefinitions()
         self.activateEagerSingletons()
     }
     
@@ -291,8 +246,9 @@ class ActivatedAssembly
     
     private func activateEagerSingletons()
     {
-//        for (method) in singletones() {
-//            method()
-//        }
+        for activation in eagerSingletoneActivations {
+            activation()
+        }
+        eagerSingletoneActivations = []
     }
 }

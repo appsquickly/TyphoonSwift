@@ -22,20 +22,10 @@ class ActivatedDefinition
     
 }
 
-class RuntimeArguments {
-    
-    var arguments :[Any] = []
-    
-    init(withArguments: [Any]) {
-        self.arguments = withArguments
-    }
-    
-}
-
 class ActivatedGenericDefinition<ComponentType> : ActivatedDefinition
 {
-    var initialization: ((RuntimeArguments?) -> (ComponentType))?
-    var configuration: ((inout ComponentType, RuntimeArguments?) -> ())? = nil
+    var initialization: (() -> (ComponentType))?
+    var configuration: ((inout ComponentType) -> ())? = nil
     
     override init(withKey: String)
     {
