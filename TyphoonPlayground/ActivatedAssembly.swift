@@ -14,6 +14,29 @@ enum ActivatedAssemblyError: ErrorType {
 
 class ActivatedAssembly
 {
+    private var __container: ActivatedAssemblyContainer!
+    
+    init() {
+        __container = ActivatedAssemblyContainer()
+    }
+    
+    func componentForType<ComponentType: Any>() -> ComponentType?
+    {
+        return __container.componentForType() as ComponentType?
+    }
+    
+    func inject<ComponentType: Any>(inout instance: ComponentType)
+    {
+        __container.inject(&instance)
+    }
+    
+    class func container(forAssembly: ActivatedAssembly) -> ActivatedAssemblyContainer {
+        return forAssembly.__container
+    }
+}
+
+class ActivatedAssemblyContainer
+{
     private var pools: [Definition.Scope: ComponentsPool] = [:]
     
     //Used to identify when initialization graph complete
@@ -29,14 +52,15 @@ class ActivatedAssembly
     
     private var eagerSingletoneActivations: [() -> ()] = []
     
-    // Methods to override by ActivatedAssembly subclass
-    
-    internal func registerAllDefinitions()
-    {
-        
+    init() {
+        self.createPools()
     }
     
-    // -----
+    /// Activates current assembly.
+    func activate()
+    {
+        activateEagerSingletons()
+    }
     
     func registerDefinition<ComponentType: Any>(definition: ActivatedGenericDefinition<ComponentType>)
     {
@@ -186,12 +210,6 @@ class ActivatedAssembly
         return instance
     }
     
-    init() {
-        self.createPools()
-        self.registerAllDefinitions()
-        self.activateEagerSingletons()
-    }
-    
     private func stackedInstance(forKey key: String) -> Any?
     {
         // Cannot resolve circular reference inside initialization
@@ -252,3 +270,4 @@ class ActivatedAssembly
         eagerSingletoneActivations = []
     }
 }
+

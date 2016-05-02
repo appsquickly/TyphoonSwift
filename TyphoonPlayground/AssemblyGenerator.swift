@@ -138,45 +138,23 @@ class FileGenerator
     func generateDefinitionsRegistrations(definitions: [MethodDefinition],indent: String) -> String
     {
         var output = "\n"
-        output += indent + "override func registerAllDefinitions() {\n"
-        output += indent + indentStep + "super.registerAllDefinitions()\n"
-        for method in definitions {
-            if method.numberOfRuntimeArguments() == 0 {
-                 output += indent + indentStep + "registerDefinition(definitionFor\(method.name.uppercaseFirst))\n"
-            }
-        }
         
+        output += indent + "override init() {\n"
+        output += indent + indentStep + "super.init()\n"
+        output += indent + indentStep + "registerAllDefinitions()\n"
+        output += indent + "}\n"
+        
+        output += "\n"
 
         
-        output += indent + "}"
-//        registerDefinition(definitionForMan())
-//        override func registerAllDefinitions()
-//        {
-//            registerDefinition(definitionForMan())
-//            
-//        }
-        return output
-    }
-    
-    func generateSingletones(fromMethods methods:[MethodDefinition]) -> String
-    {
-        var output = ""
-        
-        var methodNames : [String] = []
-        
-        for method in methods {
-            if method.returnDefinition.scope == Definition.Scope.Singletone {
-                if method.numberOfRuntimeArguments() == 0 {
-                    methodNames.append(method.returnDefinition.key)
-                }
+        output += indent + "private func registerAllDefinitions() {\n"
+        for method in definitions {
+            if method.numberOfRuntimeArguments() == 0 {
+                 output += indent + indentStep + "ActivatedAssembly.container(self).registerDefinition(definitionFor\(method.name.uppercaseFirst))\n"
             }
         }
-        
-        output += "\n" + indentStep + "override func singletones() -> [()->(Any)]\n"
-        output += indentStep + "{\n"
-        output += indentStep + indentStep + "return [" + methodNames.joinWithSeparator(", ") + "]\n"
-        output += indentStep + "}\n"
-        
+        output += indent + "}\n"
+
         return output
     }
     
@@ -198,6 +176,7 @@ class FileGenerator
         outputBuffer += indentStep + indentStep + "}\n"
         outputBuffer += indentStep + indentStep + "dispatch_once(&Static.onceToken) {\n"
         outputBuffer += indentStep + indentStep + indentStep + "Static.instance = \(assemblyImplClassName(assembly))()\n"
+        outputBuffer += indentStep + indentStep + indentStep + "ActivatedAssembly.container(Static.instance!).activate()\n"
         outputBuffer += indentStep + indentStep + "}\n"
         outputBuffer += indentStep + indentStep + "return Static.instance!\n"
         outputBuffer += indentStep + indentStep + "}\n"
@@ -219,9 +198,9 @@ class FileGenerator
         
         if method.numberOfRuntimeArguments() > 0 {
             outputBuffer += generateActivatedDefinition(forDefinition: method.returnDefinition, indent: insideIndent)
-            outputBuffer += insideIndent + "return component(forDefinition: definition)"
+            outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forDefinition: definition)"
         } else {
-            outputBuffer += insideIndent + "return component(forKey: \"\(method.returnDefinition.key)\") as \(method.returnDefinition.className!)!"
+            outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forKey: \"\(method.returnDefinition.key)\") as \(method.returnDefinition.className!)!"
         }
         
 //        outputBuffer += generateInstance(method.returnDefinition, indent: insideIndent)

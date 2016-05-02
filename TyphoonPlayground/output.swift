@@ -2,9 +2,14 @@ import Foundation
 
 class ViewsFactoryImplementation : ActivatedAssembly { 
 
-    override func registerAllDefinitions() {
-        super.registerAllDefinitions()
-    }}
+    override init() {
+        super.init()
+        registerAllDefinitions()
+    }
+
+    private func registerAllDefinitions() {
+    }
+}
 
 class CoreComponentsImplementation : ActivatedAssembly { 
 
@@ -69,15 +74,15 @@ class CoreComponentsImplementation : ActivatedAssembly {
             instance.name = name
             instance.brother = self.man()
         }
-        return component(forDefinition: definition)
+        return ActivatedAssembly.container(self).component(forDefinition: definition)
     }
 
     func rootController() -> Woman { 
-        return component(forKey: "rootController") as Woman!
+        return ActivatedAssembly.container(self).component(forKey: "rootController") as Woman!
     }
 
     func shareService2() -> Service { 
-        return component(forKey: "shareService2") as Service!
+        return ActivatedAssembly.container(self).component(forKey: "shareService2") as Service!
     }
 
     func shareService(withArgument:Int) -> Service { 
@@ -86,24 +91,29 @@ class CoreComponentsImplementation : ActivatedAssembly {
         definition.initialization = {
             return Service()
         }
-        return component(forDefinition: definition)
+        return ActivatedAssembly.container(self).component(forDefinition: definition)
     }
 
     func man() -> Man { 
-        return component(forKey: "man") as Man!
+        return ActivatedAssembly.container(self).component(forKey: "man") as Man!
     }
 
     func name() -> String { 
-        return component(forKey: "name") as String!
+        return ActivatedAssembly.container(self).component(forKey: "name") as String!
     }
 
-    override func registerAllDefinitions() {
-        super.registerAllDefinitions()
-        registerDefinition(definitionForRootController())
-        registerDefinition(definitionForShareService2())
-        registerDefinition(definitionForMan())
-        registerDefinition(definitionForName())
-    }}
+    override init() {
+        super.init()
+        registerAllDefinitions()
+    }
+
+    private func registerAllDefinitions() {
+        ActivatedAssembly.container(self).registerDefinition(definitionForRootController())
+        ActivatedAssembly.container(self).registerDefinition(definitionForShareService2())
+        ActivatedAssembly.container(self).registerDefinition(definitionForMan())
+        ActivatedAssembly.container(self).registerDefinition(definitionForName())
+    }
+}
 
 // Extensions
 
@@ -116,6 +126,7 @@ extension ViewsFactory {
         }
         dispatch_once(&Static.onceToken) {
             Static.instance = ViewsFactoryImplementation()
+            ActivatedAssembly.container(Static.instance!).activate()
         }
         return Static.instance!
         }
@@ -131,6 +142,7 @@ extension CoreComponents {
         }
         dispatch_once(&Static.onceToken) {
             Static.instance = CoreComponentsImplementation()
+            ActivatedAssembly.container(Static.instance!).activate()
         }
         return Static.instance!
         }

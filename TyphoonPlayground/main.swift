@@ -21,7 +21,9 @@ if let file = fileDefinitionBuilder.build() {
 Typhoon.activateAssemblies()
 
 
-//CoreComponents.assembly.
+
+
+
 
 //let controller = CoreComponents.assembly.shareService2()
 //
@@ -36,11 +38,18 @@ Typhoon.activateAssemblies()
 //
 //
 
-let service = CoreComponents.assembly.componentForType() as Service?
+//CoreComponents.assembly.
 
-print("string: \(service)")
 
-var anotherService = Service()
+//let service = CoreComponents.assembly.componentForType() as Service?
+
+//CoreComponents.assembly.registerAllDefinitions()
+
+//print("string: \(service)")
+
+
+
+//var anotherService = Service()
 
 //CoreComponents.assembly.
 
