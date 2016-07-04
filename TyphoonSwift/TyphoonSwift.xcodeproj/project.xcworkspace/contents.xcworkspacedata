@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TyphoonPlayground.xcodeproj">
+      location = "self:TyphoonSwift.xcodeproj">
    </FileRef>
 </Workspace>

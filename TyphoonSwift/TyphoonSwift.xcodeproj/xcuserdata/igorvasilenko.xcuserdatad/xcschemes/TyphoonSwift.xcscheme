@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA9EFF061CC0CC9400BC9AD6"
-               BuildableName = "TyphoonPlayground"
-               BlueprintName = "TyphoonPlayground"
-               ReferencedContainer = "container:TyphoonPlayground.xcodeproj">
+               BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
+               BuildableName = "TyphoonSwift.app"
+               BlueprintName = "TyphoonSwift"
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B722A9EF1D2A8F5900B675AA"
+               BuildableName = "TyphoonSwiftTests.xctest"
+               BlueprintName = "TyphoonSwiftTests"
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA9EFF061CC0CC9400BC9AD6"
-            BuildableName = "TyphoonPlayground"
-            BlueprintName = "TyphoonPlayground"
-            ReferencedContainer = "container:TyphoonPlayground.xcodeproj">
+            BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
+            BuildableName = "TyphoonSwift.app"
+            BlueprintName = "TyphoonSwift"
+            ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +65,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA9EFF061CC0CC9400BC9AD6"
-            BuildableName = "TyphoonPlayground"
-            BlueprintName = "TyphoonPlayground"
-            ReferencedContainer = "container:TyphoonPlayground.xcodeproj">
+            BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
+            BuildableName = "TyphoonSwift.app"
+            BlueprintName = "TyphoonSwift"
+            ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +84,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA9EFF061CC0CC9400BC9AD6"
-            BuildableName = "TyphoonPlayground"
-            BlueprintName = "TyphoonPlayground"
-            ReferencedContainer = "container:TyphoonPlayground.xcodeproj">
+            BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
+            BuildableName = "TyphoonSwift.app"
+            BlueprintName = "TyphoonSwift"
+            ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
