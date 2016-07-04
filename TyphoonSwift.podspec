@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = '10.11'
   spec.tvos.deployment_target = '9.0'
  
-  spec.source = {:git => 'http://git.appsquick.ly/typhoon/typhoon-swift.git', :tag => spec.version.to_s, :submodules => true}
+  spec.source = {:git => 'http://git.appsquick.ly/typhoon/typhoon-swift.git', :branch => 'issue#1/create-cocoapod'}
   spec.source_files = 'Source/**/*.{swift}'
 
   spec.documentation_url = 'http://www.typhoonframework.org/docs/latest/api/'
