@@ -1,4 +1,4 @@
-Pod::Spec.new do |s|
+Pod::Spec.new do |spec|
  
   spec.name = "TyphoonSwift"
   spec.summary = "Dependency injection for Swift. Light-weight, yet flexible and full-featured."
