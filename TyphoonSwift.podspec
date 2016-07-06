@@ -10,12 +10,13 @@ Pod::Spec.new do |spec|
   spec.author = {'Jasper Blues, Aleksey Garbarev, Valeriy Popov, Igor Vasilenko & Contributors' => 'info@typhoonframework.org'}
   spec.homepage = 'http://www.typhoonframework.org'
 
-  spec.ios.deployment_target = '8.0'
-  spec.osx.deployment_target = '10.11'
-  spec.tvos.deployment_target = '9.0'
- 
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.9'
+  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
+
   spec.source = {:git => 'http://git.appsquick.ly/typhoon/typhoon-swift.git', :branch => 'issue#1/create-cocoapod'}
-  spec.source_files = 'Source/**/*.{swift}'
+  spec.source_files = 'Source/*.{swift}'
 
   spec.documentation_url = 'http://www.typhoonframework.org/docs/latest/api/'
 

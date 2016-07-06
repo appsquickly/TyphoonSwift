@@ -1,13 +1,14 @@
 //
 //  AppDelegate.swift
-//  TyphoonSwift
+//  TyphoonSwift-Example
 //
-//  Created by Igor Vasilenko on 04/07/16.
+//  Created by Igor Vasilenko on 06/07/16.
 //  Copyright © 2016 Typhoon Framework. All rights reserved.
 //
 
 import UIKit
 
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?

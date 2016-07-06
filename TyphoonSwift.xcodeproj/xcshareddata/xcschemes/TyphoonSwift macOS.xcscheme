@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
-               BuildableName = "TyphoonSwift.app"
-               BlueprintName = "TyphoonSwift"
+               BlueprintIdentifier = "B7610CD91D2D702700F47325"
+               BuildableName = "TyphoonSwift.framework"
+               BlueprintName = "TyphoonSwift macOS"
                ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B722A9EF1D2A8F5900B675AA"
-               BuildableName = "TyphoonSwiftTests.xctest"
-               BlueprintName = "TyphoonSwiftTests"
-               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
-            BuildableName = "TyphoonSwift.app"
-            BlueprintName = "TyphoonSwift"
-            ReferencedContainer = "container:TyphoonSwift.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
-            BuildableName = "TyphoonSwift.app"
-            BlueprintName = "TyphoonSwift"
+            BlueprintIdentifier = "B7610CD91D2D702700F47325"
+            BuildableName = "TyphoonSwift.framework"
+            BlueprintName = "TyphoonSwift macOS"
             ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B722A9DB1D2A8F5900B675AA"
-            BuildableName = "TyphoonSwift.app"
-            BlueprintName = "TyphoonSwift"
+            BlueprintIdentifier = "B7610CD91D2D702700F47325"
+            BuildableName = "TyphoonSwift.framework"
+            BlueprintName = "TyphoonSwift macOS"
             ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

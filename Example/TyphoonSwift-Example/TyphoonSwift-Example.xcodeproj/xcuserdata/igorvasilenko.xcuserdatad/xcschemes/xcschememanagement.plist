@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TyphoonSwift.xcscheme</key>
+		<key>TyphoonSwift-Example.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B722A9DB1D2A8F5900B675AA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B722A9EF1D2A8F5900B675AA</key>
+		<key>B7610B341D2D63FA00F47325</key>
 		<dict>
 			<key>primary</key>
 			<true/>
