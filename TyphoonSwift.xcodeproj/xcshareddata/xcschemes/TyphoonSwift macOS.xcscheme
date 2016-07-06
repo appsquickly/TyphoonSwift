@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B7610CD91D2D702700F47325"
                BuildableName = "TyphoonSwift.framework"
-               BlueprintName = "TyphoonSwift macOS"
+               BlueprintName = "TyphoonSwift OSX"
                ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,7 +47,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7610CD91D2D702700F47325"
             BuildableName = "TyphoonSwift.framework"
-            BlueprintName = "TyphoonSwift macOS"
+            BlueprintName = "TyphoonSwift OSX"
             ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,7 +65,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7610CD91D2D702700F47325"
             BuildableName = "TyphoonSwift.framework"
-            BlueprintName = "TyphoonSwift macOS"
+            BlueprintName = "TyphoonSwift OSX"
             ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
