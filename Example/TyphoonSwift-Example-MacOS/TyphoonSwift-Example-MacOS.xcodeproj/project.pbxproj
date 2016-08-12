@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B79612151D5E14BD007DBC6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79612141D5E14BD007DBC6C /* AppDelegate.swift */; };
+		B79612171D5E14BD007DBC6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79612161D5E14BD007DBC6C /* ViewController.swift */; };
+		B79612191D5E14BD007DBC6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B79612181D5E14BD007DBC6C /* Assets.xcassets */; };
+		B796121C1D5E14BD007DBC6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B796121A1D5E14BD007DBC6C /* Main.storyboard */; };
+		B79612461D5E159B007DBC6C /* TyphoonSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79612431D5E1565007DBC6C /* TyphoonSwift.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B796123E1D5E1565007DBC6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7610CBE1D2D6FE000F47325;
+			remoteInfo = "TyphoonSwift iOS";
+		};
+		B79612401D5E1565007DBC6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7610CC71D2D6FE000F47325;
+			remoteInfo = "TyphoonSwift iOSTests";
+		};
+		B79612421D5E1565007DBC6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7610CDA1D2D702700F47325;
+			remoteInfo = "TyphoonSwift OSX";
+		};
+		B79612441D5E1565007DBC6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7610CE31D2D702700F47325;
+			remoteInfo = "TyphoonSwift macOSTests";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B79612111D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TyphoonSwift-Example-MacOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79612141D5E14BD007DBC6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B79612161D5E14BD007DBC6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B79612181D5E14BD007DBC6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B796121B1D5E14BD007DBC6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B796121D1D5E14BD007DBC6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TyphoonSwift.xcodeproj; path = ../../TyphoonSwift.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B796120E1D5E14BD007DBC6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79612461D5E159B007DBC6C /* TyphoonSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B79612081D5E14BD007DBC6C = {
+			isa = PBXGroup;
+			children = (
+				B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */,
+				B79612131D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS */,
+				B79612121D5E14BD007DBC6C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B79612121D5E14BD007DBC6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B79612111D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B79612131D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS */ = {
+			isa = PBXGroup;
+			children = (
+				B79612141D5E14BD007DBC6C /* AppDelegate.swift */,
+				B79612161D5E14BD007DBC6C /* ViewController.swift */,
+				B79612181D5E14BD007DBC6C /* Assets.xcassets */,
+				B796121A1D5E14BD007DBC6C /* Main.storyboard */,
+				B796121D1D5E14BD007DBC6C /* Info.plist */,
+			);
+			path = "TyphoonSwift-Example-MacOS";
+			sourceTree = "<group>";
+		};
+		B79612381D5E1565007DBC6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B796123F1D5E1565007DBC6C /* TyphoonSwift.framework */,
+				B79612411D5E1565007DBC6C /* TyphoonSwift iOSTests.xctest */,
+				B79612431D5E1565007DBC6C /* TyphoonSwift.framework */,
+				B79612451D5E1565007DBC6C /* TyphoonSwift macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B79612101D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B79612201D5E14BD007DBC6C /* Build configuration list for PBXNativeTarget "TyphoonSwift-Example-MacOS" */;
+			buildPhases = (
+				B796120D1D5E14BD007DBC6C /* Sources */,
+				B796120E1D5E14BD007DBC6C /* Frameworks */,
+				B796120F1D5E14BD007DBC6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TyphoonSwift-Example-MacOS";
+			productName = "TyphoonSwift-Example-MacOS";
+			productReference = B79612111D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B79612091D5E14BD007DBC6C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = typhoonframework.org;
+				TargetAttributes = {
+					B79612101D5E14BD007DBC6C = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = B796120C1D5E14BD007DBC6C /* Build configuration list for PBXProject "TyphoonSwift-Example-MacOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B79612081D5E14BD007DBC6C;
+			productRefGroup = B79612121D5E14BD007DBC6C /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B79612381D5E1565007DBC6C /* Products */;
+					ProjectRef = B79612371D5E1565007DBC6C /* TyphoonSwift.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				B79612101D5E14BD007DBC6C /* TyphoonSwift-Example-MacOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B796123F1D5E1565007DBC6C /* TyphoonSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TyphoonSwift.framework;
+			remoteRef = B796123E1D5E1565007DBC6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B79612411D5E1565007DBC6C /* TyphoonSwift iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "TyphoonSwift iOSTests.xctest";
+			remoteRef = B79612401D5E1565007DBC6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B79612431D5E1565007DBC6C /* TyphoonSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TyphoonSwift.framework;
+			remoteRef = B79612421D5E1565007DBC6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B79612451D5E1565007DBC6C /* TyphoonSwift macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "TyphoonSwift macOSTests.xctest";
+			remoteRef = B79612441D5E1565007DBC6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B796120F1D5E14BD007DBC6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79612191D5E14BD007DBC6C /* Assets.xcassets in Resources */,
+				B796121C1D5E14BD007DBC6C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B796120D1D5E14BD007DBC6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79612171D5E14BD007DBC6C /* ViewController.swift in Sources */,
+				B79612151D5E14BD007DBC6C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B796121A1D5E14BD007DBC6C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B796121B1D5E14BD007DBC6C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B796121E1D5E14BD007DBC6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B796121F1D5E14BD007DBC6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B79612211D5E14BD007DBC6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "TyphoonSwift-Example-MacOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "typhoonframework.org.TyphoonSwift-Example-MacOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B79612221D5E14BD007DBC6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "TyphoonSwift-Example-MacOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "typhoonframework.org.TyphoonSwift-Example-MacOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B796120C1D5E14BD007DBC6C /* Build configuration list for PBXProject "TyphoonSwift-Example-MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B796121E1D5E14BD007DBC6C /* Debug */,
+				B796121F1D5E14BD007DBC6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B79612201D5E14BD007DBC6C /* Build configuration list for PBXNativeTarget "TyphoonSwift-Example-MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B79612211D5E14BD007DBC6C /* Debug */,
+				B79612221D5E14BD007DBC6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B79612091D5E14BD007DBC6C /* Project object */;
+}
