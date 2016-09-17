@@ -1,4 +1,4 @@
 struct TyphoonPackage {
 
-    var text = "Hello, World!"
+    var description = "Typhoon Swift Package v 0.0.1"
 }
