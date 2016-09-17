@@ -12,7 +12,7 @@ class Terminal {
     
     static func shell(_ launchPath: String, arguments: [String]) -> String
     {
-        let task = NSTask()
+        let task = Process()
         task.launchPath = launchPath
         task.arguments = arguments
         

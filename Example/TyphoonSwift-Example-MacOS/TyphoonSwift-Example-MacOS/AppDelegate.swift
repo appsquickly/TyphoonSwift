@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import TyphoonSwift
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
