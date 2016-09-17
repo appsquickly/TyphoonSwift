@@ -5,3 +5,6 @@ print(typhoonSwift.description)
 
 let task = Process()
 print(task)
+
+let fileDefinition = FileDefinition(fileName: "testFile")
+print(fileDefinition.fileName)
