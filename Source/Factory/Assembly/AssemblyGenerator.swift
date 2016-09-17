@@ -9,7 +9,7 @@
 import Foundation
 
 struct Replacement {
-    var range: Range<Int>! = 0..<0
+    var range: CountableRange<Int>! = 0..<0
     var string: String! = ""
 }
 
@@ -45,14 +45,14 @@ class FileGenerator
         outputBuffer += generateActivation(file.assemblies)
     
         do {
-            try outputBuffer.writeToFile(outputPath, atomically: true, encoding: NSUTF8StringEncoding)
+            try outputBuffer.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
         } catch {
             print("Failed writing to path")
         }
         
     }
     
-    func generateActivation(assemblies: [AssemblyDefinition]) -> String
+    func generateActivation(_ assemblies: [AssemblyDefinition]) -> String
     {
         var outputBuffer = ""
         
@@ -68,7 +68,7 @@ class FileGenerator
         return outputBuffer
     }
     
-    func generateAssembly(assembly: AssemblyDefinition) -> String
+    func generateAssembly(_ assembly: AssemblyDefinition) -> String
     {
         var outputBuffer = ""
         
@@ -102,7 +102,7 @@ class FileGenerator
         output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition.className!)>\n"
         output += indent + "{\n"
        
-        output += generateActivatedDefinition(forDefinition: definition, indent: indent + indent)
+        output += generateActivatedDefinition(forDefinition: definition!, indent: indent + indent)
         
         output += indent + indent + "return definition\n"
         output += indent + "}\n"
@@ -135,7 +135,7 @@ class FileGenerator
         return output
     }
     
-    func generateDefinitionsRegistrations(definitions: [MethodDefinition],indent: String) -> String
+    func generateDefinitionsRegistrations(_ definitions: [MethodDefinition],indent: String) -> String
     {
         var output = "\n"
         
@@ -158,12 +158,12 @@ class FileGenerator
         return output
     }
     
-    func assemblyImplClassName(assembly: AssemblyDefinition) ->String
+    func assemblyImplClassName(_ assembly: AssemblyDefinition) ->String
     {
         return "\(assembly.name)Implementation"
     }
     
-    func generateAssemblyExtension(assembly: AssemblyDefinition) -> String
+    func generateAssemblyExtension(_ assembly: AssemblyDefinition) -> String
     {
         var outputBuffer = ""
         
@@ -186,7 +186,7 @@ class FileGenerator
         return outputBuffer
     }
     
-    func generateMethod(method: MethodDefinition, indent: String) -> String
+    func generateMethod(_ method: MethodDefinition, indent: String) -> String
     {
         var outputBuffer = ""
         
@@ -212,17 +212,17 @@ class FileGenerator
         return outputBuffer
     }
     
-    func trimEmptyLines(inout string: String)
+    func trimEmptyLines(_ string: inout String)
     {
         var lines: [String] = []
         string.enumerateLines { line, _ in lines.append(line) }
         
         
-        string = lines.filter{!$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).isEmpty}.joinWithSeparator("\n")
+        string = lines.filter{!$0.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty}.joined(separator: "\n")
     }
 
     
-    func generatePropertyInjections(injections: [PropertyInjection], ivar: String, indent: String) -> String
+    func generatePropertyInjections(_ injections: [PropertyInjection], ivar: String, indent: String) -> String
     {
         var outputBuffer = ""
         for injection in injections {
@@ -231,22 +231,22 @@ class FileGenerator
         return outputBuffer
     }
     
-    func generatePropertyInjection(injection: PropertyInjection, ivar: String) -> String
+    func generatePropertyInjection(_ injection: PropertyInjection, ivar: String) -> String
     {
         return "\(ivar).\(injection.propertyName) = \(injection.injectedValue)"
     }
     
-    private func replace(inout inside buffer: String, replacements: [Replacement]) {
-        let replaceBuffer = replacements.sort { a, b in
-            return a.range.startIndex > b.range.startIndex
+    fileprivate func replace(inside buffer: inout String, replacements: [Replacement]) {
+        let replaceBuffer = replacements.sorted { a, b in
+            return a.range.lowerBound > b.range.lowerBound
         }
         for replacement in replaceBuffer {
-            let startIndex = buffer.startIndex.advancedBy(replacement.range.startIndex)
-            let endIndex = buffer.startIndex.advancedBy(replacement.range.endIndex)
+            let startIndex = buffer.characters.index(buffer.startIndex, offsetBy: replacement.range.lowerBound)
+            let endIndex = buffer.characters.index(buffer.startIndex, offsetBy: replacement.range.upperBound)
             
             let indexRange = startIndex..<endIndex
             
-            buffer.replaceRange(indexRange, with: replacement.string)
+            buffer.replaceSubrange(indexRange, with: replacement.string)
         }
         
     }

@@ -53,7 +53,7 @@ class PropertyInjection : Injection, CustomStringConvertible, Hashable {
     var propertyName : String!
     var injectedValue : String!
     
-    var range: Range<Int>?
+    var range: CountableRange<Int>?
     
     var external: Bool = false
     
@@ -87,21 +87,21 @@ class InstanceDefinition {
     var className : String?
     var scope = Definition.Scope.Prototype
     
-    var range: Range<Int>?
+    var range: CountableRange<Int>?
     
     var propertyInjections : [PropertyInjection] = []
     
-    func add(propertyInjection: PropertyInjection) {
-        for (index, injection) in propertyInjections.enumerate() {
+    func add(_ propertyInjection: PropertyInjection) {
+        for (index, injection) in propertyInjections.enumerated() {
             if injection.propertyName == propertyInjection.propertyName {
-                propertyInjections.removeAtIndex(index)
+                propertyInjections.remove(at: index)
                 break
             }
         }
         propertyInjections.append(propertyInjection)
     }
     
-    func add(propertyInjections: [PropertyInjection])
+    func add(_ propertyInjections: [PropertyInjection])
     {
         for injection in propertyInjections {
             add(injection)
@@ -121,7 +121,7 @@ class MethodDefinition {
         var description: String {
             get {
                 
-                return "\(attributes.joinWithSeparator(" ")) \(label ?? "") \(ivar):\(type)\(defaultValue != nil ? " = \(defaultValue!)": "")"
+                return "\(attributes.joined(separator: " ")) \(label ?? "") \(ivar):\(type)\(defaultValue != nil ? " = \(defaultValue!)": "")"
             }
         }
         
@@ -153,15 +153,15 @@ class MethodDefinition {
         return count
     }
     
-    func addDefinition(definition: InstanceDefinition) {
+    func addDefinition(_ definition: InstanceDefinition) {
         self.definitions.append(definition)
     }
     
 }
 
 enum ArgumentIndex {
-    case Index(Int)
-    case Last
+    case index(Int)
+    case last
 }
 
 class BlockNode {
@@ -169,7 +169,7 @@ class BlockNode {
     var content :[NSDictionary] = []
     
     var source: String! = ""
-    var range: Range<Int>! = 0..<0
+    var range: CountableRange<Int>! = 0..<0
     
     var firstArgumentName :String
     {

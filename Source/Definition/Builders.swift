@@ -7,10 +7,30 @@
 //
 
 import Foundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
 
 
-enum DefinitionBuilderError: ErrorType {
-    case InvalidBlockNode
+
+enum DefinitionBuilderError: Error {
+    case invalidBlockNode
 }
 
 //TODO: Cleanup and refactoring
@@ -38,7 +58,7 @@ class MethodDefinitionBuilder {
             let name = content(from: self.node["key.nameoffset"], length: self.node["key.namelength"]) as String!
             let methodOffset = self.node["key.bodyoffset"] as! Int
             
-            let methodDefinition = MethodDefinition(name: name, originalSource: self.methodBody)
+            let methodDefinition = MethodDefinition(name: name!, originalSource: self.methodBody)
             parseArgumentsForMethod(methodDefinition)
             
             let key = keyFromMethodName(self.node["key.name"] as! String)
@@ -56,55 +76,55 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func regexpForPattern(pattern: String) -> NSRegularExpression
+    func regexpForPattern(_ pattern: String) -> NSRegularExpression
     {
         var regexp: NSRegularExpression
         do {
-            regexp = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.init(rawValue: 0))
+            regexp = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.init(rawValue: 0))
         } catch {
             fatalError("Error: Can't create regexpt")
         }
         return regexp
     }
     
-    func matchedGroup(pattern pattern: String, insideString: String, groupIndex:Int = 0, matchIndex:Int = 0) -> String?
+    func matchedGroup(pattern: String, insideString: String, groupIndex:Int = 0, matchIndex:Int = 0) -> String?
     {
         let regexp = regexpForPattern(pattern)
         
-        let stringRange = insideString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        let stringRange = insideString.lengthOfBytes(using: String.Encoding.utf8)
         
-        let matches = regexp.matchesInString(insideString, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange))
+        let matches = regexp.matches(in: insideString, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange))
         if matches.count > matchIndex {
             let match = matches[matchIndex]
             if match.numberOfRanges > groupIndex + 1 {
-                return insideString[match.rangeAtIndex(groupIndex + 1).toRange()!]
+                return insideString[match.rangeAt(groupIndex + 1).toRange()!]
             }
         }
         return nil
         
     }
     
-    func parseArgumentsForMethod(method: MethodDefinition)
+    func parseArgumentsForMethod(_ method: MethodDefinition)
     {
         if method.numberOfRuntimeArguments() > 0 {
             
-            let name = method.name!.stringByReplacingOccurrencesOfString("\n", withString: "")
+            let name = method.name!.replacingOccurrences(of: "\n", with: "")
             let content = matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
-            let argStrings = content.componentsSeparatedByString(",")
+            let argStrings = content?.components(separatedBy: ",")
             
             var arguments: [MethodDefinition.Argument] = []
             
             
-            for argumentString in argStrings {
+            for argumentString in argStrings! {
                 
                 var argument = MethodDefinition.Argument()
                 
-                let argumentComponents = argumentString.componentsSeparatedByString(":")
+                let argumentComponents = argumentString.components(separatedBy: ":")
                 
                 //Parse type and default value
                 let typePart = argumentComponents[1].strip()
-                if typePart.containsString("=") {
-                    let typeComponents = typePart.componentsSeparatedByString("=")
+                if typePart.contains("=") {
+                    let typeComponents = typePart.components(separatedBy: "=")
                     argument.type = typeComponents[0].strip()
                     argument.defaultValue = typeComponents[1].strip()
                 } else {
@@ -112,7 +132,7 @@ class MethodDefinitionBuilder {
                 }
                 
                 //Parse name, label and attributes
-                var names = argumentComponents[0].strip().componentsSeparatedByString(" ")
+                var names = argumentComponents[0].strip().components(separatedBy: " ")
                 argument.ivar = names.popLast() as String!
                 
                 if let label = names.popLast() {
@@ -158,7 +178,7 @@ class MethodDefinitionBuilder {
         return (definition, isResult)
     }
     
-    func getDefinitionConfigurationFromCall(call: NSDictionary, methodOffset: Int, contentHandler: ([NSDictionary], String, Bool) -> ()) -> Bool
+    func getDefinitionConfigurationFromCall(_ call: NSDictionary, methodOffset: Int, contentHandler: ([NSDictionary], String, Bool) -> ()) -> Bool
     {
         if let configuration = configurationBlock(call, offset: methodOffset) {
             contentHandler(configuration.content, configuration.firstArgumentName, false)
@@ -187,15 +207,15 @@ class MethodDefinitionBuilder {
     {
         var regexp: NSRegularExpression
         do {
-            regexp = try NSRegularExpression(pattern: "\\s+(\\w*)\\s+=\\s+$", options: NSRegularExpressionOptions.init(rawValue: 0))
+            regexp = try NSRegularExpression(pattern: "\\s+(\\w*)\\s+=\\s+$", options: NSRegularExpression.Options.init(rawValue: 0))
         } catch {
             print("Error: Can't create regexpt to march return type from method")
             return nil
         }
-        let matches = regexp.matchesInString(methodBody, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location))
+        let matches = regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location))
         if matches.count == 1 {
             let match = matches.first!
-            return methodBody[match.rangeAtIndex(1).toRange()!]
+            return methodBody[match.rangeAt(1).toRange()!]
         }
         
         return nil
@@ -205,30 +225,30 @@ class MethodDefinitionBuilder {
     {
         var regexp: NSRegularExpression
         do {
-            regexp = try NSRegularExpression(pattern: "return\\s*$", options: NSRegularExpressionOptions.init(rawValue: 0))
+            regexp = try NSRegularExpression(pattern: "return\\s*$", options: NSRegularExpression.Options.init(rawValue: 0))
         } catch {
             print("Error: Can't create regexpt to march return type from method")
             return false
         }
-        return regexp.matchesInString(methodBody, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location)).count == 1
+        return regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location)).count == 1
     }
     
     func isReturn(withIvar ivarName:String) -> Bool
     {
         var regexp: NSRegularExpression
         do {
-            regexp = try NSRegularExpression(pattern: "return\\s+\(ivarName)", options: NSRegularExpressionOptions.init(rawValue: 0))
+            regexp = try NSRegularExpression(pattern: "return\\s+\(ivarName)", options: NSRegularExpression.Options.init(rawValue: 0))
         } catch {
             print("Error: Can't create regexpt to march return type from method")
             return false
         }
         
-        let stringRange = methodBody.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
-        return regexp.matchesInString(methodBody, options: NSMatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange)).count == 1
+        let stringRange = methodBody.lengthOfBytes(using: String.Encoding.utf8)
+        return regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange)).count == 1
 
     }
     
-    func configurationBlock(fromCall: NSDictionary, offset: Int) -> BlockNode?
+    func configurationBlock(_ fromCall: NSDictionary, offset: Int) -> BlockNode?
     {
         do {
 //            print("Trying to get block from call \(fromCall)")
@@ -242,16 +262,16 @@ class MethodDefinitionBuilder {
 
     }
     
-    func propertyInjectionsFromBlock(block: BlockNode, methodOffset: Int) -> [PropertyInjection]
+    func propertyInjectionsFromBlock(_ block: BlockNode, methodOffset: Int) -> [PropertyInjection]
     {
-        let blockOffset = block.range.first as Int!
+        let blockOffset = block.range.first!
         
         print("Trying to get properties for \(block.firstArgumentName)")
         
         return propertyInjectionsFromContent(block.content, ivar: block.firstArgumentName, contentOffset: methodOffset + blockOffset)
     }
     
-    func scopeFromContent(contents: [NSDictionary], ivar: String) -> Definition.Scope?
+    func scopeFromContent(_ contents: [NSDictionary], ivar: String) -> Definition.Scope?
     {
         var scope : Definition.Scope? = nil
 
@@ -270,7 +290,7 @@ class MethodDefinitionBuilder {
         return scope
     }
     
-    func propertyInjectionsFromContent(content: [NSDictionary], ivar: String, contentOffset: Int) -> [PropertyInjection]
+    func propertyInjectionsFromContent(_ content: [NSDictionary], ivar: String, contentOffset: Int) -> [PropertyInjection]
     {
         var injections :[PropertyInjection] = []
         
@@ -289,22 +309,22 @@ class MethodDefinitionBuilder {
         return injections
     }
     
-    func propertyInjectionFromParameter(parameter: NSDictionary, offset: Int) -> PropertyInjection
+    func propertyInjectionFromParameter(_ parameter: NSDictionary, offset: Int) -> PropertyInjection
     {
         let params = parameter["key.substructure"] as! [NSDictionary]
         
         let propertyRawName = content(from: params[0]["key.bodyoffset"], length: params[0]["key.bodylength"]) as String!
-        let propertyName = propertyRawName.stringByReplacingOccurrencesOfString("\"", withString: "")
+        let propertyName = propertyRawName?.replacingOccurrences(of: "\"", with: "")
         
         let injectedValue = content(from: params[1]["key.bodyoffset"], length: params[1]["key.bodylength"]) as String!
         
-        let injection = PropertyInjection(propertyName: propertyName, injectedValue: injectedValue)
+        let injection = PropertyInjection(propertyName: propertyName!, injectedValue: injectedValue!)
         injection.range = makeRange(parameter, offset: offset)
         
         return injection
     }
     
-    func blockFromCall(fromCall: NSDictionary, argumentIndex: ArgumentIndex = ArgumentIndex.Last, argumentName: String, offset: Int) throws -> BlockNode?
+    func blockFromCall(_ fromCall: NSDictionary, argumentIndex: ArgumentIndex = ArgumentIndex.last, argumentName: String, offset: Int) throws -> BlockNode?
     {
         if let blockParameter = parameterFromCall(fromCall, atIndex: argumentIndex) {
             
@@ -332,19 +352,19 @@ class MethodDefinitionBuilder {
                             return nil
                         }
                     default:
-                        throw DefinitionBuilderError.InvalidBlockNode
+                        throw DefinitionBuilderError.invalidBlockNode
                     }
                 }
             } else {
                 
                 //Check for parameters
                 var substructure = blockParameter["key.substructure"] as! [NSDictionary]
-                for (index, item) in substructure.enumerate() {
+                for (index, item) in substructure.enumerated() {
                     switch item["key.kind"] as! String {
                     case "source.lang.swift.decl.var.parameter":
                         if let name = item["key.name"] as? String {
                             block.argumentNames.append(name)
-                            substructure.removeAtIndex(index)
+                            substructure.remove(at: index)
                         }
                     default: break
                     }
@@ -362,13 +382,13 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func isBlockParameter(parameter: NSDictionary, parameterName: String) -> Bool
+    func isBlockParameter(_ parameter: NSDictionary, parameterName: String) -> Bool
     {
         let isEmpty = parameter["key.namelength"] as! Int == 0 && parameter["key.nameoffset"] as! Int == 0
         return isEmpty || parameter["key.name"] as! String == parameterName
     }
     
-    func isMultilineBlockParameter(parameter: NSDictionary) -> Bool
+    func isMultilineBlockParameter(_ parameter: NSDictionary) -> Bool
     {
         if let blockHead = parameter["key.substructure"] as? [NSDictionary] {
             for item in blockHead  {
@@ -380,15 +400,15 @@ class MethodDefinitionBuilder {
         return false
     }
     
-    func parameterFromCall(call: NSDictionary, atIndex: ArgumentIndex) -> NSDictionary?
+    func parameterFromCall(_ call: NSDictionary, atIndex: ArgumentIndex) -> NSDictionary?
     {
         var argumentIndex :Int = 0
         let array = call["key.substructure"] as! [NSDictionary]
         
         switch atIndex {
-        case .Index(let index):
+        case .index(let index):
             argumentIndex = index
-        case .Last:
+        case .last:
             argumentIndex = array.count - 1
         }
         
@@ -404,14 +424,14 @@ class MethodDefinitionBuilder {
      * For example if caller is "Definition" and methodName is "withClass", then both "withClass" and "withClass, configuration"
      * will be captured
      */
-    func findCalls(caller: String, methodName :String...) -> Array<NSDictionary>?
+    func findCalls(_ caller: String, methodName :String...) -> Array<NSDictionary>?
     {
         var array = Array<NSDictionary>()
         findCalls(self.node, toArray: &array, caller: caller, methodNames: methodName)
         return array
     }
     
-    func findCalls(insideDictionary: NSDictionary, inout toArray: Array<NSDictionary>, caller: String, methodNames: [String])
+    func findCalls(_ insideDictionary: NSDictionary, toArray: inout Array<NSDictionary>, caller: String, methodNames: [String])
     {
         enumerateDictionaries(inside: insideDictionary) { (item, shouldStop) in
             if (item["key.kind"] != nil && item["key.kind"] as! String == "source.lang.swift.expr.call") {
@@ -422,7 +442,7 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func isCallNode(callNode: NSDictionary, matchesParamNames paramNames: [String]) -> Bool
+    func isCallNode(_ callNode: NSDictionary, matchesParamNames paramNames: [String]) -> Bool
     {
         if (paramNames.count == 0) {
             return true
@@ -462,7 +482,7 @@ class MethodDefinitionBuilder {
         return false
     }
     
-    func parameterWithName(name: String, fromCall call:NSDictionary) -> NSDictionary?
+    func parameterWithName(_ name: String, fromCall call:NSDictionary) -> NSDictionary?
     {
         if (call["key.substructure"] != nil) {
             for item in call["key.substructure"] as! [NSDictionary] {
@@ -476,13 +496,13 @@ class MethodDefinitionBuilder {
         return nil
     }
     
-    func typeFromDefinitionCall(callNode: NSDictionary) -> String
+    func typeFromDefinitionCall(_ callNode: NSDictionary) -> String
     {
         if let classParam = parameterWithName("withClass", fromCall: callNode) {
             
             let rawType = content(from: classParam["key.bodyoffset"], length: classParam["key.bodylength"])!
             
-            return rawType.stringByReplacingOccurrencesOfString(".self", withString: "")
+            return rawType.replacingOccurrences(of: ".self", with: "")
         } else {
             return ""
         }
@@ -497,7 +517,7 @@ class MethodDefinitionBuilder {
         
         let wholeRange = NSMakeRange(0, length)
         
-        return MethodDefinitionBuilder.definitionRegexp?.matchesInString(returnValue, options: NSMatchingOptions.init(rawValue: 0), range: wholeRange ).count > 0
+        return MethodDefinitionBuilder.definitionRegexp?.matches(in: returnValue!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: wholeRange ).count > 0
     }
     
     ///////////////////////////////////////////////////
@@ -505,25 +525,25 @@ class MethodDefinitionBuilder {
     ///////////////////////////////////////////////////
     
     
-    private func keyFromMethodName(name: String) -> String
+    fileprivate func keyFromMethodName(_ name: String) -> String
     {
-        return name.stringByReplacingOccurrencesOfString("[_\\(\\)]", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
+        return name.replacingOccurrences(of: "[_\\(\\)]", with: "", options: NSString.CompareOptions.regularExpression, range: nil)
     }
     
     static var definitionRegexp: NSRegularExpression?
     
-    private func createReturnTypeRegexpIfNeeded()
+    fileprivate func createReturnTypeRegexpIfNeeded()
     {
         if (MethodDefinitionBuilder.definitionRegexp == nil) {
             do {
-                MethodDefinitionBuilder.definitionRegexp = try NSRegularExpression(pattern: "->\\s*?(Definition)\\s*?\\{", options: NSRegularExpressionOptions.init(rawValue: 0))
+                MethodDefinitionBuilder.definitionRegexp = try NSRegularExpression(pattern: "->\\s*?(Definition)\\s*?\\{", options: NSRegularExpression.Options.init(rawValue: 0))
             } catch {
                 print("Error: Can't create regexpt to march return type from method")
             }
         }
     }
     
-    private func content(from startLocation:Any?, length :Any?) -> String?
+    fileprivate func content(from startLocation: Any?, length: Any?) -> String?
     {
         let start = startLocation as! Int
         let end = (length as! Int) + start
@@ -531,23 +551,24 @@ class MethodDefinitionBuilder {
         return source[start..<end]
     }
     
-    private func content(r: Range<Int>, offset: Int = 0) -> String?
+    fileprivate func content(_ r: CountableRange<Int>, offset: Int = 0) -> String?
     {
-        var range = r
+        var countableRange = r
         if (offset > 0) {
-            range = r.startIndex.advancedBy(offset)..<r.endIndex.advancedBy(offset)
+            countableRange = r.lowerBound.advanced(by: offset)..<r.upperBound.advanced(by: offset)
         }
+        let range = Range(countableRange)
     
         return source[range]
     }
     
-    private func enumerateDictionaries(inside node:NSDictionary, usingBlock:(item: NSDictionary, inout stop: Bool)->())
+    fileprivate func enumerateDictionaries(inside node:NSDictionary, usingBlock:(_ item: NSDictionary, _ stop: inout Bool)->())
     {
         if (node["key.substructure"] != nil) {
             let childs = node["key.substructure"] as! Array<NSDictionary>
             for (item) in childs {
                 var shouldStop = false
-                usingBlock(item: item, stop: &shouldStop)
+                usingBlock(item, &shouldStop)
                 if (shouldStop) {
                     return
                 } else {
@@ -557,7 +578,7 @@ class MethodDefinitionBuilder {
         }
     }
     
-    private func makeRange(fromNode: NSDictionary, parameter: String = "", offset: Int = 0) -> Range<Int>
+    fileprivate func makeRange(_ fromNode: NSDictionary, parameter: String = "", offset: Int = 0) -> CountableRange<Int>
     {
         let start = fromNode["key.\(parameter)offset"] as! Int - offset
         let end = fromNode["key.\(parameter)length"] as! Int + start
@@ -657,7 +678,7 @@ class FileDefinitionBuilder {
         var text :String, json :NSDictionary
         
         do {
-            text = try NSString.init(contentsOfFile: self.filePath, encoding: NSUTF8StringEncoding) as String
+            text = try NSString.init(contentsOfFile: self.filePath, encoding: String.Encoding.utf8.rawValue) as String
             let parsedString = Terminal.bash("/usr/local/bin/sourcekitten", arguments: ["structure", "--text", text])
             json = jsonFromString(parsedString) as NSDictionary!
         } catch {
@@ -667,12 +688,12 @@ class FileDefinitionBuilder {
         return (text, json)
     }
     
-    func jsonFromString(string: String) -> NSDictionary?
+    func jsonFromString(_ string: String) -> NSDictionary?
     {
         var json: NSDictionary
         do {
-            let data = string.dataUsingEncoding(NSUTF8StringEncoding) as NSData!
-            json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as! NSDictionary
+            let data = string.data(using: String.Encoding.utf8) as Data!
+            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as! NSDictionary
         } catch {
             return nil
         }

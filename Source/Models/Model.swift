@@ -25,14 +25,14 @@ class Definition {
         case LazySingletone
         case WeakSingletone
         
-        static func fromString(string: String) -> Scope? {
+        static func fromString(_ string: String) -> Scope? {
             return Scope(rawValue: (string as NSString).pathExtension)
         }
     }
 
-    private var _scope : Scope = .Prototype;
+    fileprivate var _scope : Scope = .Prototype;
     
-    func setScope(scope: Scope) {
+    func setScope(_ scope: Scope) {
         _scope = scope
     }
     
@@ -45,7 +45,7 @@ class Definition {
     }
     
     
-    func injectProperty(property:String, with:Any) {
+    func injectProperty(_ property:String, with:Any) {
         
     }
     

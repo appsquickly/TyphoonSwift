@@ -15,12 +15,12 @@ extension String {
         get {
             let stringCount = self.characters.count as Int
             //Check for out of boundary condition
-            if (stringCount < r.endIndex) || (stringCount < r.startIndex){
+            if (stringCount < r.upperBound) || (stringCount < r.lowerBound){
                 return nil
             }
             
-            let startIndex = self.startIndex.advancedBy(r.startIndex)
-            let endIndex = self.startIndex.advancedBy(r.endIndex)
+            let startIndex = self.characters.index(self.startIndex, offsetBy: r.lowerBound)
+            let endIndex = self.characters.index(self.startIndex, offsetBy: r.upperBound)
             
             return self[startIndex..<endIndex]
         }
@@ -34,10 +34,10 @@ extension String {
         return String(characters.suffix(1))
     }
     var uppercaseFirst: String {
-        return first.uppercaseString + String(characters.dropFirst())
+        return first.uppercased() + String(characters.dropFirst())
     }
     
     func strip() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
 }

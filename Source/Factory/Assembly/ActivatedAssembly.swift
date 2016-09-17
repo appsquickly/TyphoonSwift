@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum ActivatedAssemblyError: ErrorType {
-    case CircularDependencyWhileInit
+enum ActivatedAssemblyError: Error {
+    case circularDependencyWhileInit
 }
 
 class ActivatedAssembly
 {
-    private var __container: ActivatedAssemblyContainer!
+    fileprivate var __container: ActivatedAssemblyContainer!
     
     init() {
         __container = ActivatedAssemblyContainer()
@@ -25,32 +25,32 @@ class ActivatedAssembly
         return __container.componentForType() as ComponentType?
     }
     
-    func inject<ComponentType: Any>(inout instance: ComponentType)
+    func inject<ComponentType: Any>(_ instance: inout ComponentType)
     {
         __container.inject(&instance)
     }
     
-    class func container(forAssembly: ActivatedAssembly) -> ActivatedAssemblyContainer {
+    class func container(_ forAssembly: ActivatedAssembly) -> ActivatedAssemblyContainer {
         return forAssembly.__container
     }
 }
 
 class ActivatedAssemblyContainer
 {
-    private var pools: [Definition.Scope: ComponentsPool] = [:]
+    fileprivate var pools: [Definition.Scope: ComponentsPool] = [:]
     
     //Used to identify when initialization graph complete
-    private var initializationStack = CallStack()
+    fileprivate var initializationStack = CallStack()
     
     //Used to store configuration block and created instance
-    private var configureStack = CallStack()
+    fileprivate var configureStack = CallStack()
     
     //Used to store insatnces while calling configuration blocks (used to solve circular references with prototype scopes)
-    private var instanceStack = CallStack()
+    fileprivate var instanceStack = CallStack()
     
-    private var registry: [ActivatedDefinition] = []
+    fileprivate var registry: [ActivatedDefinition] = []
     
-    private var eagerSingletoneActivations: [() -> ()] = []
+    fileprivate var eagerSingletoneActivations: [() -> ()] = []
     
     init() {
         self.createPools()
@@ -62,7 +62,7 @@ class ActivatedAssemblyContainer
         activateEagerSingletons()
     }
     
-    func registerDefinition<ComponentType: Any>(definition: ActivatedGenericDefinition<ComponentType>)
+    func registerDefinition<ComponentType: Any>(_ definition: ActivatedGenericDefinition<ComponentType>)
     {
         registry.append(definition)
         
@@ -73,7 +73,7 @@ class ActivatedAssemblyContainer
         }
     }
     
-    func inject<ComponentType: Any>(inout instance: ComponentType)
+    func inject<ComponentType: Any>(_ instance: inout ComponentType)
     {
         let candidates: [ActivatedGenericDefinition<ComponentType>] = definitionsForType()
         if candidates.count == 1 {
@@ -114,7 +114,7 @@ class ActivatedAssemblyContainer
         return nil
     }
     
-    private func definitionsForType<ComponentType: Any>() -> [ActivatedGenericDefinition<ComponentType>]
+    fileprivate func definitionsForType<ComponentType: Any>() -> [ActivatedGenericDefinition<ComponentType>]
     {
         var candidates : [ActivatedGenericDefinition<ComponentType>] = []
         for definition in registry {
@@ -125,7 +125,7 @@ class ActivatedAssemblyContainer
         return candidates
     }
     
-    private func definition(forKey key: String) -> ActivatedDefinition?
+    fileprivate func definition(forKey key: String) -> ActivatedDefinition?
     {
         for definition in registry {
             if definition.key == key {
@@ -135,7 +135,7 @@ class ActivatedAssemblyContainer
         return nil
     }
     
-    private func inject<ComponentType: Any>(inout instance: ComponentType, withDefinition definition: ActivatedGenericDefinition<ComponentType>)
+    fileprivate func inject<ComponentType: Any>(_ instance: inout ComponentType, withDefinition definition: ActivatedGenericDefinition<ComponentType>)
     {
         storeSharedInstance(instance, withScope: definition.scope, forKey: definition.key)
         
@@ -210,13 +210,13 @@ class ActivatedAssemblyContainer
         return instance
     }
     
-    private func stackedInstance(forKey key: String) -> Any?
+    fileprivate func stackedInstance(forKey key: String) -> Any?
     {
         // Cannot resolve circular reference inside initialization
         if initializationStack.peek(forKey: key) != nil {
             var keys = initializationStack.keys()
             keys.append(key)
-            let stackString = keys.joinWithSeparator(" -> ")
+            let stackString = keys.joined(separator: " -> ")
             fatalError("\n\n\nCircular reference in initializers while building component '\(key)'. Stack: \(stackString)\n\n\n")
         }
         
@@ -227,7 +227,7 @@ class ActivatedAssemblyContainer
         return nil
     }
     
-    private func sharedInstance(withScope scope: Definition.Scope, forKey key: String) -> Any?
+    fileprivate func sharedInstance(withScope scope: Definition.Scope, forKey key: String) -> Any?
     {
         if let pool = pools[scope] {
             if let cachedInstance = pool.objectForKey(key) {
@@ -237,21 +237,21 @@ class ActivatedAssemblyContainer
         return nil
     }
     
-    private func storeSharedInstance(instance: Any, withScope scope: Definition.Scope, forKey key: String)
+    fileprivate func storeSharedInstance(_ instance: Any, withScope scope: Definition.Scope, forKey key: String)
     {
         if let pool = pools[scope] {
             pool.setObject(instance, forKey: key)
         }
     }
     
-    private func clearObjectGraphPool()
+    fileprivate func clearObjectGraphPool()
     {
         if let pool = pools[Definition.Scope.ObjectGraph] {
             pool.removeAllObjects()
         }
     }
     
-    private func createPools()
+    fileprivate func createPools()
     {
         let strongPool = StrongPool()
         pools = [
@@ -262,7 +262,7 @@ class ActivatedAssemblyContainer
         ]
     }
     
-    private func activateEagerSingletons()
+    fileprivate func activateEagerSingletons()
     {
         for activation in eagerSingletoneActivations {
             activation()

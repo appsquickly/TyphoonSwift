@@ -357,9 +357,11 @@
 				TargetAttributes = {
 					B7610CBD1D2D6FE000F47325 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					B7610CC61D2D6FE000F47325 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					B7610CD91D2D702700F47325 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -594,6 +596,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "typhoonframework.org.TyphoonSwift-iOS";
 				PRODUCT_NAME = TyphoonSwift;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -612,6 +615,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "typhoonframework.org.TyphoonSwift-iOS";
 				PRODUCT_NAME = TyphoonSwift;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -622,6 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "typhoonframework.org.TyphoonSwift-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -632,6 +637,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "typhoonframework.org.TyphoonSwift-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

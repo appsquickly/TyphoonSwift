@@ -10,26 +10,26 @@ import Foundation
 
 class Terminal {
     
-    static func shell(launchPath: String, arguments: [String]) -> String
+    static func shell(_ launchPath: String, arguments: [String]) -> String
     {
         let task = NSTask()
         task.launchPath = launchPath
         task.arguments = arguments
         
-        let pipe = NSPipe()
+        let pipe = Pipe()
         task.standardOutput = pipe
         task.launch()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: NSUTF8StringEncoding)!
+        let output = String(data: data, encoding: String.Encoding.utf8)!
         if output.characters.count > 0 {
-            return output.substringToIndex(output.endIndex.advancedBy(-1))
+            return output.substring(to: output.characters.index(output.endIndex, offsetBy: -1))
             
         }
         return output
     }
     
-    static func bash(command: String, arguments: [String]) -> String
+    static func bash(_ command: String, arguments: [String]) -> String
     {
         let whichPathForCommand = shell("/bin/bash", arguments: [ "-l", "-c", "which \(command)" ])
         return shell(whichPathForCommand, arguments: arguments)

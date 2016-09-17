@@ -13,7 +13,7 @@ class CallStack
 {    
     var elements: [StackElement] = []
     
-    func push(element: StackElement)
+    func push(_ element: StackElement)
     {
         elements.append(element)
     }
@@ -25,7 +25,7 @@ class CallStack
     
     func peek(forKey key: String) -> StackElement?
     {
-        for element in elements.reverse() {
+        for element in elements.reversed() {
             if element.key == key {
                 return element
             }
@@ -33,7 +33,7 @@ class CallStack
         return nil
     }
     
-    func isResolving(key key:String) -> Bool
+    func isResolving(key:String) -> Bool
     {
         return peek(forKey: key) != nil
     }

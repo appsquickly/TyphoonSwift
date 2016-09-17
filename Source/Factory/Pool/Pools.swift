@@ -40,9 +40,9 @@ private class WeakContainer<C: AnyObject> : InstanceContainer {
 
 protocol ComponentsPool {
     
-    func setObject(anObject: Any, forKey aKey: String)
+    func setObject(_ anObject: Any, forKey aKey: String)
     
-    func objectForKey(aKey: String) -> Any?
+    func objectForKey(_ aKey: String) -> Any?
     
     var allValues: [Any] { get }
     
@@ -51,14 +51,14 @@ protocol ComponentsPool {
 
 class StrongPool : ComponentsPool
 {
-    private var dictionary :[String: StrongContainer<Any>] = [:]
+    fileprivate var dictionary :[String: StrongContainer<Any>] = [:]
     
-    func setObject(anObject: Any, forKey aKey: String)
+    func setObject(_ anObject: Any, forKey aKey: String)
     {
         dictionary[aKey] = StrongContainer(instance: anObject)
     }
     
-    func objectForKey(aKey: String) -> Any?
+    func objectForKey(_ aKey: String) -> Any?
     {
         return dictionary[aKey]?.instance
     }
@@ -84,9 +84,9 @@ class StrongPool : ComponentsPool
 
 class WeakPool : ComponentsPool
 {
-    private var dictionary :[String: WeakContainer<AnyObject>] = [:]
+    fileprivate var dictionary :[String: WeakContainer<AnyObject>] = [:]
     
-    func setObject(anObject: Any, forKey aKey: String)
+    func setObject(_ anObject: Any, forKey aKey: String)
     {
         if let object = anObject as? AnyObject {
             dictionary[aKey] = WeakContainer(instance: object)
@@ -95,7 +95,7 @@ class WeakPool : ComponentsPool
         }
     }
     
-    func objectForKey(aKey: String) -> Any?
+    func objectForKey(_ aKey: String) -> Any?
     {
         return dictionary[aKey]?.instance
     }
