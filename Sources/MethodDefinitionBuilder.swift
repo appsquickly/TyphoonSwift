@@ -1,30 +1,35 @@
+////////////////////////////////////////////////////////////////////////////////
 //
-//  DefinitionBuilder.swift
-//  TyphoonPlayground
+//  TYPHOON FRAMEWORK
+//  Copyright 2016, TyphoonSwift Framework Contributors
+//  All Rights Reserved.
 //
-//  Created by Aleksey Garbarev on 15/04/16.
-//  Copyright © 2016 Aleksey Garbarev. All rights reserved.
+//  NOTICE: The authors permit you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 //
+////////////////////////////////////////////////////////////////////////////////
+
 
 import Foundation
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
@@ -32,8 +37,6 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 enum DefinitionBuilderError: Error {
     case invalidBlockNode
 }
-
-//TODO: Cleanup and refactoring
 
 class MethodDefinitionBuilder {
     
@@ -145,12 +148,12 @@ class MethodDefinitionBuilder {
                 arguments.append(argument)
                 
                 print("Arg: \(argument)")
-
+                
             }
             print("\n")
         }
-     
-
+        
+        
     }
     
     func instanceDefinition(fromCall call: NSDictionary, methodOffset: Int, key: String) -> (InstanceDefinition, Bool)
@@ -187,7 +190,7 @@ class MethodDefinitionBuilder {
         var isResult = false
         
         let callOffset = call["key.offset"] as! Int - methodOffset
-
+        
         if let ivarName = ivarAssignment(beforeLocation: callOffset) {
             
             isResult = isReturn(withIvar: ivarName)
@@ -199,7 +202,7 @@ class MethodDefinitionBuilder {
         } else {
             isResult = isReturn(beforeLocation: callOffset)
         }
-
+        
         return isResult
     }
     
@@ -245,13 +248,13 @@ class MethodDefinitionBuilder {
         
         let stringRange = methodBody.lengthOfBytes(using: String.Encoding.utf8)
         return regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange)).count == 1
-
+        
     }
     
     func configurationBlock(_ fromCall: NSDictionary, offset: Int) -> BlockNode?
     {
         do {
-//            print("Trying to get block from call \(fromCall)")
+            //            print("Trying to get block from call \(fromCall)")
             if let configurationBlock = try blockFromCall(fromCall, argumentName: "configuration", offset: offset) {
                 return configurationBlock
             }
@@ -259,7 +262,7 @@ class MethodDefinitionBuilder {
             print("Error while getting configuration block")
         }
         return nil
-
+        
     }
     
     func propertyInjectionsFromBlock(_ block: BlockNode, methodOffset: Int) -> [PropertyInjection]
@@ -274,7 +277,7 @@ class MethodDefinitionBuilder {
     func scopeFromContent(_ contents: [NSDictionary], ivar: String) -> Definition.Scope?
     {
         var scope : Definition.Scope? = nil
-
+        
         for item in contents {
             if let name = item["key.name"] as? String {
                 switch name {
@@ -339,11 +342,11 @@ class MethodDefinitionBuilder {
                 for item in header {
                     let kind = item["key.kind"] as! String
                     switch kind {
-                    case "source.lang.swift.decl.var.parameter":
+                    case SourceLang.Declaration.varParameter:
                         if let name = item["key.name"] as? String {
                             block.argumentNames.append(name)
                         }
-                    case "source.lang.swift.stmt.brace":
+                    case SourceLang.Statement.brace:
                         if let blockContent = item["key.substructure"] as? [NSDictionary] {
                             block.content = blockContent
                             block.range = makeRange(item, parameter: "body", offset: offset)
@@ -361,7 +364,7 @@ class MethodDefinitionBuilder {
                 var substructure = blockParameter["key.substructure"] as! [NSDictionary]
                 for (index, item) in substructure.enumerated() {
                     switch item["key.kind"] as! String {
-                    case "source.lang.swift.decl.var.parameter":
+                    case SourceLang.Declaration.varParameter:
                         if let name = item["key.name"] as? String {
                             block.argumentNames.append(name)
                             substructure.remove(at: index)
@@ -392,7 +395,7 @@ class MethodDefinitionBuilder {
     {
         if let blockHead = parameter["key.substructure"] as? [NSDictionary] {
             for item in blockHead  {
-                if item["key.kind"] as? String == "source.lang.swift.stmt.brace" {
+                if item["key.kind"] as? String == SourceLang.Statement.brace {
                     return true
                 }
             }
@@ -434,7 +437,7 @@ class MethodDefinitionBuilder {
     func findCalls(_ insideDictionary: NSDictionary, toArray: inout Array<NSDictionary>, caller: String, methodNames: [String])
     {
         enumerateDictionaries(inside: insideDictionary) { (item, shouldStop) in
-            if (item["key.kind"] != nil && item["key.kind"] as! String == "source.lang.swift.expr.call") {
+            if (item["key.kind"] != nil && item["key.kind"] as! String == SourceLang.Expr.call) {
                 if (item["key.name"] as! String == caller && self.isCallNode(item, matchesParamNames: methodNames)) {
                     toArray.append(item)
                 }
@@ -457,7 +460,7 @@ class MethodDefinitionBuilder {
             let minCount = min(paramNames.count, params.count)
             for index in 0..<minCount {
                 if let kind = params[index]["key.kind"] as? String {
-                    if kind == "source.lang.swift.decl.var.parameter" {
+                    if kind == SourceLang.Declaration.varParameter {
                         if let name = params[index]["key.name"] as? String {
                             if name != paramNames[index] {
                                 paramsCorrect = false
@@ -486,7 +489,7 @@ class MethodDefinitionBuilder {
     {
         if (call["key.substructure"] != nil) {
             for item in call["key.substructure"] as! [NSDictionary] {
-                if item["key.kind"] as? String == "source.lang.swift.decl.var.parameter" {
+                if item["key.kind"] as? String == SourceLang.Declaration.varParameter {
                     if (item["key.name"] as? String == name) {
                         return item
                     }
@@ -558,7 +561,7 @@ class MethodDefinitionBuilder {
             countableRange = r.lowerBound.advanced(by: offset)..<r.upperBound.advanced(by: offset)
         }
         let range = Range(countableRange)
-    
+        
         return source[range]
     }
     
@@ -585,118 +588,4 @@ class MethodDefinitionBuilder {
         return start..<end
     }
     
-}
-
-class AssemblyDefinitionBuilder {
-    
-    var node: NSDictionary!
-    var text: String!
-    
-    convenience init(node: NSDictionary, text: String) {
-        self.init()
-        self.node = node
-        self.text = text
-    }
-    
-    func build() -> AssemblyDefinition?
-    {
-        if let assemblyName = node["key.name"] as? String {
-            
-            let assembly = AssemblyDefinition(withName: assemblyName)
-            
-            if let substructure = node["key.substructure"] as? [NSDictionary] {
-                for item in substructure {
-                    if item["key.kind"] as! String == "source.lang.swift.decl.function.method.instance" {
-                        
-                        let methodBuilder = MethodDefinitionBuilder(source: text, node: item)
-                        
-                        if let methodDefinition = methodBuilder.build() {
-                            assembly.methods.append(methodDefinition)
-                        }
-                    }
-                }
-            }
-            return assembly
-        }
-        return nil
-    }
-    
-}
-
-class FileDefinitionBuilder {
-    
-    var fileName :String!
-    var filePath :String!
-    
-    convenience init(filePath: String)
-    {
-        self.init()
-        self.fileName = (filePath as NSString).lastPathComponent
-        self.filePath = filePath
-    }
-    
-    func build() -> FileDefinition?
-    {
-        if let (text, json) = loadFile() {
-            let file = FileDefinition(fileName: fileName)
-            file.assemblies = buildAssemblies(from: text, withJson: json)
-            return file
-        }
-        
-        return nil
-    }
-    
-    func buildAssemblies(from text: String, withJson json: NSDictionary) -> [AssemblyDefinition]
-    {
-        var assemblies: [AssemblyDefinition] = []
-        
-        if let substructure = json["key.substructure"] as? [NSDictionary] {
-            for item in substructure {
-                if item["key.kind"] as! String == "source.lang.swift.decl.class" {
-                    if let types = item["key.inheritedtypes"] as? [NSDictionary] {
-                        for type in types {
-                            if type["key.name"] as! String == "Assembly" {
-                                
-                                let assemblyBuilder = AssemblyDefinitionBuilder(node: item, text: text)
-
-                                if let assemblyDefinition = assemblyBuilder.build() {
-                                    assemblies.append(assemblyDefinition)
-                                }
-                                break
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        return assemblies
-    }
-    
-    func loadFile() -> (String, NSDictionary)?
-    {
-        var text :String, json :NSDictionary
-        
-        do {
-            text = try NSString.init(contentsOfFile: self.filePath, encoding: String.Encoding.utf8.rawValue) as String
-            let parsedString = Terminal.bash("/usr/local/bin/sourcekitten", arguments: ["structure", "--text", text])
-            json = jsonFromString(parsedString) as NSDictionary!
-        } catch {
-            return nil
-        }
-        
-        return (text, json)
-    }
-    
-    func jsonFromString(_ string: String) -> NSDictionary?
-    {
-        var json: NSDictionary
-        do {
-            let data = string.data(using: String.Encoding.utf8) as Data!
-            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as! NSDictionary
-        } catch {
-            return nil
-        }
-        return json
-    }
 }
