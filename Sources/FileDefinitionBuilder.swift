@@ -1,10 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
 //
-//  FileDefinitionBuilder.swift
-//  TyphoonPackage
+//  TYPHOON FRAMEWORK
+//  Copyright 2016, TyphoonSwift Framework Contributors
+//  All Rights Reserved.
 //
-//  Created by Igor Vasilenko on 21/09/2016.
+//  NOTICE: The authors permit you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 //
-//
+////////////////////////////////////////////////////////////////////////////////
 
 import Foundation
 
