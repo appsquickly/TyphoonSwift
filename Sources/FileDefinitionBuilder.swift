@@ -13,19 +13,17 @@ import Foundation
 
 class FileDefinitionBuilder {
     
-    var fileName :String!
-    var filePath :String!
+    var fileName: String!
+    var filePath: URL!
     
-    convenience init(filePath: String)
-    {
+    convenience init(filePath: String) {
         self.init()
-        self.fileName = (filePath as NSString).lastPathComponent
-        self.filePath = filePath
+        self.filePath = URL(fileURLWithPath: filePath)
+        self.fileName = self.filePath.lastPathComponent
     }
     
-    func build() -> FileDefinition?
-    {
-        let fileStructure = FileStructure(filePath: self.filePath)
+    func build() -> FileDefinition? {
+        let fileStructure = FileStructure(filePathURL: self.filePath)
         if let (text, json) = fileStructure.structure {
             let file = FileDefinition(fileName: fileName)
             file.assemblies = buildAssemblies(from: text, withJson: json)
@@ -35,8 +33,7 @@ class FileDefinitionBuilder {
         return nil
     }
     
-    func buildAssemblies(from text: String, withJson json: JSON) -> [AssemblyDefinition]
-    {
+    func buildAssemblies(from text: String, withJson json: JSON) -> [AssemblyDefinition] {
         var assemblies: [AssemblyDefinition] = []
         
         if let substructure = json[SwiftDocKey.substructure].array {

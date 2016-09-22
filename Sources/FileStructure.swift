@@ -16,8 +16,8 @@ class FileStructure {
     var structure: (String, JSON)?
     fileprivate var filePath: URL
     
-    init(filePath: String) {
-        self.filePath = URL(fileURLWithPath: filePath)
+    init(filePathURL: URL) {
+        self.filePath = filePathURL
         self.structure = requestStructure()
     }
     
