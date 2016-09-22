@@ -32,8 +32,7 @@ class AssemblyDefinitionBuilder {
                 for item in substructure {
                     if item[SwiftDocKey.kind].string == SourceLang.Declaration.instanceMethod {
                         
-                        /// TODO: Fix initialization after MethodDefinitionBuilder refactor
-                        let methodBuilder = MethodDefinitionBuilder(source: text, node: NSDictionary())
+                        let methodBuilder = MethodDefinitionBuilder(source: text, node: item)
                         
                         if let methodDefinition = methodBuilder.build() {
                             assembly.methods.append(methodDefinition)

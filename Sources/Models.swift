@@ -166,7 +166,7 @@ enum ArgumentIndex {
 
 class BlockNode {
     var argumentNames :[String] = []
-    var content :[NSDictionary] = []
+    var content :[JSON] = []
     
     var source: String! = ""
     var range: CountableRange<Int>! = 0..<0
