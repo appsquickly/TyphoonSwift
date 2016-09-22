@@ -9,8 +9,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-
-/// Identifiers for Swift language entities: https://gist.github.com/neonichu/3c1bb02ec26902622f03
 enum SourceLang {
     
     enum Declaration {
