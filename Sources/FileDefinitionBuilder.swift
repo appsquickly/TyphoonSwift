@@ -26,7 +26,7 @@ class FileDefinitionBuilder {
     func build() -> FileDefinition?
     {
         let fileStructure = FileStructure(filePath: self.filePath)
-        if let (text, json) = fileStructure.content {
+        if let (text, json) = fileStructure.structure {
             let file = FileDefinition(fileName: fileName)
             file.assemblies = buildAssemblies(from: text, withJson: json)
             return file

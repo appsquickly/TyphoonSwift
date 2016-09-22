@@ -13,31 +13,28 @@ import Foundation
 
 class FileStructure {
     
-    var content: (String, JSON)?
+    var structure: (String, JSON)?
     fileprivate var filePath: URL
     
     init(filePath: String) {
         self.filePath = URL(fileURLWithPath: filePath)
-        self.content = loadFile()
+        self.structure = requestStructure()
     }
     
-    fileprivate func loadFile() -> (String, JSON)? {
+    fileprivate func requestStructure() -> (String, JSON)? {
+        
         var text: String, json: JSON
         
         do {
             text = try String(contentsOf: self.filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
             let parsedString = Terminal.bash("/usr/local/bin/sourcekitten", arguments: ["structure", "--text", text])
-            json = jsonFromString(parsedString)!
+            let data = parsedString.data(using: String.Encoding.utf8) as Data!
+            json = JSON(data)
         } catch {
+            debugPrint("Failed request structure with file path:" + "\(self.filePath.absoluteString)")
             return nil
         }
         
         return (text, json)
-    }
-    
-    fileprivate func jsonFromString(_ string: String) -> JSON? {
-        let data = string.data(using: String.Encoding.utf8) as Data!
-        let json = JSON(data)
-        return json
     }
 }
