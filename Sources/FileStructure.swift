@@ -13,7 +13,7 @@ import Foundation
 
 class FileStructure {
     
-    var content: (String, [String: AnyObject])?
+    var content: (String, JSON)?
     fileprivate var filePath: URL
     
     init(filePath: String) {
@@ -21,9 +21,8 @@ class FileStructure {
         self.content = loadFile()
     }
     
-    fileprivate func loadFile() -> (String, [String: AnyObject])?
-    {
-        var text: String, json: [String: AnyObject]
+    fileprivate func loadFile() -> (String, JSON)? {
+        var text: String, json: JSON
         
         do {
             text = try String(contentsOf: self.filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
@@ -36,15 +35,9 @@ class FileStructure {
         return (text, json)
     }
     
-    fileprivate func jsonFromString(_ string: String) -> [String: AnyObject]?
-    {
-        var json: Any
-        do {
-            let data = string.data(using: String.Encoding.utf8) as Data!
-            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions())
-        } catch {
-            return nil
-        }
-        return json as? [String: AnyObject]
+    fileprivate func jsonFromString(_ string: String) -> JSON? {
+        let data = string.data(using: String.Encoding.utf8) as Data!
+        let json = JSON(data)
+        return json
     }
 }
