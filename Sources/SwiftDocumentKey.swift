@@ -13,8 +13,6 @@ import Foundation
 
 enum SwiftDocKey {
     
-    // MARK: SourceKit Keys
-    
     static let annotatedDeclaration = "key.annotated_decl"
     static let attributes           = "key.attributes"
     static let attribute            = "key.attribute"
