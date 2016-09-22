@@ -25,7 +25,8 @@ class FileDefinitionBuilder {
     
     func build() -> FileDefinition?
     {
-        if let (text, json) = loadFile() {
+        let fileStructure = FileStructure(filePath: self.filePath)
+        if let (text, json) = fileStructure.content {
             let file = FileDefinition(fileName: fileName)
             file.assemblies = buildAssemblies(from: text, withJson: json)
             return file
@@ -34,26 +35,17 @@ class FileDefinitionBuilder {
         return nil
     }
     
-    func buildAssemblies(from text: String, withJson json: NSDictionary) -> [AssemblyDefinition]
+    func buildAssemblies(from text: String, withJson json: JSON) -> [AssemblyDefinition]
     {
         var assemblies: [AssemblyDefinition] = []
         
-        if let substructure = json["key.substructure"] as? [NSDictionary] {
-            for item in substructure {
-                if item["key.kind"] as! String == SourceLang.Declaration.class {
-                    if let types = item["key.inheritedtypes"] as? [NSDictionary] {
-                        for type in types {
-                            if type["key.name"] as! String == "Assembly" {
-                                
-                                let assemblyBuilder = AssemblyDefinitionBuilder(node: item, text: text)
-                                
-                                if let assemblyDefinition = assemblyBuilder.build() {
-                                    assemblies.append(assemblyDefinition)
-                                }
-                                break
-                            }
-                        }
-                    }
+        if let substructure = json[SwiftDocKey.substructure].array {
+            let assemblyTypeItems = assemblyTypeItemsInStructure(structure: substructure)
+            for item in assemblyTypeItems {
+                /// TODO: Fix initialization after AssemblyDefinitionBuilder refactoring
+                let assemblyBuilder = AssemblyDefinitionBuilder(node: NSDictionary(), text: text)
+                if let assemblyDefinition = assemblyBuilder.build() {
+                    assemblies.append(assemblyDefinition)
                 }
             }
         }
@@ -61,30 +53,19 @@ class FileDefinitionBuilder {
         return assemblies
     }
     
-    func loadFile() -> (String, NSDictionary)?
-    {
-        var text :String, json :NSDictionary
-        
-        do {
-            text = try NSString.init(contentsOfFile: self.filePath, encoding: String.Encoding.utf8.rawValue) as String
-            let parsedString = Terminal.bash("/usr/local/bin/sourcekitten", arguments: ["structure", "--text", text])
-            json = jsonFromString(parsedString) as NSDictionary!
-        } catch {
-            return nil
+    fileprivate func assemblyTypeItemsInStructure(structure: [JSON]) -> [JSON] {
+        var items: [JSON] = []
+        for item in structure {
+            if item[SwiftDocKey.kind].string == SourceLang.Declaration.class {
+                if let types = item[SwiftDocKey.inheritedTypes].array {
+                    for type in types {
+                        if type[SwiftDocKey.name] == "Assembly" {
+                            items.append(item)
+                        }
+                    }
+                }
+            }
         }
-        
-        return (text, json)
-    }
-    
-    func jsonFromString(_ string: String) -> NSDictionary?
-    {
-        var json: NSDictionary
-        do {
-            let data = string.data(using: String.Encoding.utf8) as Data!
-            json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as! NSDictionary
-        } catch {
-            return nil
-        }
-        return json
+        return items
     }
 }
