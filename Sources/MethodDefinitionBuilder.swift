@@ -50,7 +50,7 @@ class MethodDefinitionBuilder {
         self.source = source
         self.node = node
         
-        self.methodBody = content(from: self.node["key.bodyoffset"], length: self.node["key.bodylength"]) as String!
+        self.methodBody = content(from: self.node[SwiftDocKey.bodyOffset], length: self.node[SwiftDocKey.bodyLength]) as String!
     }
     
     func build() -> MethodDefinition? {
@@ -58,13 +58,13 @@ class MethodDefinitionBuilder {
         if (!isTyphoonDefinition()) {
             return nil
         } else {
-            let name = content(from: self.node["key.nameoffset"], length: self.node["key.namelength"]) as String!
-            let methodOffset = self.node["key.bodyoffset"] as! Int
+            let name = content(from: self.node[SwiftDocKey.nameOffset], length: self.node[SwiftDocKey.nameLength]) as String!
+            let methodOffset = self.node[SwiftDocKey.bodyOffset] as! Int
             
             let methodDefinition = MethodDefinition(name: name!, originalSource: self.methodBody)
             parseArgumentsForMethod(methodDefinition)
             
-            let key = keyFromMethodName(self.node["key.name"] as! String)
+            let key = keyFromMethodName(self.node[SwiftDocKey.name] as! String)
             
             if let definitionCalls = findCalls("Definition", methodName: "withClass") {
                 for call in definitionCalls {
@@ -189,13 +189,13 @@ class MethodDefinitionBuilder {
         
         var isResult = false
         
-        let callOffset = call["key.offset"] as! Int - methodOffset
+        let callOffset = call[SwiftDocKey.offset] as! Int - methodOffset
         
         if let ivarName = ivarAssignment(beforeLocation: callOffset) {
             
             isResult = isReturn(withIvar: ivarName)
             
-            if let content = self.node["key.substructure"] as? [NSDictionary] {
+            if let content = self.node[SwiftDocKey.substructure] as? [NSDictionary] {
                 contentHandler(content, ivarName, true)
             }
             
@@ -279,7 +279,7 @@ class MethodDefinitionBuilder {
         var scope : Definition.Scope? = nil
         
         for item in contents {
-            if let name = item["key.name"] as? String {
+            if let name = item[SwiftDocKey.name] as? String {
                 switch name {
                 case "\(ivar).setScope":
                     if let stirng = content(makeRange(item, parameter: "body")) {
@@ -298,7 +298,7 @@ class MethodDefinitionBuilder {
         var injections :[PropertyInjection] = []
         
         for item in content {
-            if let name = item["key.name"] as? String {
+            if let name = item[SwiftDocKey.name] as? String {
                 switch name {
                 case "\(ivar).injectProperty":
                     let property = propertyInjectionFromParameter(item, offset: contentOffset)
@@ -314,12 +314,12 @@ class MethodDefinitionBuilder {
     
     func propertyInjectionFromParameter(_ parameter: NSDictionary, offset: Int) -> PropertyInjection
     {
-        let params = parameter["key.substructure"] as! [NSDictionary]
+        let params = parameter[SwiftDocKey.substructure] as! [NSDictionary]
         
-        let propertyRawName = content(from: params[0]["key.bodyoffset"], length: params[0]["key.bodylength"]) as String!
+        let propertyRawName = content(from: params[0][SwiftDocKey.bodyOffset], length: params[0][SwiftDocKey.bodyLength]) as String!
         let propertyName = propertyRawName?.replacingOccurrences(of: "\"", with: "")
         
-        let injectedValue = content(from: params[1]["key.bodyoffset"], length: params[1]["key.bodylength"]) as String!
+        let injectedValue = content(from: params[1][SwiftDocKey.bodyOffset], length: params[1][SwiftDocKey.bodyLength]) as String!
         
         let injection = PropertyInjection(propertyName: propertyName!, injectedValue: injectedValue!)
         injection.range = makeRange(parameter, offset: offset)
@@ -338,16 +338,16 @@ class MethodDefinitionBuilder {
             let block = BlockNode()
             
             if isMultilineBlockParameter(blockParameter) {
-                let header = blockParameter["key.substructure"] as! [NSDictionary]
+                let header = blockParameter[SwiftDocKey.substructure] as! [NSDictionary]
                 for item in header {
-                    let kind = item["key.kind"] as! String
+                    let kind = item[SwiftDocKey.kind] as! String
                     switch kind {
                     case SourceLang.Declaration.varParameter:
-                        if let name = item["key.name"] as? String {
+                        if let name = item[SwiftDocKey.name] as? String {
                             block.argumentNames.append(name)
                         }
                     case SourceLang.Statement.brace:
-                        if let blockContent = item["key.substructure"] as? [NSDictionary] {
+                        if let blockContent = item[SwiftDocKey.substructure] as? [NSDictionary] {
                             block.content = blockContent
                             block.range = makeRange(item, parameter: "body", offset: offset)
                             block.source = content(block.range, offset: offset)
@@ -361,11 +361,11 @@ class MethodDefinitionBuilder {
             } else {
                 
                 //Check for parameters
-                var substructure = blockParameter["key.substructure"] as! [NSDictionary]
+                var substructure = blockParameter[SwiftDocKey.substructure] as! [NSDictionary]
                 for (index, item) in substructure.enumerated() {
-                    switch item["key.kind"] as! String {
+                    switch item[SwiftDocKey.kind] as! String {
                     case SourceLang.Declaration.varParameter:
-                        if let name = item["key.name"] as? String {
+                        if let name = item[SwiftDocKey.name] as? String {
                             block.argumentNames.append(name)
                             substructure.remove(at: index)
                         }
@@ -387,15 +387,15 @@ class MethodDefinitionBuilder {
     
     func isBlockParameter(_ parameter: NSDictionary, parameterName: String) -> Bool
     {
-        let isEmpty = parameter["key.namelength"] as! Int == 0 && parameter["key.nameoffset"] as! Int == 0
-        return isEmpty || parameter["key.name"] as! String == parameterName
+        let isEmpty = parameter[SwiftDocKey.nameLength] as! Int == 0 && parameter[SwiftDocKey.nameOffset] as! Int == 0
+        return isEmpty || parameter[SwiftDocKey.name] as! String == parameterName
     }
     
     func isMultilineBlockParameter(_ parameter: NSDictionary) -> Bool
     {
-        if let blockHead = parameter["key.substructure"] as? [NSDictionary] {
+        if let blockHead = parameter[SwiftDocKey.substructure] as? [NSDictionary] {
             for item in blockHead  {
-                if item["key.kind"] as? String == SourceLang.Statement.brace {
+                if item[SwiftDocKey.kind] as? String == SourceLang.Statement.brace {
                     return true
                 }
             }
@@ -406,7 +406,7 @@ class MethodDefinitionBuilder {
     func parameterFromCall(_ call: NSDictionary, atIndex: ArgumentIndex) -> NSDictionary?
     {
         var argumentIndex :Int = 0
-        let array = call["key.substructure"] as! [NSDictionary]
+        let array = call[SwiftDocKey.substructure] as! [NSDictionary]
         
         switch atIndex {
         case .index(let index):
@@ -437,8 +437,8 @@ class MethodDefinitionBuilder {
     func findCalls(_ insideDictionary: NSDictionary, toArray: inout Array<NSDictionary>, caller: String, methodNames: [String])
     {
         enumerateDictionaries(inside: insideDictionary) { (item, shouldStop) in
-            if (item["key.kind"] != nil && item["key.kind"] as! String == SourceLang.Expr.call) {
-                if (item["key.name"] as! String == caller && self.isCallNode(item, matchesParamNames: methodNames)) {
+            if (item[SwiftDocKey.kind] != nil && item[SwiftDocKey.kind] as! String == SourceLang.Expr.call) {
+                if (item[SwiftDocKey.name] as! String == caller && self.isCallNode(item, matchesParamNames: methodNames)) {
                     toArray.append(item)
                 }
             }
@@ -449,9 +449,9 @@ class MethodDefinitionBuilder {
     {
         if (paramNames.count == 0) {
             return true
-        } else if (callNode["key.substructure"] != nil) {
+        } else if (callNode[SwiftDocKey.substructure] != nil) {
             var paramsCorrect = true
-            let params = callNode["key.substructure"] as! [NSDictionary]
+            let params = callNode[SwiftDocKey.substructure] as! [NSDictionary]
             
             if (params.count < paramNames.count) {
                 return false
@@ -459,9 +459,9 @@ class MethodDefinitionBuilder {
             
             let minCount = min(paramNames.count, params.count)
             for index in 0..<minCount {
-                if let kind = params[index]["key.kind"] as? String {
+                if let kind = params[index][SwiftDocKey.kind] as? String {
                     if kind == SourceLang.Declaration.varParameter {
-                        if let name = params[index]["key.name"] as? String {
+                        if let name = params[index][SwiftDocKey.name] as? String {
                             if name != paramNames[index] {
                                 paramsCorrect = false
                                 break
@@ -487,10 +487,10 @@ class MethodDefinitionBuilder {
     
     func parameterWithName(_ name: String, fromCall call:NSDictionary) -> NSDictionary?
     {
-        if (call["key.substructure"] != nil) {
-            for item in call["key.substructure"] as! [NSDictionary] {
-                if item["key.kind"] as? String == SourceLang.Declaration.varParameter {
-                    if (item["key.name"] as? String == name) {
+        if (call[SwiftDocKey.substructure] != nil) {
+            for item in call[SwiftDocKey.substructure] as! [NSDictionary] {
+                if item[SwiftDocKey.kind] as? String == SourceLang.Declaration.varParameter {
+                    if (item[SwiftDocKey.name] as? String == name) {
                         return item
                     }
                 }
@@ -503,7 +503,7 @@ class MethodDefinitionBuilder {
     {
         if let classParam = parameterWithName("withClass", fromCall: callNode) {
             
-            let rawType = content(from: classParam["key.bodyoffset"], length: classParam["key.bodylength"])!
+            let rawType = content(from: classParam[SwiftDocKey.bodyOffset], length: classParam[SwiftDocKey.bodyLength])!
             
             return rawType.replacingOccurrences(of: ".self", with: "")
         } else {
@@ -515,8 +515,8 @@ class MethodDefinitionBuilder {
     {
         createReturnTypeRegexpIfNeeded()
         
-        let length = (self.node["key.bodyoffset"] as! Int!) - (self.node["key.nameoffset"] as! Int!)
-        let returnValue = content(from: self.node["key.nameoffset"], length: length) as String!
+        let length = (self.node[SwiftDocKey.bodyOffset] as! Int!) - (self.node[SwiftDocKey.nameOffset] as! Int!)
+        let returnValue = content(from: self.node[SwiftDocKey.nameOffset], length: length) as String!
         
         let wholeRange = NSMakeRange(0, length)
         
@@ -567,8 +567,8 @@ class MethodDefinitionBuilder {
     
     fileprivate func enumerateDictionaries(inside node:NSDictionary, usingBlock:(_ item: NSDictionary, _ stop: inout Bool)->())
     {
-        if (node["key.substructure"] != nil) {
-            let childs = node["key.substructure"] as! Array<NSDictionary>
+        if (node[SwiftDocKey.substructure] != nil) {
+            let childs = node[SwiftDocKey.substructure] as! Array<NSDictionary>
             for (item) in childs {
                 var shouldStop = false
                 usingBlock(item, &shouldStop)
