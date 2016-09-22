@@ -14,16 +14,16 @@
 enum SourceLang {
     
     enum Declaration {
-        static let instanceMethod = "source.lang.swift.decl.function.method.instance"
-        static let `class` = "source.lang.swift.decl.class"
-        static let varParameter = "source.lang.swift.decl.var.parameter"
+        static let instanceMethod   = "source.lang.swift.decl.function.method.instance"
+        static let `class`          = "source.lang.swift.decl.class"
+        static let varParameter     = "source.lang.swift.decl.var.parameter"
     }
     
     enum Statement {
-        static let brace = "source.lang.swift.stmt.brace"
+        static let brace            = "source.lang.swift.stmt.brace"
     }
     
     enum Expr {
-        static let call = "source.lang.swift.expr.call"
+        static let call             = "source.lang.swift.expr.call"
     }
 }
