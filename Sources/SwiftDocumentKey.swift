@@ -9,8 +9,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-import Foundation
-
 enum SwiftDocKey {
     
     static let annotatedDeclaration = "key.annotated_decl"
