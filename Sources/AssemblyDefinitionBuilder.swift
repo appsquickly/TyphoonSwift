@@ -13,10 +13,10 @@ import Foundation
 
 class AssemblyDefinitionBuilder {
     
-    var node: NSDictionary!
+    var node: JSON!
     var text: String!
     
-    convenience init(node: NSDictionary, text: String) {
+    convenience init(node: JSON, text: String) {
         self.init()
         self.node = node
         self.text = text
@@ -24,15 +24,16 @@ class AssemblyDefinitionBuilder {
     
     func build() -> AssemblyDefinition?
     {
-        if let assemblyName = node[SwiftDocKey.name] as? String {
+        if let assemblyName = node[SwiftDocKey.name].string {
             
             let assembly = AssemblyDefinition(withName: assemblyName)
             
-            if let substructure = node[SwiftDocKey.substructure] as? [NSDictionary] {
+            if let substructure = node[SwiftDocKey.substructure].array {
                 for item in substructure {
-                    if item[SwiftDocKey.kind] as! String == SourceLang.Declaration.instanceMethod {
+                    if item[SwiftDocKey.kind].string == SourceLang.Declaration.instanceMethod {
                         
-                        let methodBuilder = MethodDefinitionBuilder(source: text, node: item)
+                        /// TODO: Fix initialization after MethodDefinitionBuilder refactor
+                        let methodBuilder = MethodDefinitionBuilder(source: text, node: NSDictionary())
                         
                         if let methodDefinition = methodBuilder.build() {
                             assembly.methods.append(methodDefinition)
