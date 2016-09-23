@@ -109,56 +109,6 @@ class InstanceDefinition {
     }
 }
 
-class MethodDefinition {
-    
-    struct Argument : CustomStringConvertible{
-        var attributes: [String] = []
-        var label: String?
-        var ivar: String = ""
-        var type: String = ""
-        var defaultValue: String?
-        
-        var description: String {
-            get {
-                
-                return "\(attributes.joined(separator: " ")) \(label ?? "") \(ivar):\(type)\(defaultValue != nil ? " = \(defaultValue!)": "")"
-            }
-        }
-        
-    }
-    
-    var args : [Argument] = []
-    
-    var name : String!
-    var source : String!
-    
-    var definitions: [InstanceDefinition]! = []
-    
-    weak var returnDefinition: InstanceDefinition!
-    
-    convenience init(name: String, originalSource: String) {
-        self.init()
-        self.name = name
-        self.source = originalSource
-    }
-    
-    func numberOfRuntimeArguments() -> Int
-    {
-        var count = 0
-        for character in name.characters {
-            if character == ":" {
-                count += 1
-            }
-        }
-        return count
-    }
-    
-    func addDefinition(_ definition: InstanceDefinition) {
-        self.definitions.append(definition)
-    }
-    
-}
-
 enum ArgumentIndex {
     case index(Int)
     case last

@@ -23,6 +23,8 @@
 		B7B709671D954C310012879F /* RegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */; };
 		B7B7096E1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */; };
 		B7B7096F1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */; };
+		B7B709711D9559CD0012879F /* MethodDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B709701D9559CC0012879F /* MethodDefinition.swift */; };
+		B7B709721D9559CD0012879F /* MethodDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B709701D9559CC0012879F /* MethodDefinition.swift */; };
 		B7D3D03C1D90254E00A931E7 /* TyphoonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/TyphoonPackage.swift /* TyphoonPackage.swift */; };
 		B7D3D03D1D90289700A931E7 /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */; };
 		B7D3D03F1D90289700A931E7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Model.swift /* Model.swift */; };
@@ -63,6 +65,7 @@
 		B738EFF41D93DD5400B67B9C /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressionExtensions.swift; sourceTree = "<group>"; };
 		B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MethodDefinitionBuilder+Inspections.swift"; path = "Sources/MethodDefinitionBuilder+Inspections.swift"; sourceTree = "<group>"; };
+		B7B709701D9559CC0012879F /* MethodDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodDefinition.swift; sourceTree = "<group>"; };
 		B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodDefinitionBuilder.swift; path = Sources/MethodDefinitionBuilder.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AssemblyGenerator.swift; path = Sources/AssemblyGenerator.swift; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 				__PBXFileRef_Sources/Model.swift /* Model.swift */,
 				__PBXFileRef_Sources/Models.swift /* Models.swift */,
 				B738EFF41D93DD5400B67B9C /* JSON.swift */,
+				B7B709701D9559CC0012879F /* MethodDefinition.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -294,6 +298,7 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift in Sources */,
+				B7B709711D9559CD0012879F /* MethodDefinition.swift in Sources */,
 				B7DDC9141D92915200626C71 /* MethodDefinitionBuilder.swift in Sources */,
 				B738EFE61D931ED800B67B9C /* AssemblyDefinitionBuilder.swift in Sources */,
 				__src_cc_ref_Sources/main.swift /* main.swift in Sources */,
@@ -318,6 +323,7 @@
 			buildActionMask = 0;
 			files = (
 				B7D3D03F1D90289700A931E7 /* Model.swift in Sources */,
+				B7B709721D9559CD0012879F /* MethodDefinition.swift in Sources */,
 				B7DDC9151D92915200626C71 /* MethodDefinitionBuilder.swift in Sources */,
 				B738EFE71D931ED800B67B9C /* AssemblyDefinitionBuilder.swift in Sources */,
 				B7D3D03C1D90254E00A931E7 /* TyphoonPackage.swift in Sources */,

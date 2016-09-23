@@ -67,7 +67,6 @@ class MethodDefinitionBuilder {
         let methodOffset = self.node[SwiftDocKey.bodyOffset].integer!
         
         let methodDefinition = MethodDefinition(name: name!, originalSource: self.methodBody)
-        parseArgumentsForMethod(methodDefinition)
         
         let key = keyFromMethodName(self.node[SwiftDocKey.name].string!)
         
@@ -82,53 +81,6 @@ class MethodDefinitionBuilder {
         }
         
         return methodDefinition
-    }
-    
-    func parseArgumentsForMethod(_ method: MethodDefinition)
-    {
-        if method.numberOfRuntimeArguments() > 0 {
-            
-            let name = method.name!.replacingOccurrences(of: "\n", with: "")
-            let content = NSRegularExpression.matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
-            let argStrings = content?.components(separatedBy: ",")
-            
-            var arguments: [MethodDefinition.Argument] = []
-            
-            
-            for argumentString in argStrings! {
-                
-                var argument = MethodDefinition.Argument()
-                
-                let argumentComponents = argumentString.components(separatedBy: ":")
-                
-                //Parse type and default value
-                let typePart = argumentComponents[1].strip()
-                if typePart.contains("=") {
-                    let typeComponents = typePart.components(separatedBy: "=")
-                    argument.type = typeComponents[0].strip()
-                    argument.defaultValue = typeComponents[1].strip()
-                } else {
-                    argument.type = typePart
-                }
-                
-                //Parse name, label and attributes
-                var names = argumentComponents[0].strip().components(separatedBy: " ")
-                argument.ivar = names.popLast() as String!
-                
-                if let label = names.popLast() {
-                    if label == "inout" {
-                        argument.attributes.append(label)
-                    } else if label != "_" {
-                        argument.label = label
-                    }
-                }
-                arguments.append(argument)
-                
-                print("Arg: \(argument)")
-                
-            }
-            print("\n")
-        }        
     }
     
     func instanceDefinition(fromCall call: JSON, methodOffset: Int, key: String) -> (InstanceDefinition, Bool)
