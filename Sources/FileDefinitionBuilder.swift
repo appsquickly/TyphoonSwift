@@ -37,7 +37,7 @@ class FileDefinitionBuilder {
         var assemblies: [AssemblyDefinition] = []
         
         if let substructure = json[SwiftDocKey.substructure].array {
-            let assemblyTypeItems = self.assemblyTypeItems(inStructure: substructure)
+            let assemblyTypeItems = assemblyItems(inStructure: substructure)
             for item in assemblyTypeItems {
                 let assemblyBuilder = AssemblyDefinitionBuilder(node: item, text: text)
                 if let assemblyDefinition = assemblyBuilder.build() {
@@ -49,7 +49,9 @@ class FileDefinitionBuilder {
         return assemblies
     }
     
-    fileprivate func assemblyTypeItems(inStructure structure: [JSON]) -> [JSON] {
+    //# MARK: - Internal functions
+    
+    internal func assemblyItems(inStructure structure: [JSON]) -> [JSON] {
         var items: [JSON] = []
         for item in structure {
             if item[SwiftDocKey.kind].string == SourceLang.Declaration.class {
