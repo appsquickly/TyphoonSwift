@@ -45,6 +45,10 @@ class MethodDefinitionBuilder {
     
     var methodBody: String!
     
+    internal lazy var definitionRegexp: NSRegularExpression = {
+        return NSRegularExpression(pattern: "->\\s*?(Definition)\\s*?\\{")!
+    }()
+    
     convenience init(source: String, node: JSON) {
         self.init()
         self.source = source
@@ -55,28 +59,29 @@ class MethodDefinitionBuilder {
     
     func build() -> MethodDefinition? {
         
-        if (!isTyphoonDefinition()) {
+        guard isTyphoonDefinition() else {
             return nil
-        } else {
-            let name = content(from: self.node[SwiftDocKey.nameOffset], length: self.node[SwiftDocKey.nameLength]) as String!
-            let methodOffset = self.node[SwiftDocKey.bodyOffset].integer!
-            
-            let methodDefinition = MethodDefinition(name: name!, originalSource: self.methodBody)
-            parseArgumentsForMethod(methodDefinition)
-            
-            let key = keyFromMethodName(self.node[SwiftDocKey.name].string!)
-            
-            if let definitionCalls = findCalls("Definition", methodName: "withClass") {
-                for call in definitionCalls {
-                    let (definition, isResult) = instanceDefinition(fromCall: call, methodOffset: methodOffset, key: key)
-                    methodDefinition.addDefinition(definition)
-                    if isResult {
-                        methodDefinition.returnDefinition = definition
-                    }
+        }
+        
+        let name = content(from: self.node[SwiftDocKey.nameOffset], length: self.node[SwiftDocKey.nameLength]) as String!
+        let methodOffset = self.node[SwiftDocKey.bodyOffset].integer!
+        
+        let methodDefinition = MethodDefinition(name: name!, originalSource: self.methodBody)
+        parseArgumentsForMethod(methodDefinition)
+        
+        let key = keyFromMethodName(self.node[SwiftDocKey.name].string!)
+        
+        if let definitionCalls = findCalls("Definition", methodName: "withClass") {
+            for call in definitionCalls {
+                let (definition, isResult) = instanceDefinition(fromCall: call, methodOffset: methodOffset, key: key)
+                methodDefinition.addDefinition(definition)
+                if isResult {
+                    methodDefinition.returnDefinition = definition
                 }
             }
-            return methodDefinition
         }
+        
+        return methodDefinition
     }
     
     func parseArgumentsForMethod(_ method: MethodDefinition)
@@ -123,9 +128,7 @@ class MethodDefinitionBuilder {
                 
             }
             print("\n")
-        }
-        
-        
+        }        
     }
     
     func instanceDefinition(fromCall call: JSON, methodOffset: Int, key: String) -> (InstanceDefinition, Bool)
@@ -196,45 +199,14 @@ class MethodDefinitionBuilder {
         return nil
     }
     
-    func isReturn(beforeLocation location:Int) -> Bool
-    {
-        var regexp: NSRegularExpression
-        do {
-            regexp = try NSRegularExpression(pattern: "return\\s*$", options: NSRegularExpression.Options.init(rawValue: 0))
-        } catch {
-            print("Error: Can't create regexpt to march return type from method")
-            return false
-        }
-        return regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location)).count == 1
-    }
-    
-    func isReturn(withIvar ivarName:String) -> Bool
-    {
-        var regexp: NSRegularExpression
-        do {
-            regexp = try NSRegularExpression(pattern: "return\\s+\(ivarName)", options: NSRegularExpression.Options.init(rawValue: 0))
-        } catch {
-            print("Error: Can't create regexpt to march return type from method")
-            return false
-        }
-        
-        let stringRange = methodBody.lengthOfBytes(using: String.Encoding.utf8)
-        return regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange)).count == 1
-        
-    }
-    
     func configurationBlock(_ fromCall: JSON, offset: Int) -> BlockNode?
     {
         do {
-            //            print("Trying to get block from call \(fromCall)")
-            if let configurationBlock = try blockFromCall(fromCall, argumentName: "configuration", offset: offset) {
-                return configurationBlock
-            }
+            return try blockFromCall(fromCall, argumentName: "configuration", offset: offset)
         } catch {
             print("Error while getting configuration block")
+            return nil
         }
-        return nil
-        
     }
     
     func propertyInjectionsFromBlock(_ block: BlockNode, methodOffset: Int) -> [PropertyInjection]
@@ -357,24 +329,6 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func isBlockParameter(_ parameter: JSON, parameterName: String) -> Bool
-    {
-        let isEmpty = parameter[SwiftDocKey.nameLength].integer == 0 && parameter[SwiftDocKey.nameOffset].integer == 0
-        return isEmpty || parameter[SwiftDocKey.name].string == parameterName
-    }
-    
-    func isMultilineBlockParameter(_ parameter: JSON) -> Bool
-    {
-        if let blockHead = parameter[SwiftDocKey.substructure].array {
-            for item in blockHead  {
-                if item[SwiftDocKey.kind].string == SourceLang.Statement.brace {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-    
     func parameterFromCall(_ call: JSON, atIndex: ArgumentIndex) -> JSON?
     {
         var argumentIndex :Int = 0
@@ -417,46 +371,6 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func isCallNode(_ callNode: JSON, matchesParamNames paramNames: [String]) -> Bool
-    {
-        if (paramNames.count == 0) {
-            return true
-        } else if (callNode[SwiftDocKey.substructure] != nil) {
-            var paramsCorrect = true
-            let params = callNode[SwiftDocKey.substructure].array!
-            
-            if (params.count < paramNames.count) {
-                return false
-            }
-            
-            let minCount = min(paramNames.count, params.count)
-            for index in 0..<minCount {
-                if let kind = params[index][SwiftDocKey.kind].string {
-                    if kind == SourceLang.Declaration.varParameter {
-                        if let name = params[index][SwiftDocKey.name].string {
-                            if name != paramNames[index] {
-                                paramsCorrect = false
-                                break
-                            }
-                        } else {
-                            // If name is empty = block or something
-                            paramsCorrect = false
-                            break
-                        }
-                    } else {
-                        // If not parameter - skip it
-                        print("No parameter name - skip it")
-                    }
-                } else {
-                    print("Can't use kind as string")
-                    // Can't use 'key.kind' as String
-                }
-            }
-            return paramsCorrect
-        }
-        return false
-    }
-    
     func parameterWithName(_ name: String, fromCall call:JSON) -> JSON?
     {
         if (call[SwiftDocKey.substructure] != nil) {
@@ -483,51 +397,20 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func isTyphoonDefinition() -> Bool
-    {
-        createReturnTypeRegexpIfNeeded()
-        
-        let length = (self.node[SwiftDocKey.bodyOffset].integer!) - (self.node[SwiftDocKey.nameOffset].integer!)
-        let returnValue = content(from: self.node[SwiftDocKey.nameOffset], length: length) as String!
-        
-        let wholeRange = NSMakeRange(0, length)
-        
-        return MethodDefinitionBuilder.definitionRegexp?.matches(in: returnValue!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: wholeRange ).count > 0
-    }
+    //# MARK: - Internal functions
     
-    ///////////////////////////////////////////////////
-    ///////////////////// PRIVATE /////////////////////
-    ///////////////////////////////////////////////////
-    
-    
-    fileprivate func keyFromMethodName(_ name: String) -> String
-    {
+    internal func keyFromMethodName(_ name: String) -> String {
         return name.replacingOccurrences(of: "[_\\(\\)]", with: "", options: NSString.CompareOptions.regularExpression, range: nil)
     }
     
-    static var definitionRegexp: NSRegularExpression?
-    
-    fileprivate func createReturnTypeRegexpIfNeeded()
-    {
-        if (MethodDefinitionBuilder.definitionRegexp == nil) {
-            do {
-                MethodDefinitionBuilder.definitionRegexp = try NSRegularExpression(pattern: "->\\s*?(Definition)\\s*?\\{", options: NSRegularExpression.Options.init(rawValue: 0))
-            } catch {
-                print("Error: Can't create regexpt to march return type from method")
-            }
-        }
-    }
-    
-    fileprivate func content(from startLocation: Any?, length: Any?) -> String?
-    {
+    internal func content(from startLocation: Any?, length: Any?) -> String? {
         let start = startLocation as! Int
         let end = (length as! Int) + start
         
         return source[start..<end]
     }
     
-    fileprivate func content(_ r: CountableRange<Int>, offset: Int = 0) -> String?
-    {
+    internal func content(_ r: CountableRange<Int>, offset: Int = 0) -> String? {
         var countableRange = r
         if (offset > 0) {
             countableRange = r.lowerBound.advanced(by: offset)..<r.upperBound.advanced(by: offset)
@@ -537,8 +420,7 @@ class MethodDefinitionBuilder {
         return source[range]
     }
     
-    fileprivate func enumerateDictionaries(inside node:JSON, usingBlock:(_ item: JSON, _ stop: inout Bool)->())
-    {
+    private func enumerateDictionaries(inside node:JSON, usingBlock:(_ item: JSON, _ stop: inout Bool)->()) {
         if (node[SwiftDocKey.substructure] != nil) {
             let childs = node[SwiftDocKey.substructure].array!
             for (item) in childs {
@@ -553,8 +435,7 @@ class MethodDefinitionBuilder {
         }
     }
     
-    fileprivate func makeRange(_ fromNode: JSON, parameter: String = "", offset: Int = 0) -> CountableRange<Int>
-    {
+    internal func makeRange(_ fromNode: JSON, parameter: String = "", offset: Int = 0) -> CountableRange<Int> {
         let start = fromNode["key.\(parameter)offset"].integer! - offset
         let end = fromNode["key.\(parameter)length"].integer! + start
         return start..<end

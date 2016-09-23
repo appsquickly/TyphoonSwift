@@ -21,6 +21,8 @@
 		B738EFF61D93DD5400B67B9C /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738EFF41D93DD5400B67B9C /* JSON.swift */; };
 		B7B709661D952E1F0012879F /* RegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */; };
 		B7B709671D954C310012879F /* RegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */; };
+		B7B7096E1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */; };
+		B7B7096F1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */; };
 		B7D3D03C1D90254E00A931E7 /* TyphoonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/TyphoonPackage.swift /* TyphoonPackage.swift */; };
 		B7D3D03D1D90289700A931E7 /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */; };
 		B7D3D03F1D90289700A931E7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Model.swift /* Model.swift */; };
@@ -54,15 +56,16 @@
 
 /* Begin PBXFileReference section */
 		B738EFE21D9313B100B67B9C /* SourceLangSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLangSwift.swift; sourceTree = "<group>"; };
-		B738EFE51D931ED800B67B9C /* AssemblyDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyDefinitionBuilder.swift; sourceTree = "<group>"; };
-		B738EFE81D931F1100B67B9C /* FileDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDefinitionBuilder.swift; sourceTree = "<group>"; };
+		B738EFE51D931ED800B67B9C /* AssemblyDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssemblyDefinitionBuilder.swift; path = Sources/AssemblyDefinitionBuilder.swift; sourceTree = "<group>"; };
+		B738EFE81D931F1100B67B9C /* FileDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileDefinitionBuilder.swift; path = Sources/FileDefinitionBuilder.swift; sourceTree = "<group>"; };
 		B738EFEE1D93208D00B67B9C /* FileStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStructure.swift; sourceTree = "<group>"; };
 		B738EFF11D93D54500B67B9C /* SwiftDocumentKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDocumentKey.swift; sourceTree = "<group>"; };
 		B738EFF41D93DD5400B67B9C /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressionExtensions.swift; sourceTree = "<group>"; };
-		B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodDefinitionBuilder.swift; sourceTree = "<group>"; };
+		B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MethodDefinitionBuilder+Inspections.swift"; path = "Sources/MethodDefinitionBuilder+Inspections.swift"; sourceTree = "<group>"; };
+		B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodDefinitionBuilder.swift; path = Sources/MethodDefinitionBuilder.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyGenerator.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AssemblyGenerator.swift; path = Sources/AssemblyGenerator.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Model.swift /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Models.swift /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
@@ -95,6 +98,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7B709681D954F930012879F /* SourceKitten */ = {
+			isa = PBXGroup;
+			children = (
+				B738EFEE1D93208D00B67B9C /* FileStructure.swift */,
+				B738EFE21D9313B100B67B9C /* SourceLangSwift.swift */,
+				B738EFF11D93D54500B67B9C /* SwiftDocumentKey.swift */,
+			);
+			name = SourceKitten;
+			sourceTree = "<group>";
+		};
+		B7B709691D954FC80012879F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/Model.swift /* Model.swift */,
+				__PBXFileRef_Sources/Models.swift /* Models.swift */,
+				B738EFF41D93DD5400B67B9C /* JSON.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B7B7096A1D954FE00012879F /* TyphoonPackageUtils */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */,
+				B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */,
+				__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */,
+			);
+			name = TyphoonPackageUtils;
+			sourceTree = "<group>";
+		};
+		B7B7096B1D954FF90012879F /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */,
+				B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */,
+				B738EFE51D931ED800B67B9C /* AssemblyDefinitionBuilder.swift */,
+				B738EFE81D931F1100B67B9C /* FileDefinitionBuilder.swift */,
+			);
+			name = Builders;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		B7B7096C1D95501B0012879F /* Generation */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */,
+			);
+			name = Generation;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,22 +196,14 @@
 		"_______Group_TyphoonPackage" /* TyphoonPackage */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/main.swift /* main.swift */,
 				__PBXFileRef_Sources/TyphoonSwift.swift /* TyphoonSwift.swift */,
 				__PBXFileRef_Sources/TyphoonPackage.swift /* TyphoonPackage.swift */,
-				__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */,
-				__PBXFileRef_Sources/Model.swift /* Model.swift */,
-				__PBXFileRef_Sources/Models.swift /* Models.swift */,
-				B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */,
-				B738EFE51D931ED800B67B9C /* AssemblyDefinitionBuilder.swift */,
-				B738EFE81D931F1100B67B9C /* FileDefinitionBuilder.swift */,
-				B738EFEE1D93208D00B67B9C /* FileStructure.swift */,
-				B738EFE21D9313B100B67B9C /* SourceLangSwift.swift */,
-				B738EFF11D93D54500B67B9C /* SwiftDocumentKey.swift */,
-				__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */,
-				B7B709651D952E1F0012879F /* RegularExpressionExtensions.swift */,
-				__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */,
-				B738EFF41D93DD5400B67B9C /* JSON.swift */,
+				__PBXFileRef_Sources/main.swift /* main.swift */,
+				B7B709691D954FC80012879F /* Models */,
+				B7B7096C1D95501B0012879F /* Generation */,
+				B7B7096B1D954FF90012879F /* Builders */,
+				B7B7096A1D954FE00012879F /* TyphoonPackageUtils */,
+				B7B709681D954F930012879F /* SourceKitten */,
 			);
 			name = TyphoonPackage;
 			path = Sources;
@@ -257,6 +303,7 @@
 				B738EFF21D93D54500B67B9C /* SwiftDocumentKey.swift in Sources */,
 				__src_cc_ref_Sources/StringUtils.swift /* StringUtils.swift in Sources */,
 				B7B709661D952E1F0012879F /* RegularExpressionExtensions.swift in Sources */,
+				B7B7096E1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */,
 				B738EFE31D9313B100B67B9C /* SourceLangSwift.swift in Sources */,
 				__src_cc_ref_Sources/Terminal.swift /* Terminal.swift in Sources */,
 				B738EFE91D931F1100B67B9C /* FileDefinitionBuilder.swift in Sources */,
@@ -280,6 +327,7 @@
 				B738EFF31D93D54500B67B9C /* SwiftDocumentKey.swift in Sources */,
 				B7D3D0401D90289700A931E7 /* Models.swift in Sources */,
 				B7D3D03D1D90289700A931E7 /* AssemblyGenerator.swift in Sources */,
+				B7B7096F1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */,
 				B738EFE41D9313B100B67B9C /* SourceLangSwift.swift in Sources */,
 				B7B709671D954C310012879F /* RegularExpressionExtensions.swift in Sources */,
 				B7D3D0421D90289700A931E7 /* Terminal.swift in Sources */,
