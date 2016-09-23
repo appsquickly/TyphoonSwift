@@ -79,40 +79,12 @@ class MethodDefinitionBuilder {
         }
     }
     
-    func regexpForPattern(_ pattern: String) -> NSRegularExpression
-    {
-        var regexp: NSRegularExpression
-        do {
-            regexp = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.init(rawValue: 0))
-        } catch {
-            fatalError("Error: Can't create regexpt")
-        }
-        return regexp
-    }
-    
-    func matchedGroup(pattern: String, insideString: String, groupIndex:Int = 0, matchIndex:Int = 0) -> String?
-    {
-        let regexp = regexpForPattern(pattern)
-        
-        let stringRange = insideString.lengthOfBytes(using: String.Encoding.utf8)
-        
-        let matches = regexp.matches(in: insideString, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange))
-        if matches.count > matchIndex {
-            let match = matches[matchIndex]
-            if match.numberOfRanges > groupIndex + 1 {
-                return insideString[match.rangeAt(groupIndex + 1).toRange()!]
-            }
-        }
-        return nil
-        
-    }
-    
     func parseArgumentsForMethod(_ method: MethodDefinition)
     {
         if method.numberOfRuntimeArguments() > 0 {
             
             let name = method.name!.replacingOccurrences(of: "\n", with: "")
-            let content = matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
+            let content = NSRegularExpression.matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
             let argStrings = content?.components(separatedBy: ",")
             
             var arguments: [MethodDefinition.Argument] = []
