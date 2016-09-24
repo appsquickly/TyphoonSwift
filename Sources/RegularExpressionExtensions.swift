@@ -13,12 +13,8 @@ import Foundation
 
 extension NSRegularExpression {
     
-    convenience init?(pattern: String) {
-        do {
-            try self.init(pattern: pattern, options: NSRegularExpression.Options.init(rawValue: 0))
-        } catch {
-            fatalError("Error: Can't create regular expression")
-        }
+    convenience init(pattern: String) throws {
+        try self.init(pattern: pattern, options: NSRegularExpression.Options.init(rawValue: 0))
     }
     
     func matchedGroup(insideString: String, groupIndex: Int = 0, matchIndex: Int = 0) -> String? {
@@ -38,7 +34,13 @@ extension NSRegularExpression {
     
     class func matchedGroup(pattern: String, insideString: String, groupIndex: Int = 0, matchIndex: Int = 0) -> String? {
         
-        let regexp = NSRegularExpression(pattern: pattern)!
+        var regexp: NSRegularExpression
+        do {
+            regexp = try NSRegularExpression(pattern: pattern)
+        } catch {
+            return nil
+        }
+        
         let stringRange = insideString.lengthOfBytes(using: String.Encoding.utf8)
         
         let matches = regexp.matches(in: insideString, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, stringRange))

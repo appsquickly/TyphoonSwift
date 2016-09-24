@@ -63,7 +63,11 @@ extension MethodDefinitionBuilder {
         
         let wholeRange = NSMakeRange(0, length)
         
-        return definitionRegexp.matches(in: returnValue!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: wholeRange ).count > 0
+        if let regexp = definitionRegexp {
+            return regexp.matches(in: returnValue!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: wholeRange ).count > 0
+        } else {
+            return false
+        }
     }
     
     func isCallNode(_ callNode: JSON, matchesParamNames paramNames: [String]) -> Bool {

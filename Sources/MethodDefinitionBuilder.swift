@@ -45,8 +45,12 @@ class MethodDefinitionBuilder {
     
     var methodBody: String!
     
-    internal lazy var definitionRegexp: NSRegularExpression = {
-        return NSRegularExpression(pattern: "->\\s*?(Definition)\\s*?\\{")!
+    internal lazy var definitionRegexp: NSRegularExpression? = {
+        var regexp: NSRegularExpression?
+        do {
+            regexp = try NSRegularExpression(pattern: "->\\s*?(Definition)\\s*?\\{")
+        } catch {}
+        return regexp
     }()
     
     convenience init(source: String, node: JSON) {
