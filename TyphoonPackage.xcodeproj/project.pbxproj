@@ -34,6 +34,11 @@
 		B7D3D0431D90289700A931E7 /* TyphoonSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/TyphoonSwift.swift /* TyphoonSwift.swift */; };
 		B7DDC9141D92915200626C71 /* MethodDefinitionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */; };
 		B7DDC9151D92915200626C71 /* MethodDefinitionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */; };
+		FA4430581DAA4FF8004CCF9D /* Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4430571DAA4FF8004CCF9D /* Launcher.swift */; };
+		FA44305A1DAA500F004CCF9D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4430591DAA500F004CCF9D /* Config.swift */; };
+		FA44305F1DAA513B004CCF9D /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44305C1DAA513B004CCF9D /* EventStream.swift */; };
+		FA4430601DAA513B004CCF9D /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44305D1DAA513B004CCF9D /* FileEvent.swift */; };
+		FA4430611DAA513B004CCF9D /* Witness.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44305E1DAA513B004CCF9D /* Witness.swift */; };
 		_LinkFileRef_TyphoonPackage_via_TyphoonPackageTests /* TyphoonPackage in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_TyphoonPackage" /* TyphoonPackage */; };
 		__src_cc_ref_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */; };
 		__src_cc_ref_Sources/Model.swift /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Model.swift /* Model.swift */; };
@@ -67,6 +72,11 @@
 		B7B7096D1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MethodDefinitionBuilder+Inspections.swift"; path = "Sources/MethodDefinitionBuilder+Inspections.swift"; sourceTree = "<group>"; };
 		B7B709701D9559CC0012879F /* MethodDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodDefinition.swift; sourceTree = "<group>"; };
 		B7DDC9131D92915200626C71 /* MethodDefinitionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodDefinitionBuilder.swift; path = Sources/MethodDefinitionBuilder.swift; sourceTree = "<group>"; };
+		FA4430571DAA4FF8004CCF9D /* Launcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
+		FA4430591DAA500F004CCF9D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		FA44305C1DAA513B004CCF9D /* EventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
+		FA44305D1DAA513B004CCF9D /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
+		FA44305E1DAA513B004CCF9D /* Witness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Witness.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AssemblyGenerator.swift; path = Sources/AssemblyGenerator.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Model.swift /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -153,6 +163,25 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FA4430561DAA4FCD004CCF9D /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				FA4430591DAA500F004CCF9D /* Config.swift */,
+				FA4430571DAA4FF8004CCF9D /* Launcher.swift */,
+			);
+			name = Agent;
+			sourceTree = "<group>";
+		};
+		FA44305B1DAA513B004CCF9D /* Witness */ = {
+			isa = PBXGroup;
+			children = (
+				FA44305C1DAA513B004CCF9D /* EventStream.swift */,
+				FA44305D1DAA513B004CCF9D /* FileEvent.swift */,
+				FA44305E1DAA513B004CCF9D /* Witness.swift */,
+			);
+			path = Witness;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,10 +232,12 @@
 				__PBXFileRef_Sources/TyphoonSwift.swift /* TyphoonSwift.swift */,
 				__PBXFileRef_Sources/TyphoonPackage.swift /* TyphoonPackage.swift */,
 				__PBXFileRef_Sources/main.swift /* main.swift */,
+				FA4430561DAA4FCD004CCF9D /* Agent */,
 				B7B709691D954FC80012879F /* Models */,
 				B7B7096C1D95501B0012879F /* Generation */,
 				B7B7096B1D954FF90012879F /* Builders */,
 				B7B7096A1D954FE00012879F /* TyphoonPackageUtils */,
+				FA44305B1DAA513B004CCF9D /* Witness */,
 				B7B709681D954F930012879F /* SourceKitten */,
 			);
 			name = TyphoonPackage;
@@ -298,7 +329,9 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift in Sources */,
+				FA4430611DAA513B004CCF9D /* Witness.swift in Sources */,
 				B7B709711D9559CD0012879F /* MethodDefinition.swift in Sources */,
+				FA4430601DAA513B004CCF9D /* FileEvent.swift in Sources */,
 				B7DDC9141D92915200626C71 /* MethodDefinitionBuilder.swift in Sources */,
 				B738EFE61D931ED800B67B9C /* AssemblyDefinitionBuilder.swift in Sources */,
 				__src_cc_ref_Sources/main.swift /* main.swift in Sources */,
@@ -307,12 +340,15 @@
 				B738EFF51D93DD5400B67B9C /* JSON.swift in Sources */,
 				B738EFF21D93D54500B67B9C /* SwiftDocumentKey.swift in Sources */,
 				__src_cc_ref_Sources/StringUtils.swift /* StringUtils.swift in Sources */,
+				FA4430581DAA4FF8004CCF9D /* Launcher.swift in Sources */,
 				B7B709661D952E1F0012879F /* RegularExpressionExtensions.swift in Sources */,
 				B7B7096E1D9554720012879F /* MethodDefinitionBuilder+Inspections.swift in Sources */,
 				B738EFE31D9313B100B67B9C /* SourceLangSwift.swift in Sources */,
 				__src_cc_ref_Sources/Terminal.swift /* Terminal.swift in Sources */,
+				FA44305F1DAA513B004CCF9D /* EventStream.swift in Sources */,
 				B738EFE91D931F1100B67B9C /* FileDefinitionBuilder.swift in Sources */,
 				B738EFEF1D93208D00B67B9C /* FileStructure.swift in Sources */,
+				FA44305A1DAA500F004CCF9D /* Config.swift in Sources */,
 				__src_cc_ref_Sources/TyphoonPackage.swift /* TyphoonPackage.swift in Sources */,
 				__src_cc_ref_Sources/TyphoonSwift.swift /* TyphoonSwift.swift in Sources */,
 			);

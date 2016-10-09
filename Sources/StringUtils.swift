@@ -40,4 +40,8 @@ extension String {
     func strip() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
+    
+    func appendingPathComponent(_ string: String) -> String {
+        return URL(fileURLWithPath: self).appendingPathComponent(string).path
+    }
 }
