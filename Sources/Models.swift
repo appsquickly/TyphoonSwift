@@ -17,9 +17,8 @@ class FileDefinition : CustomStringConvertible {
     var assemblies: [AssemblyDefinition]!
     var fileName: String!
     
-    convenience init(fileName: String)
+    init(fileName: String)
     {
-        self.init()
         self.fileName = fileName
         self.assemblies = []
     }
@@ -32,12 +31,11 @@ class FileDefinition : CustomStringConvertible {
 }
 
 class AssemblyDefinition : CustomStringConvertible {
-    var name: String!
+    var name: String
     var methods: [MethodDefinition]!
     
-    convenience init(withName name: String)
+    init(withName name: String)
     {
-        self.init()
         self.name = name
         self.methods = []
     }
@@ -50,15 +48,14 @@ class AssemblyDefinition : CustomStringConvertible {
 }
 
 class PropertyInjection : Injection, CustomStringConvertible, Hashable {
-    var propertyName : String!
-    var injectedValue : String!
+    var propertyName : String
+    var injectedValue : String
     
     var range: CountableRange<Int>?
     
     var external: Bool = false
     
-    convenience init(propertyName: String, injectedValue: String) {
-        self.init()
+    init(propertyName: String, injectedValue: String) {
         self.propertyName = propertyName
         self.injectedValue = injectedValue
     }
@@ -82,7 +79,7 @@ func == (lhs: PropertyInjection, rhs: PropertyInjection) -> Bool {
 
 class InstanceDefinition {
     
-    var key : String! = ""
+    var key : String = ""
 
     var className : String?
     var scope = Definition.Scope.Prototype

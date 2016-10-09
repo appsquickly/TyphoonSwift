@@ -99,7 +99,7 @@ class FileGenerator
         
         let definition = method.returnDefinition
         
-        output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition.className!)>\n"
+        output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition!.className!)>\n"
         output += indent + "{\n"
        
         output += generateActivatedDefinition(forDefinition: definition!, indent: indent + indent)
@@ -160,7 +160,7 @@ class FileGenerator
     
     func assemblyImplClassName(_ assembly: AssemblyDefinition) ->String
     {
-        return "\(assembly.name)Implementation"
+        return "\(assembly.name as String)Implementation"
     }
     
     func generateAssemblyExtension(_ assembly: AssemblyDefinition) -> String
@@ -190,17 +190,17 @@ class FileGenerator
     {
         var outputBuffer = ""
         
-        outputBuffer += "\n\(indent)func \(method.name) -> \(method.returnDefinition.className!) { "
+        outputBuffer += "\n\(indent)func \(method.name) -> \(method.returnDefinition!.className!) { "
         
         let insideIndent = indent + indentStep
         
         outputBuffer += "\n"
         
         if method.numberOfRuntimeArguments() > 0 {
-            outputBuffer += generateActivatedDefinition(forDefinition: method.returnDefinition, indent: insideIndent)
+            outputBuffer += generateActivatedDefinition(forDefinition: method.returnDefinition!, indent: insideIndent)
             outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forDefinition: definition)"
         } else {
-            outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forKey: \"\(method.returnDefinition.key)\") as \(method.returnDefinition.className!)!"
+            outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forKey: \"\(method.returnDefinition!.key)\") as \(method.returnDefinition!.className!)!"
         }
         
 //        outputBuffer += generateInstance(method.returnDefinition, indent: insideIndent)

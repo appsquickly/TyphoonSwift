@@ -22,8 +22,8 @@ extension MethodDefinitionBuilder {
             print("Error: Can't create regexpt to march return type from method")
             return false
         }
-        
-        return regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, location)).count == 1
+        let matches = regexp.matches(in: methodBody, options: NSRegularExpression.MatchingOptions.init(rawValue:0), range: NSMakeRange(0, location))
+        return matches.count == 1
     }
     
     func isReturn(withIvar ivarName:String) -> Bool {
@@ -59,7 +59,7 @@ extension MethodDefinitionBuilder {
     
     func isTyphoonDefinition() -> Bool {
         let length = (self.node[SwiftDocKey.bodyOffset].integer!) - (self.node[SwiftDocKey.nameOffset].integer!)
-        let returnValue = content(from: self.node[SwiftDocKey.nameOffset], length: length) as String!
+        let returnValue = content(from: self.node[SwiftDocKey.nameOffset].integer, length: length) as String!
         
         let wholeRange = NSMakeRange(0, length)
         

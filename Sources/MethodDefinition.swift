@@ -26,14 +26,13 @@ class MethodDefinition {
     }
     
     var args : [Argument] = []
-    var name : String!
-    var source : String!
+    var name : String
+    var source : String
     var definitions: [InstanceDefinition]! = []
     
-    weak var returnDefinition: InstanceDefinition!
+    weak var returnDefinition: InstanceDefinition?
     
-    convenience init(name: String, originalSource: String) {
-        self.init()
+    init(name: String, originalSource: String) {
         self.name = name
         self.source = originalSource
         self.parseArguments()
@@ -58,7 +57,7 @@ extension MethodDefinition {
     
     func parseArguments() {
         if self.numberOfRuntimeArguments() > 0 {
-            let name = self.name!.replacingOccurrences(of: "\n", with: "")
+            let name = self.name.replacingOccurrences(of: "\n", with: "")
             let content = NSRegularExpression.matchedGroup(pattern: "\\((.*)\\)", insideString: name) as String!
             let argStrings = content?.components(separatedBy: ",")
             

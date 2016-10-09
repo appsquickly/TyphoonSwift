@@ -13,7 +13,10 @@ print(fileDefinition.fileName)
 
 var config = Config(inputPath: "/Users/alex/Development/typhoon-swift/",
                     outputFilePath: "/Users/alex/Desktop/output.swift",
-                    shouldMonitorChanges: true)
+                    shouldMonitorChanges: false)
+
+//config.inputPath = "/Users/alex/Desktop/TyphoonTestProject/TyphoonTestProject/Assemblies"
+//config.outputFilePath = "/Users/alex/Desktop/TyphoonTestProject/TyphoonTestProject/TyphoonOutput/typhoon.swift"
 
 do {
     let launcher = try Launcher(withConfig: config)

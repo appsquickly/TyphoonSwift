@@ -15,6 +15,7 @@ enum SourceLang {
         static let instanceMethod   = "source.lang.swift.decl.function.method.instance"
         static let `class`          = "source.lang.swift.decl.class"
         static let varParameter     = "source.lang.swift.decl.var.parameter"
+        static let argument         = "source.lang.swift.expr.argument"
     }
     
     enum Statement {

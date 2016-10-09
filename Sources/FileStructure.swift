@@ -23,6 +23,8 @@ class FileStructure {
     
     fileprivate func requestStructure() -> (String, JSON)? {
         
+        //TODO: Fix crash when text contains emoji and other nonascii symbols
+        
         var text: String, json: JSON
         
         do {
