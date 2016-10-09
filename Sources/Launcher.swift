@@ -53,9 +53,8 @@ class Launcher {
             let fileDefinitionBuilder = FileDefinitionBuilder(filePath: source)
             
             
-            
-//            if let file = fileDefinitionBuilder.build() {
-//                
+            if let file = fileDefinitionBuilder.build() {
+//
 //
 //                if file.assemblies.count > 0 {
 //                    print("built file \(file)")
@@ -63,29 +62,31 @@ class Launcher {
 //                    //        generator.generate(to: outputPath)
 //                }
 //                
-//            }   
+            }   
             
             print("elapsed time: \(CFAbsoluteTimeGetCurrent() - time)")
         }
 
     }
     
-    func enumerateSources(withExtension: String = ".swift", atPath: String, block:(String) -> ()) {
+    func enumerateSources(withExtension suffix: String = ".swift", atPath path: String, block:(String) -> ()) {
         let fileManager = FileManager()
-        if let files = try? fileManager.contentsOfDirectory(atPath: atPath) {
-            for file in files {
-                let fullPath = atPath.appendingPathComponent(file)
-                var isDirectory: ObjCBool = false
-                fileManager.fileExists(atPath: fullPath, isDirectory: &isDirectory)
-                if isDirectory.boolValue {
-                    enumerateSources(atPath: fullPath, block: block)
-                } else if file.hasSuffix(withExtension) {
-                    block(fullPath)
+        
+        var isDirectory: ObjCBool = false
+        fileManager.fileExists(atPath: path, isDirectory: &isDirectory)
+        
+        if isDirectory.boolValue {
+            if let files = try? fileManager.contentsOfDirectory(atPath: path) {
+                for file in files {
+                    enumerateSources(withExtension: suffix, atPath: path.appendingPathComponent(file), block: block)
                 }
             }
         }
+        else if path.hasSuffix(suffix) {
+            block(path)
+        }
     }
-
+    
     
     
 }
