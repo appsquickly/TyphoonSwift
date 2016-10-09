@@ -44,4 +44,8 @@ extension String {
     func appendingPathComponent(_ string: String) -> String {
         return URL(fileURLWithPath: self).appendingPathComponent(string).path
     }
+    
+    func lastPathComponent() -> String {
+        return URL(fileURLWithPath: self).lastPathComponent
+    }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct Config {
-    var inputPath: String;
-    var outputFilePath: String;
-    var shouldMonitorChanges: Bool;
+    var inputPath: String
+    var outputFilePath: String
+    var shouldMonitorChanges: Bool
 }

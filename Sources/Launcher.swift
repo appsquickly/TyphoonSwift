@@ -45,6 +45,8 @@ class Launcher {
     
     func build() {
         
+        var assemblies: [AssemblyDefinition] = []
+        
         enumerateSources(atPath: self.config.inputPath) { source in
             print("source: \(source)")
             
@@ -52,21 +54,18 @@ class Launcher {
             
             let fileDefinitionBuilder = FileDefinitionBuilder(filePath: source)
             
-            
             if let file = fileDefinitionBuilder.build() {
-//
-//
-//                if file.assemblies.count > 0 {
-//                    print("built file \(file)")
-//                    //        let generator = FileGenerator(file: file)
-//                    //        generator.generate(to: outputPath)
-//                }
-//                
+                assemblies.append(contentsOf: file.assemblies)
             }   
             
             print("elapsed time: \(CFAbsoluteTimeGetCurrent() - time)")
         }
-
+        
+        let resultFile = FileDefinition(fileName: self.config.outputFilePath.lastPathComponent())
+        resultFile.assemblies = assemblies
+        
+        let generator = FileGenerator(file: resultFile)
+        generator.generate(to: self.config.outputFilePath)
     }
     
     func enumerateSources(withExtension suffix: String = ".swift", atPath path: String, block:(String) -> ()) {
