@@ -31,8 +31,7 @@ class Terminal {
     
     static func bash(_ command: String, arguments: [String]) -> String
     {
-        let whichPathForCommand = shell("/bin/bash", arguments: [ "-l", "-c", "which \(command)" ])
-        return shell(whichPathForCommand, arguments: arguments)
+        return shell(command, arguments: arguments)
     }
     
 }
