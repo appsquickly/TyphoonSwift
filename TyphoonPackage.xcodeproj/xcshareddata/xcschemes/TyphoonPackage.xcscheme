@@ -14,23 +14,51 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_TyphoonPackage"
-               BuildableName = "TyphoonPackage"
-               BlueprintName = "TyphoonPackage"
+               BlueprintIdentifier = "______Target_Spectre"
+               BuildableName = "Spectre.framework"
+               BlueprintName = "Spectre"
                ReferencedContainer = "container:TyphoonPackage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_TyphoonPackageTests"
-               BuildableName = "TyphoonPackageTests.xctest"
-               BlueprintName = "TyphoonPackageTests"
+               BlueprintIdentifier = "______Target_PathKit"
+               BuildableName = "PathKit.framework"
+               BlueprintName = "PathKit"
+               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "______Target_Stencil"
+               BuildableName = "Stencil.framework"
+               BlueprintName = "Stencil"
+               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "______Target_TyphoonPackage"
+               BuildableName = "TyphoonPackage"
+               BlueprintName = "TyphoonPackage"
                ReferencedContainer = "container:TyphoonPackage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,15 +81,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_TyphoonPackage"
-            BuildableName = "TyphoonPackage"
-            BlueprintName = "TyphoonPackage"
-            ReferencedContainer = "container:TyphoonPackage.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -94,15 +113,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_TyphoonPackage"
-            BuildableName = "TyphoonPackage"
-            BlueprintName = "TyphoonPackage"
-            ReferencedContainer = "container:TyphoonPackage.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

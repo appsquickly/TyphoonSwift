@@ -9,8 +9,6 @@ print(task)
 let fileDefinition = FileDefinition(fileName: "testFile")
 print(fileDefinition.fileName)
 
-
-
 var config = Config(inputPath: "/Users/alex/Development/typhoon-swift/",
                     outputFilePath: "/Users/alex/Desktop/output.swift",
                     shouldMonitorChanges: false)
