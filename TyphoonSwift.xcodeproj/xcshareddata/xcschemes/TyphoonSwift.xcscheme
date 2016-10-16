@@ -17,7 +17,7 @@
                BlueprintIdentifier = "______Target_Spectre"
                BuildableName = "Spectre.framework"
                BlueprintName = "Spectre"
-               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "______Target_PathKit"
                BuildableName = "PathKit.framework"
                BlueprintName = "PathKit"
-               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "______Target_Stencil"
                BuildableName = "Stencil.framework"
                BlueprintName = "Stencil"
-               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -56,10 +56,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_TyphoonPackage"
-               BuildableName = "TyphoonPackage"
-               BlueprintName = "TyphoonPackage"
-               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+               BlueprintIdentifier = "______Target_Witness"
+               BuildableName = "Witness.framework"
+               BlueprintName = "Witness"
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "______Target_TyphoonSwift"
+               BuildableName = "TyphoonSwift"
+               BlueprintName = "TyphoonSwift"
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -77,7 +91,7 @@
                BlueprintIdentifier = "______Target_TyphoonPackageTests"
                BuildableName = "TyphoonPackageTests.xctest"
                BlueprintName = "TyphoonPackageTests"
-               ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+               ReferencedContainer = "container:TyphoonSwift.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -98,10 +112,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_TyphoonPackage"
-            BuildableName = "TyphoonPackage"
-            BlueprintName = "TyphoonPackage"
-            ReferencedContainer = "container:TyphoonPackage.xcodeproj">
+            BlueprintIdentifier = "______Target_TyphoonSwift"
+            BuildableName = "TyphoonSwift"
+            BlueprintName = "TyphoonSwift"
+            ReferencedContainer = "container:TyphoonSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

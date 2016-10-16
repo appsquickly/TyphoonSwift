@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C31D8AB0CD08545FBA1C879D4E697302077E523A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D5602034A6EC2DF365788189E89A0E085E0D67AC" : 9223372036854775807,
+    "C31D8AB0CD08545FBA1C879D4E697302077E523A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D0467D3D-848C-4018-A26D-43928872CFC7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D5602034A6EC2DF365788189E89A0E085E0D67AC" : "typhoon-swift\/Packages\/Witness-0.4.0\/",
+    "C31D8AB0CD08545FBA1C879D4E697302077E523A" : "typhoon-swift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TyphoonSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TyphoonSwift.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/git.appsquick.ly\/typhoon\/typhoon-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C31D8AB0CD08545FBA1C879D4E697302077E523A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vasilenkoigor\/Witness",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D5602034A6EC2DF365788189E89A0E085E0D67AC"
+    }
+  ]
+}

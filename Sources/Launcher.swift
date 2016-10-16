@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Witness
 
 enum ConfigError : Error {
     case pathNotExists(path: String)

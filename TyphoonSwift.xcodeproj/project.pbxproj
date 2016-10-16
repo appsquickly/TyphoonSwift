@@ -17,7 +17,7 @@
             productRefGroup = ____Products_;
             projectDirPath = '';
             projectRoot = '';
-            targets = (______Target_Spectre, ______Target_PathKit, ______Target_Stencil, ______Target_TyphoonPackage, ______Target_TyphoonPackageTests);
+            targets = (______Target_Spectre, ______Target_PathKit, ______Target_Stencil, ______Target_Witness, ______Target_TyphoonSwift, ______Target_TyphoonPackageTests);
         };
         '__PBXFileRef_Package.swift' = {
             isa = PBXFileReference;
@@ -152,12 +152,12 @@
         };
         ___DebugConf_Spectre = {
             isa = XCBuildConfiguration;
-            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/Spectre_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'Spectre'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/Spectre_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'Spectre'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
             name = Debug;
         };
         _ReleaseConf_Spectre = {
             isa = XCBuildConfiguration;
-            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/Spectre_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'Spectre'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/Spectre_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'Spectre'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_Spectre = {
@@ -220,12 +220,12 @@
         };
         ___DebugConf_PathKit = {
             isa = XCBuildConfiguration;
-            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/PathKit_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'PathKit'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/PathKit_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'PathKit'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
             name = Debug;
         };
         _ReleaseConf_PathKit = {
             isa = XCBuildConfiguration;
-            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/PathKit_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'PathKit'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/PathKit_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'PathKit'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_PathKit = {
@@ -432,24 +432,108 @@
         };
         ___DebugConf_Stencil = {
             isa = XCBuildConfiguration;
-            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/Stencil_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'Stencil'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/Stencil_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'Stencil'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
             name = Debug;
         };
         _ReleaseConf_Stencil = {
             isa = XCBuildConfiguration;
-            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/Stencil_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'Stencil'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/Stencil_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'Stencil'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
             name = Release;
         };
         __Dependency_Stencil = {
             isa = PBXTargetDependency;
             target = ______Target_Stencil;
         };
-        _______Group_TyphoonPackage = {
+        _______Group_Witness = {
             isa = PBXGroup;
-            name = 'TyphoonPackage';
+            name = 'Witness';
+            path = 'Packages/Witness-0.4.0/Sources';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Packages/Witness-0.4.0/Sources/EventStream.swift', '__PBXFileRef_Packages/Witness-0.4.0/Sources/FileEvent.swift', '__PBXFileRef_Packages/Witness-0.4.0/Sources/Witness.swift');
+        };
+        '__PBXFileRef_Packages/Witness-0.4.0/Sources/EventStream.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'EventStream.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Packages/Witness-0.4.0/Sources/FileEvent.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'FileEvent.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Packages/Witness-0.4.0/Sources/Witness.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'Witness.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_Witness = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_Witness;
+            buildPhases = (CompilePhase_Witness, ___LinkPhase_Witness);
+            buildRules = ();
+            dependencies = ();
+            name = 'Witness';
+            productName = Witness;
+            productReference = _____Product_Witness;
+            productType = 'com.apple.product-type.framework';
+        };
+        _____Product_Witness = {
+            isa = PBXFileReference;
+            explicitFileType = 'wrapper.framework';
+            path = 'Witness.framework';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_Witness = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Packages/Witness-0.4.0/Sources/EventStream.swift', '__src_cc_ref_Packages/Witness-0.4.0/Sources/FileEvent.swift', '__src_cc_ref_Packages/Witness-0.4.0/Sources/Witness.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Packages/Witness-0.4.0/Sources/EventStream.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Packages/Witness-0.4.0/Sources/EventStream.swift';
+        };
+        '__src_cc_ref_Packages/Witness-0.4.0/Sources/FileEvent.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Packages/Witness-0.4.0/Sources/FileEvent.swift';
+        };
+        '__src_cc_ref_Packages/Witness-0.4.0/Sources/Witness.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Packages/Witness-0.4.0/Sources/Witness.swift';
+        };
+        ___LinkPhase_Witness = {
+            isa = PBXFrameworksBuildPhase;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _______Confs_Witness = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_Witness, _ReleaseConf_Witness);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_Witness = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/Witness_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'Witness'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Debug;
+        };
+        _ReleaseConf_Witness = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/Witness_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'Witness'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Release;
+        };
+        __Dependency_Witness = {
+            isa = PBXTargetDependency;
+            target = ______Target_Witness;
+        };
+        _______Group_TyphoonSwift = {
+            isa = PBXGroup;
+            name = 'TyphoonSwift';
             path = 'Sources';
             sourceTree = '<group>';
-            children = ('__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift', '__PBXFileRef_Sources/AssemblyGenerator.swift', '__PBXFileRef_Sources/Config.swift', '__PBXFileRef_Sources/EventStream.swift', '__PBXFileRef_Sources/FileDefinitionBuilder.swift', '__PBXFileRef_Sources/FileEvent.swift', '__PBXFileRef_Sources/FileStructure.swift', '__PBXFileRef_Sources/JSON.swift', '__PBXFileRef_Sources/Launcher.swift', '__PBXFileRef_Sources/main.swift', '__PBXFileRef_Sources/MethodDefinition.swift', '__PBXFileRef_Sources/MethodDefinitionBuilder+Inspections.swift', '__PBXFileRef_Sources/MethodDefinitionBuilder.swift', '__PBXFileRef_Sources/Model.swift', '__PBXFileRef_Sources/Models.swift', '__PBXFileRef_Sources/RegularExpressionExtensions.swift', '__PBXFileRef_Sources/SourceLangSwift.swift', '__PBXFileRef_Sources/StringUtils.swift', '__PBXFileRef_Sources/SwiftDocumentKey.swift', '__PBXFileRef_Sources/Terminal.swift', '__PBXFileRef_Sources/TyphoonPackage.swift', '__PBXFileRef_Sources/TyphoonSwift.swift', '__PBXFileRef_Sources/Witness.swift');
+            children = ('__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift', '__PBXFileRef_Sources/AssemblyGenerator.swift', '__PBXFileRef_Sources/Config.swift', '__PBXFileRef_Sources/FileDefinitionBuilder.swift', '__PBXFileRef_Sources/FileStructure.swift', '__PBXFileRef_Sources/JSON.swift', '__PBXFileRef_Sources/Launcher.swift', '__PBXFileRef_Sources/main.swift', '__PBXFileRef_Sources/MethodDefinition.swift', '__PBXFileRef_Sources/MethodDefinitionBuilder+Inspections.swift', '__PBXFileRef_Sources/MethodDefinitionBuilder.swift', '__PBXFileRef_Sources/Model.swift', '__PBXFileRef_Sources/Models.swift', '__PBXFileRef_Sources/RegularExpressionExtensions.swift', '__PBXFileRef_Sources/SourceLangSwift.swift', '__PBXFileRef_Sources/StringUtils.swift', '__PBXFileRef_Sources/SwiftDocumentKey.swift', '__PBXFileRef_Sources/Terminal.swift', '__PBXFileRef_Sources/TyphoonPackage.swift', '__PBXFileRef_Sources/TyphoonSwift.swift');
         };
         '__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift' = {
             isa = PBXFileReference;
@@ -469,22 +553,10 @@
             path = 'Config.swift';
             sourceTree = '<group>';
         };
-        '__PBXFileRef_Sources/EventStream.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            path = 'EventStream.swift';
-            sourceTree = '<group>';
-        };
         '__PBXFileRef_Sources/FileDefinitionBuilder.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
             path = 'FileDefinitionBuilder.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Sources/FileEvent.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            path = 'FileEvent.swift';
             sourceTree = '<group>';
         };
         '__PBXFileRef_Sources/FileStructure.swift' = {
@@ -583,32 +655,26 @@
             path = 'TyphoonSwift.swift';
             sourceTree = '<group>';
         };
-        '__PBXFileRef_Sources/Witness.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            path = 'Witness.swift';
-            sourceTree = '<group>';
-        };
-        ______Target_TyphoonPackage = {
+        ______Target_TyphoonSwift = {
             isa = PBXNativeTarget;
-            buildConfigurationList = _______Confs_TyphoonPackage;
-            buildPhases = (CompilePhase_TyphoonPackage, ___LinkPhase_TyphoonPackage);
+            buildConfigurationList = _______Confs_TyphoonSwift;
+            buildPhases = (CompilePhase_TyphoonSwift, ___LinkPhase_TyphoonSwift);
             buildRules = ();
-            dependencies = (__Dependency_Spectre, __Dependency_PathKit, __Dependency_Stencil);
-            name = 'TyphoonPackage';
-            productName = TyphoonPackage;
-            productReference = _____Product_TyphoonPackage;
+            dependencies = (__Dependency_Spectre, __Dependency_PathKit, __Dependency_Stencil, __Dependency_Witness);
+            name = 'TyphoonSwift';
+            productName = TyphoonSwift;
+            productReference = _____Product_TyphoonSwift;
             productType = 'com.apple.product-type.tool';
         };
-        _____Product_TyphoonPackage = {
+        _____Product_TyphoonSwift = {
             isa = PBXFileReference;
             explicitFileType = 'compiled.mach-o.executable';
-            path = 'TyphoonPackage';
+            path = 'TyphoonSwift';
             sourceTree = BUILT_PRODUCTS_DIR;
         };
-        CompilePhase_TyphoonPackage = {
+        CompilePhase_TyphoonSwift = {
             isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Sources/AssemblyDefinitionBuilder.swift', '__src_cc_ref_Sources/AssemblyGenerator.swift', '__src_cc_ref_Sources/Config.swift', '__src_cc_ref_Sources/EventStream.swift', '__src_cc_ref_Sources/FileDefinitionBuilder.swift', '__src_cc_ref_Sources/FileEvent.swift', '__src_cc_ref_Sources/FileStructure.swift', '__src_cc_ref_Sources/JSON.swift', '__src_cc_ref_Sources/Launcher.swift', '__src_cc_ref_Sources/main.swift', '__src_cc_ref_Sources/MethodDefinition.swift', '__src_cc_ref_Sources/MethodDefinitionBuilder+Inspections.swift', '__src_cc_ref_Sources/MethodDefinitionBuilder.swift', '__src_cc_ref_Sources/Model.swift', '__src_cc_ref_Sources/Models.swift', '__src_cc_ref_Sources/RegularExpressionExtensions.swift', '__src_cc_ref_Sources/SourceLangSwift.swift', '__src_cc_ref_Sources/StringUtils.swift', '__src_cc_ref_Sources/SwiftDocumentKey.swift', '__src_cc_ref_Sources/Terminal.swift', '__src_cc_ref_Sources/TyphoonPackage.swift', '__src_cc_ref_Sources/TyphoonSwift.swift', '__src_cc_ref_Sources/Witness.swift');
+            files = ('__src_cc_ref_Sources/AssemblyDefinitionBuilder.swift', '__src_cc_ref_Sources/AssemblyGenerator.swift', '__src_cc_ref_Sources/Config.swift', '__src_cc_ref_Sources/FileDefinitionBuilder.swift', '__src_cc_ref_Sources/FileStructure.swift', '__src_cc_ref_Sources/JSON.swift', '__src_cc_ref_Sources/Launcher.swift', '__src_cc_ref_Sources/main.swift', '__src_cc_ref_Sources/MethodDefinition.swift', '__src_cc_ref_Sources/MethodDefinitionBuilder+Inspections.swift', '__src_cc_ref_Sources/MethodDefinitionBuilder.swift', '__src_cc_ref_Sources/Model.swift', '__src_cc_ref_Sources/Models.swift', '__src_cc_ref_Sources/RegularExpressionExtensions.swift', '__src_cc_ref_Sources/SourceLangSwift.swift', '__src_cc_ref_Sources/StringUtils.swift', '__src_cc_ref_Sources/SwiftDocumentKey.swift', '__src_cc_ref_Sources/Terminal.swift', '__src_cc_ref_Sources/TyphoonPackage.swift', '__src_cc_ref_Sources/TyphoonSwift.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
         '__src_cc_ref_Sources/AssemblyDefinitionBuilder.swift' = {
@@ -623,17 +689,9 @@
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/Config.swift';
         };
-        '__src_cc_ref_Sources/EventStream.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/EventStream.swift';
-        };
         '__src_cc_ref_Sources/FileDefinitionBuilder.swift' = {
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/FileDefinitionBuilder.swift';
-        };
-        '__src_cc_ref_Sources/FileEvent.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/FileEvent.swift';
         };
         '__src_cc_ref_Sources/FileStructure.swift' = {
             isa = PBXBuildFile;
@@ -699,46 +757,46 @@
             isa = PBXBuildFile;
             fileRef = '__PBXFileRef_Sources/TyphoonSwift.swift';
         };
-        '__src_cc_ref_Sources/Witness.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Witness.swift';
-        };
-        ___LinkPhase_TyphoonPackage = {
+        ___LinkPhase_TyphoonSwift = {
             isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_Spectre_via_TyphoonPackage, _LinkFileRef_PathKit_via_TyphoonPackage, _LinkFileRef_Stencil_via_TyphoonPackage);
+            files = (_LinkFileRef_Spectre_via_TyphoonSwift, _LinkFileRef_PathKit_via_TyphoonSwift, _LinkFileRef_Stencil_via_TyphoonSwift, _LinkFileRef_Witness_via_TyphoonSwift);
             runOnlyForDeploymentPostprocessing = 0;
         };
-        _LinkFileRef_Spectre_via_TyphoonPackage = {
+        _LinkFileRef_Spectre_via_TyphoonSwift = {
             isa = PBXBuildFile;
             fileRef = _____Product_Spectre;
         };
-        _LinkFileRef_PathKit_via_TyphoonPackage = {
+        _LinkFileRef_PathKit_via_TyphoonSwift = {
             isa = PBXBuildFile;
             fileRef = _____Product_PathKit;
         };
-        _LinkFileRef_Stencil_via_TyphoonPackage = {
+        _LinkFileRef_Stencil_via_TyphoonSwift = {
             isa = PBXBuildFile;
             fileRef = _____Product_Stencil;
         };
-        _______Confs_TyphoonPackage = {
+        _LinkFileRef_Witness_via_TyphoonSwift = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_Witness;
+        };
+        _______Confs_TyphoonSwift = {
             isa = XCConfigurationList;
-            buildConfigurations = (___DebugConf_TyphoonPackage, _ReleaseConf_TyphoonPackage);
+            buildConfigurations = (___DebugConf_TyphoonSwift, _ReleaseConf_TyphoonSwift);
             defaultConfigurationIsVisible = 0;
             defaultConfigurationName = Debug;
         };
-        ___DebugConf_TyphoonPackage = {
+        ___DebugConf_TyphoonSwift = {
             isa = XCBuildConfiguration;
             buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_FORCE_STATIC_LINK_STDLIB = 'NO'; SWIFT_FORCE_DYNAMIC_LINK_STDLIB = 'YES'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
             name = Debug;
         };
-        _ReleaseConf_TyphoonPackage = {
+        _ReleaseConf_TyphoonSwift = {
             isa = XCBuildConfiguration;
             buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; SWIFT_FORCE_STATIC_LINK_STDLIB = 'NO'; SWIFT_FORCE_DYNAMIC_LINK_STDLIB = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
             name = Release;
         };
-        __Dependency_TyphoonPackage = {
+        __Dependency_TyphoonSwift = {
             isa = PBXTargetDependency;
-            target = ______Target_TyphoonPackage;
+            target = ______Target_TyphoonSwift;
         };
         _______Group_TyphoonPackageTests = {
             isa = PBXGroup;
@@ -758,7 +816,7 @@
             buildConfigurationList = _______Confs_TyphoonPackageTests;
             buildPhases = (CompilePhase_TyphoonPackageTests, ___LinkPhase_TyphoonPackageTests);
             buildRules = ();
-            dependencies = (__Dependency_Spectre, __Dependency_PathKit, __Dependency_Stencil, __Dependency_TyphoonPackage);
+            dependencies = (__Dependency_Spectre, __Dependency_PathKit, __Dependency_Stencil, __Dependency_Witness);
             name = 'TyphoonPackageTests';
             productName = TyphoonPackageTests;
             productReference = _____Product_TyphoonPackageTests;
@@ -781,7 +839,7 @@
         };
         ___LinkPhase_TyphoonPackageTests = {
             isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_Spectre_via_TyphoonPackageTests, _LinkFileRef_PathKit_via_TyphoonPackageTests, _LinkFileRef_Stencil_via_TyphoonPackageTests, _LinkFileRef_TyphoonPackage_via_TyphoonPackageTests);
+            files = (_LinkFileRef_Spectre_via_TyphoonPackageTests, _LinkFileRef_PathKit_via_TyphoonPackageTests, _LinkFileRef_Stencil_via_TyphoonPackageTests, _LinkFileRef_Witness_via_TyphoonPackageTests);
             runOnlyForDeploymentPostprocessing = 0;
         };
         _LinkFileRef_Spectre_via_TyphoonPackageTests = {
@@ -796,9 +854,9 @@
             isa = PBXBuildFile;
             fileRef = _____Product_Stencil;
         };
-        _LinkFileRef_TyphoonPackage_via_TyphoonPackageTests = {
+        _LinkFileRef_Witness_via_TyphoonPackageTests = {
             isa = PBXBuildFile;
-            fileRef = _____Product_TyphoonPackage;
+            fileRef = _____Product_Witness;
         };
         _______Confs_TyphoonPackageTests = {
             isa = XCConfigurationList;
@@ -808,39 +866,39 @@
         };
         ___DebugConf_TyphoonPackageTests = {
             isa = XCBuildConfiguration;
-            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/TyphoonPackageTests_Info.plist'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/TyphoonPackageTests_Info.plist'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
             name = Debug;
         };
         _ReleaseConf_TyphoonPackageTests = {
             isa = XCBuildConfiguration;
-            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonPackage.xcodeproj/TyphoonPackageTests_Info.plist'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'TyphoonSwift.xcodeproj/TyphoonPackageTests_Info.plist'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
             name = Release;
         };
         __Dependency_TyphoonPackageTests = {
             isa = PBXTargetDependency;
             target = ______Target_TyphoonPackageTests;
         };
-        '__PBXFileRef_TyphoonPackage.xcodeproj/Configs/Project.xcconfig' = {
+        '__PBXFileRef_TyphoonSwift.xcodeproj/Configs/Project.xcconfig' = {
             isa = PBXFileReference;
             lastKnownFileType = text.xcconfig;
-            path = 'TyphoonPackage.xcodeproj/Configs/Project.xcconfig';
+            path = 'TyphoonSwift.xcodeproj/Configs/Project.xcconfig';
             sourceTree = '<group>';
         };
         _____Configs_ = {
             isa = PBXGroup;
-            children = ('__PBXFileRef_TyphoonPackage.xcodeproj/Configs/Project.xcconfig');
+            children = ('__PBXFileRef_TyphoonSwift.xcodeproj/Configs/Project.xcconfig');
             name = Configs;
             sourceTree = '<group>';
         };
         _____Sources_ = {
             isa = PBXGroup;
-            children = (_______Group_Spectre, _______Group_PathKit, _______Group_Stencil, _______Group_TyphoonPackage);
+            children = (_______Group_Spectre, _______Group_PathKit, _______Group_Stencil, _______Group_Witness, _______Group_TyphoonSwift);
             name = Sources;
             sourceTree = '<group>';
         };
         Dependencies_ = {
             isa = PBXGroup;
-            children = (_______Group_Spectre, _______Group_Stencil, _______Group_PathKit);
+            children = (_______Group_Spectre, _______Group_PathKit, _______Group_Stencil, _______Group_Witness);
             name = Dependencies;
             sourceTree = '<group>';
         };
@@ -858,19 +916,19 @@
         };
         ____Products_ = {
             isa = PBXGroup;
-            children = (TestProducts_, _____Product_Spectre, _____Product_PathKit, _____Product_Stencil, _____Product_TyphoonPackage);
+            children = (TestProducts_, _____Product_Spectre, _____Product_PathKit, _____Product_Stencil, _____Product_Witness, _____Product_TyphoonSwift);
             name = Products;
             sourceTree = '<group>';
         };
         _______Debug_ = {
             isa = XCBuildConfiguration;
-            baseConfigurationReference = '__PBXFileRef_TyphoonPackage.xcodeproj/Configs/Project.xcconfig';
+            baseConfigurationReference = '__PBXFileRef_TyphoonSwift.xcodeproj/Configs/Project.xcconfig';
             buildSettings = {};
             name = Debug;
         };
         _____Release_ = {
             isa = XCBuildConfiguration;
-            baseConfigurationReference = '__PBXFileRef_TyphoonPackage.xcodeproj/Configs/Project.xcconfig';
+            baseConfigurationReference = '__PBXFileRef_TyphoonSwift.xcodeproj/Configs/Project.xcconfig';
             buildSettings = {};
             name = Release;
         };
