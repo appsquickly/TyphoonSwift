@@ -1,0 +1,30 @@
+import Foundation
+
+{% for assembly in assemblies %}
+class {{ assembly.name }}Implementation : ActivatedAssembly {
+
+    override init() {
+        super.init()
+        registerAllDefinitions()
+    }
+    {% for method in assembly.methods %}
+    {% ifnot method.args %}
+    private func definitionFor{{method.name | uppercaseFirst}} -> ActivatedGenericDefinition<{{method.returnType}}>
+    {
+{% include "Definition.stencil" %}
+        return definition
+    }
+    {% endif %}{% endfor %}
+    
+{% for method in assembly.methods %}
+    func {{ method.name }} -> {{ method.returnType }} { {% if method.args %}
+{% include "Definition.stencil" %}		return ActivatedAssembly.container(self).component(forDefinition: definition){% else %}
+        return ActivatedAssembly.container(self).component(forKey: "{{ method.definition.key }}") as {{ method.returnType }}{% endif %}
+    }
+    {% endfor %}
+    private func registerAllDefinitions() {
+{% for method in assembly.methods %}{% ifnot method.args %}        ActivatedAssembly.container(self).registerDefinition(definitionFor{{method.name | uppercaseFirst}})
+{% endif%}{% endfor %}    }
+}
+
+{% endfor %}

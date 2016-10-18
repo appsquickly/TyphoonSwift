@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Stencil
 
 struct Replacement {
     var range: CountableRange<Int>! = 0..<0
@@ -25,9 +26,110 @@ class FileGenerator
         self.init()
         self.file = file
     }
+    ////////////////////////////////////////
+    /// TEMPLATE PARAMs METHODS
+    
+    
+    
+    func assemblyDict(fromAssembly assembly: AssemblyDefinition) -> [String: AnyObject] {
+        
+        var assemblyDict:[String: AnyObject] = [:]
+        assemblyDict["name"] = assembly.name as AnyObject
+        
+        var allMethodDicts: [AnyObject] = []
+        for method in assembly.methods {
+            let dict = methodDict(fromMethod: method)
+            allMethodDicts.append(dict as AnyObject)
+        }
+        
+        assemblyDict["methods"] = allMethodDicts as AnyObject
+
+        return assemblyDict
+    }
+    
+    func methodDict(fromMethod method: MethodDefinition) -> [String: AnyObject] {
+        var methodDict:[String: AnyObject] = [:]
+        
+        methodDict["name"] = method.name as AnyObject
+        methodDict["returnType"] = method.returnDefinition!.className! as AnyObject
+        methodDict["args"] = method.args as AnyObject?
+        
+        if let definition = method.definitions.first {
+            let dict = definitionDict(fromDefinition: definition)
+            methodDict["definition"] = dict as AnyObject
+        }
+        
+        return methodDict
+    }
+    
+    func definitionDict(fromDefinition definition: InstanceDefinition) -> [String: AnyObject] {
+        var definitionDict:[String: AnyObject] = [:]
+        definitionDict["key"] = definition.key as AnyObject
+        definitionDict["scope"] = "Definition.Scope.\(definition.scope)" as AnyObject
+        definitionDict["class"] = definition.className as AnyObject
+        definitionDict["properties"] = propertyInjections(definition.propertyInjections) as AnyObject
+        return definitionDict
+    }
+    
+    func propertyInjections(_ injections: [PropertyInjection]) -> [[String: String]] {
+        var properties :[[String: String]] = []
+        
+        for prop in injections {
+            properties.append(["name": prop.propertyName, "value" : prop.injectedValue])
+        }
+        
+        return properties
+    }
+    
+    func registerFilters(withNamespace namespace: Namespace) {
+        namespace.registerFilter("uppercaseFirst") { value in
+            if let value = value as? String {
+                return value.uppercaseFirst
+            }
+            return value
+        }
+
+    }
+    
+    ////////////////////////////////////////
+    
     
     func generate(to outputPath :String)
     {
+        var contextDict: [ String: AnyObject ] = [:]
+        
+        var allAssemblyDicts: [AnyObject] = []
+        
+        for assembly in file.assemblies {
+            let dict = assemblyDict(fromAssembly: assembly)
+            allAssemblyDicts.append(dict as AnyObject)
+        }
+        
+        contextDict["assemblies"] = allAssemblyDicts as AnyObject
+        
+        
+        do {
+            contextDict["loader"] = TemplateLoader(bundle:[Bundle.main])
+            
+            let namespace = Namespace()
+            registerFilters(withNamespace: namespace)
+            
+            let context = Context(dictionary: contextDict, namespace: namespace)
+            
+            
+            let template = try Template(named: "Assemblies.stencil")
+            
+            let rendered = try template.render(context)
+            try rendered.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print("Failed to render template \(error)")
+        }
+        
+        
+        
+        return
+        
+        
         var outputBuffer = ""
      
         outputBuffer += "import Foundation"
