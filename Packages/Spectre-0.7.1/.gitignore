@@ -1,0 +1,12 @@
+.build/
+Packages/
+*.xcodeproj
+IntegrationTests/Failing-dot-output.txt
+IntegrationTests/Failing-output.txt
+IntegrationTests/Failing-tap-output.txt
+IntegrationTests/Passing-dot-output.txt
+IntegrationTests/Passing-output.txt
+IntegrationTests/Passing-tap-output.txt
+IntegrationTests/Disabled-dot-output.txt
+IntegrationTests/Disabled-output.txt
+IntegrationTests/Disabled-tap-output.txt
