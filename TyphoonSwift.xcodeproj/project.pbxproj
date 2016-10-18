@@ -222,6 +222,73 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
+		FAA53C601DB6B70500C06D77 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/JSON.swift /* JSON.swift */,
+				__PBXFileRef_Sources/MethodDefinition.swift /* MethodDefinition.swift */,
+				__PBXFileRef_Sources/Model.swift /* Model.swift */,
+				__PBXFileRef_Sources/Models.swift /* Models.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FAA53C611DB6B70E00C06D77 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/Config.swift /* Config.swift */,
+				__PBXFileRef_Sources/Launcher.swift /* Launcher.swift */,
+			);
+			name = Agent;
+			sourceTree = "<group>";
+		};
+		FAA53C621DB6B71900C06D77 /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				FAA53C661DB6B78400C06D77 /* Templates */,
+				__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */,
+			);
+			name = Generator;
+			sourceTree = "<group>";
+		};
+		FAA53C631DB6B72B00C06D77 /* SourceKitten */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/FileStructure.swift /* FileStructure.swift */,
+				__PBXFileRef_Sources/SourceLangSwift.swift /* SourceLangSwift.swift */,
+				__PBXFileRef_Sources/SwiftDocumentKey.swift /* SwiftDocumentKey.swift */,
+			);
+			name = SourceKitten;
+			sourceTree = "<group>";
+		};
+		FAA53C641DB6B75D00C06D77 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift /* AssemblyDefinitionBuilder.swift */,
+				"__PBXFileRef_Sources/MethodDefinitionBuilder+Inspections.swift" /* MethodDefinitionBuilder+Inspections.swift */,
+				__PBXFileRef_Sources/FileDefinitionBuilder.swift /* FileDefinitionBuilder.swift */,
+				__PBXFileRef_Sources/MethodDefinitionBuilder.swift /* MethodDefinitionBuilder.swift */,
+			);
+			name = Builders;
+			sourceTree = "<group>";
+		};
+		FAA53C651DB6B77000C06D77 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift */,
+				__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */,
+				__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FAA53C661DB6B78400C06D77 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Templates;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,24 +398,13 @@
 		"_______Group_TyphoonSwift" /* TyphoonSwift */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift /* AssemblyDefinitionBuilder.swift */,
-				__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */,
-				__PBXFileRef_Sources/Config.swift /* Config.swift */,
-				__PBXFileRef_Sources/FileDefinitionBuilder.swift /* FileDefinitionBuilder.swift */,
-				__PBXFileRef_Sources/FileStructure.swift /* FileStructure.swift */,
-				__PBXFileRef_Sources/JSON.swift /* JSON.swift */,
-				__PBXFileRef_Sources/Launcher.swift /* Launcher.swift */,
 				__PBXFileRef_Sources/main.swift /* main.swift */,
-				__PBXFileRef_Sources/MethodDefinition.swift /* MethodDefinition.swift */,
-				"__PBXFileRef_Sources/MethodDefinitionBuilder+Inspections.swift" /* MethodDefinitionBuilder+Inspections.swift */,
-				__PBXFileRef_Sources/MethodDefinitionBuilder.swift /* MethodDefinitionBuilder.swift */,
-				__PBXFileRef_Sources/Model.swift /* Model.swift */,
-				__PBXFileRef_Sources/Models.swift /* Models.swift */,
-				__PBXFileRef_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift */,
-				__PBXFileRef_Sources/SourceLangSwift.swift /* SourceLangSwift.swift */,
-				__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */,
-				__PBXFileRef_Sources/SwiftDocumentKey.swift /* SwiftDocumentKey.swift */,
-				__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */,
+				FAA53C611DB6B70E00C06D77 /* Agent */,
+				FAA53C641DB6B75D00C06D77 /* Builders */,
+				FAA53C621DB6B71900C06D77 /* Generator */,
+				FAA53C601DB6B70500C06D77 /* Models */,
+				FAA53C631DB6B72B00C06D77 /* SourceKitten */,
+				FAA53C651DB6B77000C06D77 /* Utils */,
 			);
 			name = TyphoonSwift;
 			path = Sources;
