@@ -1,7 +1,13 @@
 import Foundation
 
-var config = Config(inputPath: "/Users/alex/Development/typhoon-swift/",
-                    outputFilePath: "/Users/alex/Desktop/output.swift",
+let env = ProcessInfo.processInfo.environment
+
+var inputPath = env["example_input_path"] ?? ""
+var outputPath = env["example_output_path"] ?? ""
+
+
+var config = Config(inputPath: inputPath,
+                    outputFilePath: outputPath,
                     shouldMonitorChanges: false)
 
 do {
