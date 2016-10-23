@@ -19,7 +19,7 @@ class {{ assembly.name }}Implementation : ActivatedAssembly {
 {% for method in assembly.methods %}
     func {{ method.name }} -> {{ method.returnType }} { {% if method.args %}
 {% include "Definition.stencil" %}		return ActivatedAssembly.container(self).component(forDefinition: definition){% else %}
-        return ActivatedAssembly.container(self).component(forKey: "{{ method.definition.key }}") as {{ method.returnType }}{% endif %}
+        return ActivatedAssembly.container(self).component(forKey: "{{ method.definition.key }}") as {{ method.returnType }}!{% endif %}
     }
     {% endfor %}
     private func registerAllDefinitions() {
@@ -28,3 +28,24 @@ class {{ assembly.name }}Implementation : ActivatedAssembly {
 }
 
 {% endfor %}
+
+// Assembly accessors
+{% for assembly in assemblies %}
+extension {{ assembly.name }} {
+	class var assembly: {{ assembly.name }}Implementation {
+		get {
+			struct Static {
+				static let instance = ActivatedAssembly.activate({{ assembly.name }}Implementation())
+			}
+			return Static.instance
+		}
+	}
+}
+{% endfor %}
+
+// Umbrella activation
+extension Typhoon {
+    class func activateAssemblies() { {% for assembly in assemblies %}
+        _ = {{ assembly.name }}.assembly{% endfor %}
+    }
+}
