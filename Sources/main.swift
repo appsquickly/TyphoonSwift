@@ -8,7 +8,7 @@ var outputPath = env["example_output_path"] ?? ""
 
 var config = Config(inputPath: inputPath,
                     outputFilePath: outputPath,
-                    shouldMonitorChanges: true)
+                    shouldMonitorChanges: false)
 
 do {
     let launcher = try Launcher(withConfig: config)

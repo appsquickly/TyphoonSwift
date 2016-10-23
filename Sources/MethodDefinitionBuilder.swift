@@ -98,6 +98,8 @@ class MethodDefinitionBuilder {
         
         let isResult = getDefinitionConfigurationFromCall(call, methodOffset: methodOffset) { content, ivarName, isExternal in
             
+            _ = initializerInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
+            
             let properties = self.propertyInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
             if isExternal {
                 _ = properties.map { property in
@@ -193,6 +195,26 @@ class MethodDefinitionBuilder {
         }
         
         return scope
+    }
+    
+    func initializerInjectionsFromContent(_ content: [JSON], ivar: String, contentOffset: Int) -> MethodInjection?
+    {
+        var initializer: MethodInjection? = nil
+        
+        for item in content {
+            if let name = item[SwiftDocKey.name].string {
+                switch name {
+                case "\(ivar).useInitializer":
+                    print("item: \(item)")
+//                    let property = propertyInjectionFromParameter(item, offset: contentOffset)
+//                    injections.append(property)
+                default: break
+                    
+                }
+            }
+        }
+        
+        return initializer
     }
     
     func propertyInjectionsFromContent(_ content: [JSON], ivar: String, contentOffset: Int) -> [PropertyInjection]

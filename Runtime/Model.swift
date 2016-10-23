@@ -16,6 +16,14 @@ class Assembly {
     
 }
 
+class Method {
+    
+    func injectArgument(_ argument:Any) {
+        
+    }
+    
+}
+
 class Definition {
     
     enum Scope : String {
@@ -46,6 +54,14 @@ class Definition {
     
     
     func injectProperty(_ property:String, with:Any) {
+        
+    }
+    
+    func useInitializer(_ selector:String, with:((Method)->())? = nil) {
+        
+    }
+    
+    func injectMethod(_ selector:String, with:((Method)->())? = nil) {
         
     }
     

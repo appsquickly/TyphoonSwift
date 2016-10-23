@@ -17,6 +17,26 @@ class Man {
     var age :UInt?;
     
     var brother: Man?
+    
+    init() {
+    
+    }
+    
+    convenience init(withName name: String) {
+        self.init()
+        self.name = name
+    }
+    
+    func setValues(_ name:String, withAge age:UInt) {
+        self.name = name
+        self.age = age
+        //"init(withName:)" -> init(withName: a)
+        //"setValues(_:withAge:) -> setValues(a, withAge: b)
+    }
+    
+    func setAdultAge() {
+        self.age = 18
+    }
 }
 
 class Woman : Man {
@@ -59,6 +79,16 @@ class CoreComponents : Assembly {
             $0.injectProperty("name", with: name)
             $0.setScope(Definition.Scope.ObjectGraph)
             $0.injectProperty("brother", with: self.man())
+        }
+    }
+    
+    func manWithInitializer() -> Definition {
+        return Definition(withClass: Man.self) {
+            $0.setScope(Definition.Scope.Prototype)
+            $0.useInitializer("init(withName:)", with: { (m) in
+                m.injectArgument("Tom")
+            })
+            $0.injectMethod("setAdultAge")
         }
     }
     

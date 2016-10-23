@@ -24,6 +24,18 @@ class CoreComponentsImplementation : ActivatedAssembly {
     
     
     
+    private func definitionForManWithInitializer() -> ActivatedGenericDefinition<Man>
+    {
+        let definition = ActivatedGenericDefinition<Man>(withKey: "manWithInitializer")
+        definition.scope = Definition.Scope.Prototype
+        definition.initialization = {
+            return Man()
+        }
+
+        return definition
+    }
+    
+    
     private func definitionForRootController() -> ActivatedGenericDefinition<Woman>
     {
         let definition = ActivatedGenericDefinition<Woman>(withKey: "rootController")
@@ -143,6 +155,10 @@ class CoreComponentsImplementation : ActivatedAssembly {
 		return ActivatedAssembly.container(self).component(forDefinition: definition)
     }
     
+    func manWithInitializer() -> Man { 
+        return ActivatedAssembly.container(self).component(forKey: "manWithInitializer") as Man!
+    }
+    
     func rootController() -> Woman { 
         return ActivatedAssembly.container(self).component(forKey: "rootController") as Woman!
     }
@@ -181,6 +197,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
     }
     
     private func registerAllDefinitions() {
+        ActivatedAssembly.container(self).registerDefinition(definitionForManWithInitializer())
         ActivatedAssembly.container(self).registerDefinition(definitionForRootController())
         ActivatedAssembly.container(self).registerDefinition(definitionForShareService2())
         ActivatedAssembly.container(self).registerDefinition(definitionForMan())

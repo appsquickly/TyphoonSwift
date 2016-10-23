@@ -22,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Typhoon.activateAssemblies()
         
+        let man = CoreComponents.assembly.manWithInitializer()
+        
+        print("man.name = \(man.name)")
+        
+        
     
         let component = CoreComponents.assembly.component1()
 

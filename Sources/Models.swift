@@ -73,6 +73,17 @@ class PropertyInjection : Injection, CustomStringConvertible, Hashable {
     }
 }
 
+class MethodInjection : Injection {
+    
+    var external: Bool = false
+
+    var methodSelector: String
+    
+    init(methodSelector: String) {
+        self.methodSelector = methodSelector
+    }
+}
+
 func == (lhs: PropertyInjection, rhs: PropertyInjection) -> Bool {
     return lhs.propertyName == rhs.propertyName
 }
