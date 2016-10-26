@@ -1,8 +1,10 @@
         let definition = ActivatedGenericDefinition<{{ method.definition.class }}>(withKey: "{{ method.definition.key }}")
         definition.scope = {{ method.definition.scope }}
         definition.initialization = {
-            return {{ method.definition.class }}()
-        }{% if method.definition.properties %}
+            return {{ method.definition.initializer }}
+        }{% if method.definition.configuration %}
         definition.configuration = { instance in{% for property in method.definition.properties %}
             instance.{{ property.name }} = {{ property.value }}{% endfor %}
+        {% for method in method.definition.methods %}
+            instance.{{ method }}{% endfor %}
         }{% endif %}

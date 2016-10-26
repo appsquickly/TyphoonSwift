@@ -29,7 +29,12 @@ class CoreComponentsImplementation : ActivatedAssembly {
         let definition = ActivatedGenericDefinition<Man>(withKey: "manWithInitializer")
         definition.scope = Definition.Scope.Prototype
         definition.initialization = {
-            return Man()
+            return Man(withName: "Tom")
+        }
+        definition.configuration = { instance in
+        
+            instance.setAdultAge()
+            instance.setValues("John", withAge: 18)
         }
 
         return definition
@@ -46,6 +51,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         definition.configuration = { instance in
             instance.age = 23
             instance.name = "Anna"
+        
         }
 
         return definition
@@ -61,6 +67,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         }
         definition.configuration = { instance in
             instance.name = "Hello world"
+        
         }
 
         return definition
@@ -78,6 +85,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         definition.configuration = { instance in
             instance.name = "Vit"
             instance.brother = self.manWith("Alex")
+        
         }
 
         return definition
@@ -105,6 +113,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         }
         definition.configuration = { instance in
             instance.dependency = self.component2()
+        
         }
 
         return definition
@@ -120,6 +129,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         }
         definition.configuration = { instance in
             instance.dependency = self.component3()
+        
         }
 
         return definition
@@ -135,6 +145,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         }
         definition.configuration = { instance in
             instance.dependency = self.component1()
+        
         }
 
         return definition
@@ -151,6 +162,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         definition.configuration = { instance in
             instance.name = name
             instance.brother = self.man()
+        
         }
 		return ActivatedAssembly.container(self).component(forDefinition: definition)
     }

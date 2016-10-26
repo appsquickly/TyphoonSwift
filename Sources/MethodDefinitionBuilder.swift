@@ -98,7 +98,7 @@ class MethodDefinitionBuilder {
         
         let isResult = getDefinitionConfigurationFromCall(call, methodOffset: methodOffset) { content, ivarName, isExternal in
             
-            definition.initializer = initializerInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
+            definition.initializer = initializerInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset, className: definition.className)
             definition.methodInjections = methodInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
             
             let properties = self.propertyInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
@@ -198,13 +198,14 @@ class MethodDefinitionBuilder {
         return scope
     }
     
-    func initializerInjectionsFromContent(_ nodes: [JSON], ivar: String, contentOffset: Int) -> MethodInjection?
+    func initializerInjectionsFromContent(_ nodes: [JSON], ivar: String, contentOffset: Int, className: String) -> MethodInjection?
     {
         var initializer: MethodInjection? = nil
         
         enumerateItemsFromContent(nodes, withName: "\(ivar).useInitializer") { item in
             assert(initializer == nil, "Only one initializer allowed per definition.")
             initializer = methodInjectionFromItem(item, contentOffset: contentOffset)
+            initializer!.methodSelector = initializer!.methodSelector.stringByReplacingFirstOccurrenceOfString(target: "init", withString: className)
         }
         
         return initializer
@@ -227,7 +228,8 @@ class MethodDefinitionBuilder {
         let selectorParameter = parameterFromCall(item, atIndex: ArgumentIndex.index(0))
         let selectorRange = makeRange(selectorParameter as JSON!, parameter: "body", offset: contentOffset)
         
-        let selector = content(selectorRange, offset: contentOffset)!
+        var selector = content(selectorRange, offset: contentOffset)!
+        selector = selector.replacingOccurrences(of: "\"", with: "")
         
         print("selector: \(selector)")
         let result = MethodInjection(methodSelector: selector)
@@ -305,8 +307,7 @@ class MethodDefinitionBuilder {
     func argumentInjectionFromParameter(_ parameter: JSON, offset: Int) -> MethodInjection.Argument
     {
         let injection = MethodInjection.Argument()
-        let injectedRawValue = content(from: parameter[SwiftDocKey.bodyOffset].integer, length: parameter[SwiftDocKey.bodyLength].integer) as String!
-        injection.injectedValue = injectedRawValue!.replacingOccurrences(of: "\"", with: "")
+        injection.injectedValue = content(from: parameter[SwiftDocKey.bodyOffset].integer, length: parameter[SwiftDocKey.bodyLength].integer) as String!
         
         return injection
     }

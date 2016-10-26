@@ -29,8 +29,6 @@ class FileGenerator
     ////////////////////////////////////////
     /// TEMPLATE PARAMs METHODS
     
-    
-    
     func assemblyDict(fromAssembly assembly: AssemblyDefinition) -> [String: AnyObject] {
         
         var assemblyDict:[String: AnyObject] = [:]
@@ -51,7 +49,7 @@ class FileGenerator
         var methodDict:[String: AnyObject] = [:]
         
         methodDict["name"] = method.name as AnyObject
-        methodDict["returnType"] = method.returnDefinition!.className! as AnyObject
+        methodDict["returnType"] = method.returnDefinition!.className as AnyObject
         methodDict["args"] = method.args as AnyObject?
         
         if let definition = method.definitions.first {
@@ -68,6 +66,14 @@ class FileGenerator
         definitionDict["scope"] = "Definition.Scope.\(definition.scope)" as AnyObject
         definitionDict["class"] = definition.className as AnyObject
         definitionDict["properties"] = propertyInjections(definition.propertyInjections) as AnyObject
+        definitionDict["methods"] = methodInjections(definition.methodInjections) as AnyObject
+        if let initializer = definition.initializer {
+            definitionDict["initializer"] = methodCall(initializer) as AnyObject
+        } else {
+            definitionDict["initializer"] = "\(definition.className)()" as AnyObject
+        }
+        definitionDict["configuration"] = (definition.methodInjections.count > 0 || definition.propertyInjections.count > 0) as AnyObject
+        
         return definitionDict
     }
     
@@ -79,6 +85,56 @@ class FileGenerator
         }
         
         return properties
+    }
+    
+    func methodInjections(_ injections: [MethodInjection]) -> [String] {
+        
+        var methodInjections: [String] = []
+        
+        for method in injections {
+            methodInjections.append(methodCall(method))
+        }
+        
+        return methodInjections
+    }
+    
+    func methodCall(_ method: MethodInjection) -> String {
+        
+        if method.arguments.count > 0 {
+            
+            method.arguments.sort(by: { (arg1, arg2) -> Bool in
+                return arg1.injectedIndex < arg2.injectedIndex
+            })
+            
+            var call = method.methodSelector
+            
+            print("Method selector: \(method.methodSelector)")
+            
+            let paramsCount = method.methodSelector.numberOfSelectorParams()
+            
+            method.methodSelector.enumerateParams() { param, index in
+                print("Parameter[\(index)]: \(param)")
+                
+                var replacement: String = ""
+                if param == "_:" {
+                    replacement = method.arguments[index].injectedValue
+                } else {
+                    replacement = "\(param) \(method.arguments[index].injectedValue)"
+                }
+                
+                let isLast = (index == paramsCount - 1)
+                if !isLast {
+                    replacement = "\(replacement), "
+                }
+                
+                call = call.stringByReplacingFirstOccurrenceOfString(target: param, withString: replacement)
+            }
+            
+            
+            return "\(call)"
+        } else {
+            return "\(method.methodSelector)()"
+        }
     }
     
     func registerFilters(withNamespace namespace: Namespace) {
@@ -201,7 +257,7 @@ class FileGenerator
         
         let definition = method.returnDefinition
         
-        output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition!.className!)>\n"
+        output += "\n" + indent + "private func definitionFor\(method.name.uppercaseFirst) -> ActivatedGenericDefinition<\(method.returnDefinition!.className)>\n"
         output += indent + "{\n"
        
         output += generateActivatedDefinition(forDefinition: definition!, indent: indent + indent)
@@ -216,7 +272,7 @@ class FileGenerator
     {
         var output = ""
         
-        output += indent + "let \(ivarName) = ActivatedGenericDefinition<\(definition.className!)>(withKey: \"\(definition.key)\")\n"
+        output += indent + "let \(ivarName) = ActivatedGenericDefinition<\(definition.className)>(withKey: \"\(definition.key)\")\n"
         
         // scope
         let scope = "Definition.Scope.\(definition.scope)"
@@ -224,7 +280,7 @@ class FileGenerator
         
         // initialization
         output += indent + "\(ivarName).initialization = {\n"
-        output += indent + indentStep + "return \(definition.className!)()\n"
+        output += indent + indentStep + "return \(definition.className)()\n"
         output += indent + "}\n"
         
         //configuration
@@ -292,7 +348,7 @@ class FileGenerator
     {
         var outputBuffer = ""
         
-        outputBuffer += "\n\(indent)func \(method.name) -> \(method.returnDefinition!.className!) { "
+        outputBuffer += "\n\(indent)func \(method.name) -> \(method.returnDefinition!.className) { "
         
         let insideIndent = indent + indentStep
         
@@ -302,7 +358,7 @@ class FileGenerator
             outputBuffer += generateActivatedDefinition(forDefinition: method.returnDefinition!, indent: insideIndent)
             outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forDefinition: definition)"
         } else {
-            outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forKey: \"\(method.returnDefinition!.key)\") as \(method.returnDefinition!.className!)!"
+            outputBuffer += insideIndent + "return ActivatedAssembly.container(self).component(forKey: \"\(method.returnDefinition!.key)\") as \(method.returnDefinition!.className)!"
         }
         
 //        outputBuffer += generateInstance(method.returnDefinition, indent: insideIndent)

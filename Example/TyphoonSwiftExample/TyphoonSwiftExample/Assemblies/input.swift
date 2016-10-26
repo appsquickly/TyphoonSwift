@@ -89,6 +89,10 @@ class CoreComponents : Assembly {
                 m.injectArgument("Tom")
             })
             $0.injectMethod("setAdultAge")
+            $0.injectMethod("setValues(_:withAge:)") { (m) in
+                m.injectArgument("John")
+                m.injectArgument(18)
+            }
         }
     }
     

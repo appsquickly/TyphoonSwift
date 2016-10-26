@@ -99,7 +99,7 @@ class InstanceDefinition {
     
     var key : String = ""
 
-    var className : String?
+    var className : String = ""
     var scope = Definition.Scope.Prototype
     
     var range: CountableRange<Int>?
