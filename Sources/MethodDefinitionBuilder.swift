@@ -98,7 +98,8 @@ class MethodDefinitionBuilder {
         
         let isResult = getDefinitionConfigurationFromCall(call, methodOffset: methodOffset) { content, ivarName, isExternal in
             
-            _ = initializerInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
+            definition.initializer = initializerInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
+            definition.methodInjections = methodInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
             
             let properties = self.propertyInjectionsFromContent(content, ivar: ivarName, contentOffset: methodOffset)
             if isExternal {
@@ -197,43 +198,93 @@ class MethodDefinitionBuilder {
         return scope
     }
     
-    func initializerInjectionsFromContent(_ content: [JSON], ivar: String, contentOffset: Int) -> MethodInjection?
+    func initializerInjectionsFromContent(_ nodes: [JSON], ivar: String, contentOffset: Int) -> MethodInjection?
     {
         var initializer: MethodInjection? = nil
         
-        for item in content {
-            if let name = item[SwiftDocKey.name].string {
-                switch name {
-                case "\(ivar).useInitializer":
-                    print("item: \(item)")
-//                    let property = propertyInjectionFromParameter(item, offset: contentOffset)
-//                    injections.append(property)
-                default: break
-                    
-                }
-            }
+        enumerateItemsFromContent(nodes, withName: "\(ivar).useInitializer") { item in
+            assert(initializer == nil, "Only one initializer allowed per definition.")
+            initializer = methodInjectionFromItem(item, contentOffset: contentOffset)
         }
         
         return initializer
+    }
+    
+    func methodInjectionsFromContent(_ content: [JSON], ivar: String, contentOffset: Int) -> [MethodInjection]
+    {
+        var injections: [MethodInjection] = []
+        
+        enumerateItemsFromContent(content, withName: "\(ivar).injectMethod") { item in
+            let method = methodInjectionFromItem(item, contentOffset: contentOffset)
+            injections.append(method)
+        }
+        
+        return injections
+    }
+    
+    func methodInjectionFromItem(_ item: JSON, contentOffset: Int) -> MethodInjection
+    {
+        let selectorParameter = parameterFromCall(item, atIndex: ArgumentIndex.index(0))
+        let selectorRange = makeRange(selectorParameter as JSON!, parameter: "body", offset: contentOffset)
+        
+        let selector = content(selectorRange, offset: contentOffset)!
+        
+        print("selector: \(selector)")
+        let result = MethodInjection(methodSelector: selector)
+        
+        do {
+            if let block = try blockFromCall(item, argumentName: "with", offset: contentOffset) {
+                result.arguments = methodArgumentsFromContent(block.content, ivar: block.firstArgumentName, contentOffset: contentOffset)
+            } else {
+                print("No config block specified")
+            }
+        }
+        catch {
+            print("Can't get method injection block with error: \(error)")
+        }
+        
+
+        return result
+    }
+    
+    func methodArgumentsFromContent(_ content: [JSON], ivar: String, contentOffset: Int) -> [MethodInjection.Argument]
+    {
+        var arguments: [MethodInjection.Argument] = []
+        var index: Int = 0
+        
+        enumerateItemsFromContent(content, withName: "\(ivar).injectArgument") { item in
+            let argument = argumentInjectionFromParameter(item, offset: contentOffset)
+            argument.injectedIndex = index
+            arguments.append(argument)
+            index += 1
+        }
+        
+        return arguments
     }
     
     func propertyInjectionsFromContent(_ content: [JSON], ivar: String, contentOffset: Int) -> [PropertyInjection]
     {
         var injections :[PropertyInjection] = []
         
-        for item in content {
-            if let name = item[SwiftDocKey.name].string {
-                switch name {
-                case "\(ivar).injectProperty":
-                    let property = propertyInjectionFromParameter(item, offset: contentOffset)
-                    injections.append(property)
-                default: break
-                    
-                }
-            }
+        enumerateItemsFromContent(content, withName: "\(ivar).injectProperty") { item in
+            let property = propertyInjectionFromParameter(item, offset: contentOffset)
+            injections.append(property)
         }
         
         return injections
+    }
+    
+    func enumerateItemsFromContent(_ content: [JSON], withName targetName: String, block: (JSON) -> ())
+    {
+        for item in content {
+            if let name = item[SwiftDocKey.name].string {
+                switch name {
+                case targetName:
+                    block(item)
+                default: break
+                }
+            }
+        }
     }
     
     func propertyInjectionFromParameter(_ parameter: JSON, offset: Int) -> PropertyInjection
@@ -247,6 +298,15 @@ class MethodDefinitionBuilder {
         
         let injection = PropertyInjection(propertyName: propertyName!, injectedValue: injectedValue!)
         injection.range = makeRange(parameter, offset: offset)
+        
+        return injection
+    }
+    
+    func argumentInjectionFromParameter(_ parameter: JSON, offset: Int) -> MethodInjection.Argument
+    {
+        let injection = MethodInjection.Argument()
+        let injectedRawValue = content(from: parameter[SwiftDocKey.bodyOffset].integer, length: parameter[SwiftDocKey.bodyLength].integer) as String!
+        injection.injectedValue = injectedRawValue!.replacingOccurrences(of: "\"", with: "")
         
         return injection
     }
@@ -312,19 +372,28 @@ class MethodDefinitionBuilder {
     func parameterFromCall(_ call: JSON, atIndex: ArgumentIndex) -> JSON?
     {
         var argumentIndex :Int = 0
-        let array = call[SwiftDocKey.substructure].array!
         
-        switch atIndex {
-        case .index(let index):
-            argumentIndex = index
-        case .last:
-            argumentIndex = array.count - 1
-        }
-        
-        if argumentIndex > array.count - 1 || argumentIndex < 0 {
-            return nil
+        if let substructure = call[SwiftDocKey.substructure].array {
+            switch atIndex {
+            case .index(let index):
+                argumentIndex = index
+            case .last:
+                argumentIndex = substructure.count - 1
+            }
+            
+            if argumentIndex > substructure.count - 1 || argumentIndex < 0 {
+                return nil
+            } else {
+                return substructure[argumentIndex]
+            }
         } else {
-            return array[argumentIndex]
+            switch atIndex {
+            case .index(let index):
+                assert(index == 0, "Found non-zero index for call without substructure")
+            default:
+                break;
+            }
+            return call
         }
     }
     

@@ -57,8 +57,8 @@
 		__src_cc_ref_Sources/MethodDefinition.swift /* MethodDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/MethodDefinition.swift /* MethodDefinition.swift */; };
 		"__src_cc_ref_Sources/MethodDefinitionBuilder+Inspections.swift" /* MethodDefinitionBuilder+Inspections.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/MethodDefinitionBuilder+Inspections.swift" /* MethodDefinitionBuilder+Inspections.swift */; };
 		__src_cc_ref_Sources/MethodDefinitionBuilder.swift /* MethodDefinitionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/MethodDefinitionBuilder.swift /* MethodDefinitionBuilder.swift */; };
-		__src_cc_ref_Sources/Model.swift /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Model.swift /* Model.swift */; };
-		__src_cc_ref_Sources/Models.swift /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Models.swift /* Models.swift */; };
+		__src_cc_ref_Sources/Model.swift /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Model.swift /* Definitions.swift */; };
+		__src_cc_ref_Sources/Models.swift /* BuilderModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Models.swift /* BuilderModels.swift */; };
 		__src_cc_ref_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift */; };
 		__src_cc_ref_Sources/SourceLangSwift.swift /* SourceLangSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SourceLangSwift.swift /* SourceLangSwift.swift */; };
 		__src_cc_ref_Sources/StringUtils.swift /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */; };
@@ -154,8 +154,8 @@
 		__PBXFileRef_Sources/MethodDefinition.swift /* MethodDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodDefinition.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/MethodDefinitionBuilder+Inspections.swift" /* MethodDefinitionBuilder+Inspections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MethodDefinitionBuilder+Inspections.swift"; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/MethodDefinitionBuilder.swift /* MethodDefinitionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodDefinitionBuilder.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Model.swift /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Models.swift /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Model.swift /* Definitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Models.swift /* BuilderModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderModels.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionExtensions.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SourceLangSwift.swift /* SourceLangSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLangSwift.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
@@ -245,8 +245,8 @@
 			children = (
 				__PBXFileRef_Sources/JSON.swift /* JSON.swift */,
 				__PBXFileRef_Sources/MethodDefinition.swift /* MethodDefinition.swift */,
-				__PBXFileRef_Sources/Model.swift /* Model.swift */,
-				__PBXFileRef_Sources/Models.swift /* Models.swift */,
+				__PBXFileRef_Sources/Model.swift /* Definitions.swift */,
+				__PBXFileRef_Sources/Models.swift /* BuilderModels.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -659,8 +659,8 @@
 				__src_cc_ref_Sources/MethodDefinition.swift /* MethodDefinition.swift in Sources */,
 				"__src_cc_ref_Sources/MethodDefinitionBuilder+Inspections.swift" /* MethodDefinitionBuilder+Inspections.swift in Sources */,
 				__src_cc_ref_Sources/MethodDefinitionBuilder.swift /* MethodDefinitionBuilder.swift in Sources */,
-				__src_cc_ref_Sources/Model.swift /* Model.swift in Sources */,
-				__src_cc_ref_Sources/Models.swift /* Models.swift in Sources */,
+				__src_cc_ref_Sources/Model.swift /* Definitions.swift in Sources */,
+				__src_cc_ref_Sources/Models.swift /* BuilderModels.swift in Sources */,
 				__src_cc_ref_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift in Sources */,
 				__src_cc_ref_Sources/SourceLangSwift.swift /* SourceLangSwift.swift in Sources */,
 				__src_cc_ref_Sources/StringUtils.swift /* StringUtils.swift in Sources */,

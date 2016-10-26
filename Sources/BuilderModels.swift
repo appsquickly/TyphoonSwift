@@ -75,9 +75,16 @@ class PropertyInjection : Injection, CustomStringConvertible, Hashable {
 
 class MethodInjection : Injection {
     
+    class Argument {
+        var injectedIndex: Int = 0
+        var injectedValue: String = ""
+    }
+    
     var external: Bool = false
 
     var methodSelector: String
+    
+    var arguments: [Argument] = []
     
     init(methodSelector: String) {
         self.methodSelector = methodSelector
@@ -98,6 +105,10 @@ class InstanceDefinition {
     var range: CountableRange<Int>?
     
     var propertyInjections : [PropertyInjection] = []
+    
+    var initializer : MethodInjection?
+    
+    var methodInjections: [MethodInjection] = []
     
     func add(_ propertyInjection: PropertyInjection) {
         for (index, injection) in propertyInjections.enumerated() {
