@@ -13,8 +13,11 @@
 import Foundation
 
 class Man {
-    var name :String?;
-    var age :UInt?;
+    var name :String?
+    var age :UInt?
+    
+    var pet: String?
+    var company: String?
     
     var brother: Man?
     
@@ -32,6 +35,14 @@ class Man {
         self.age = age
         //"init(withName:)" -> init(withName: a)
         //"setValues(_:withAge:) -> setValues(a, withAge: b)
+    }
+    
+    func setCompany(_ company: String) {
+        self.company = company
+    }
+    
+    func setPet(pet: String) {
+        self.pet = pet
     }
     
     func setAdultAge() {
@@ -92,6 +103,17 @@ class CoreComponents : Assembly {
             $0.injectMethod("setValues(_:withAge:)") { (m) in
                 m.injectArgument("John")
                 m.injectArgument(18)
+            }
+        }
+    }
+    
+    func manWithMethods() -> Definition {
+        return Definition(withClass: Man.self) {
+            $0.injectMethod("setPet(pet:)") { m in
+                m.injectArgument("Barsik")
+            }
+            $0.injectMethod("setCompany(_:)") { m in
+                m.injectArgument("Loud&Clear")
             }
         }
     }

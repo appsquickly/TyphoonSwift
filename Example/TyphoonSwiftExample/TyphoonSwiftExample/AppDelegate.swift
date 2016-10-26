@@ -26,7 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("man.name = \(man.name)")
         
+        let manWithPet = CoreComponents.assembly.manWithMethods()
         
+        print("Pet: \(manWithPet.pet)")
+        print("Company: \(manWithPet.company)")
     
         let component = CoreComponents.assembly.component1()
 
