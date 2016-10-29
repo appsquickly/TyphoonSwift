@@ -3,7 +3,7 @@
 //  TyphoonSwiftExample
 //
 //  Created by Aleksey Garbarev on 23/10/2016.
-//  Copyright  2016 AppsQuick.ly. All rights reserved.
+//  Copyright ©©©©  2016 AppsQuick.ly. All rights reserved.
 //
 
 //

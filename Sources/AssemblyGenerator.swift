@@ -108,12 +108,9 @@ class FileGenerator
             
             var call = method.methodSelector
             
-            print("Method selector: \(method.methodSelector)")
-            
             let paramsCount = method.methodSelector.numberOfSelectorParams()
             
             method.methodSelector.enumerateParams() { param, index in
-                print("Parameter[\(index)]: \(param)")
                 
                 var replacement: String = ""
                 if param == "_:" {

@@ -231,14 +231,13 @@ class MethodDefinitionBuilder {
         var selector = content(selectorRange, offset: contentOffset)!
         selector = selector.replacingOccurrences(of: "\"", with: "")
         
-        print("selector: \(selector)")
         let result = MethodInjection(methodSelector: selector)
         
         do {
             if let block = try blockFromCall(item, argumentName: "with", offset: contentOffset) {
                 result.arguments = methodArgumentsFromContent(block.content, ivar: block.firstArgumentName, contentOffset: contentOffset)
             } else {
-                print("No config block specified")
+                // No config block specified
             }
         }
         catch {
@@ -293,10 +292,10 @@ class MethodDefinitionBuilder {
     {
         let params = parameter[SwiftDocKey.substructure].array!
         
-        let propertyRawName = content(from: params[0][SwiftDocKey.bodyOffset].integer, length: params[0][SwiftDocKey.bodyLength].integer) as String!
+        let propertyRawName = content(from: params[0][SwiftDocKey.bodyOffset].integer!, length: params[0][SwiftDocKey.bodyLength].integer!) as String!
         let propertyName = propertyRawName?.replacingOccurrences(of: "\"", with: "")
         
-        let injectedValue = content(from: params[1][SwiftDocKey.bodyOffset].integer, length: params[1][SwiftDocKey.bodyLength].integer) as String!
+        let injectedValue = content(from: params[1][SwiftDocKey.bodyOffset].integer!, length: params[1][SwiftDocKey.bodyLength].integer!) as String!
         
         let injection = PropertyInjection(propertyName: propertyName!, injectedValue: injectedValue!)
         injection.range = makeRange(parameter, offset: offset)
@@ -307,7 +306,7 @@ class MethodDefinitionBuilder {
     func argumentInjectionFromParameter(_ parameter: JSON, offset: Int) -> MethodInjection.Argument
     {
         let injection = MethodInjection.Argument()
-        injection.injectedValue = content(from: parameter[SwiftDocKey.bodyOffset].integer, length: parameter[SwiftDocKey.bodyLength].integer) as String!
+        injection.injectedValue = content(from: parameter[SwiftDocKey.bodyOffset].integer!, length: parameter[SwiftDocKey.bodyLength].integer!) as String!
         
         return injection
     }
@@ -439,7 +438,7 @@ class MethodDefinitionBuilder {
     {
         if let classParam = parameterWithName("withClass", fromCall: callNode) {
             
-            let rawType = content(from: classParam[SwiftDocKey.bodyOffset].integer, length: classParam[SwiftDocKey.bodyLength].integer)!
+            let rawType = content(from: classParam[SwiftDocKey.bodyOffset].integer!, length: classParam[SwiftDocKey.bodyLength].integer!)!
             
             return rawType.replacingOccurrences(of: ".self", with: "")
         } else {
@@ -453,11 +452,14 @@ class MethodDefinitionBuilder {
         return name.replacingOccurrences(of: "[_\\(\\)]", with: "", options: NSString.CompareOptions.regularExpression, range: nil)
     }
     
-    internal func content(from startLocation: Int?, length: Int?) -> String? {
-        let start : Int = startLocation as Int!
-        let end = (length as Int!) + start
+    internal func content(from startLocation: Int, length: Int) -> String? {
         
-        return self.source[start..<end]
+        let start = self.source.utf8.index(self.source.utf8.startIndex, offsetBy: startLocation)
+        let end = self.source.utf8.index(start, offsetBy: length)
+        
+        let bytes = self.source.utf8[start..<end]
+        
+        return "\(bytes)"
     }
     
     internal func content(_ r: CountableRange<Int>, offset: Int = 0) -> String? {
@@ -467,7 +469,12 @@ class MethodDefinitionBuilder {
         }
         let range = Range(countableRange)
         
-        return source[range]
+        let start = self.source.utf8.index(self.source.utf8.startIndex, offsetBy: range.lowerBound)
+        let end = self.source.utf8.index(self.source.utf8.startIndex, offsetBy: range.upperBound)
+        
+        let bytes = self.source.utf8[start..<end]
+        
+        return "\(bytes)"
     }
     
     private func enumerateDictionaries(inside node:JSON, usingBlock:(_ item: JSON, _ stop: inout Bool)->()) {

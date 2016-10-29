@@ -59,7 +59,7 @@ extension MethodDefinitionBuilder {
     
     func isTyphoonDefinition() -> Bool {
         let length = (self.node[SwiftDocKey.bodyOffset].integer!) - (self.node[SwiftDocKey.nameOffset].integer!)
-        let returnValue = content(from: self.node[SwiftDocKey.nameOffset].integer, length: length) as String!
+        let returnValue = content(from: self.node[SwiftDocKey.nameOffset].integer!, length: length) as String!
         
         let wholeRange = NSMakeRange(0, length)
         
@@ -97,7 +97,6 @@ extension MethodDefinitionBuilder {
                         }
                     } else {
                         // If not parameter - skip it
-                        print("No parameter name - skip it")
                     }
                 } else {
                     print("Can't use kind as string")

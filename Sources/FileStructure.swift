@@ -31,7 +31,7 @@ class FileStructure {
             text = try String(contentsOf: self.filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
             let parsedString = Terminal.bash("/usr/local/bin/sourcekitten", arguments: ["structure", "--text", text])
             let data = parsedString.data(using: String.Encoding.utf8) as Data!
-            json = JSON(data)
+            json = JSON(data!)
         } catch {
             debugPrint("Failed request structure with file path:" + "\(self.filePath.absoluteString)")
             return nil

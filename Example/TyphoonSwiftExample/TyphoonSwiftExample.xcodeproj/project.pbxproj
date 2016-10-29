@@ -352,6 +352,7 @@
 				FA1952CD1DBCD9B8002E0FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
