@@ -1,10 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
 //
-//  Model.swift
-//  TyphoonPlayground
+//  TYPHOON FRAMEWORK
+//  Copyright 2016, TyphoonSwift Framework Contributors
+//  All Rights Reserved.
 //
-//  Created by Aleksey Garbarev on 15/04/16.
-//  Copyright © 2016 Aleksey Garbarev. All rights reserved.
+//  NOTICE: The authors permit you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 //
+////////////////////////////////////////////////////////////////////////////////
+
 
 import Foundation
 

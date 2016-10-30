@@ -1,10 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
 //
-//  Pools.swift
-//  TyphoonPlayground
+//  TYPHOON FRAMEWORK
+//  Copyright 2016, TyphoonSwift Framework Contributors
+//  All Rights Reserved.
 //
-//  Created by Aleksey Garbarev on 26/04/16.
-//  Copyright © 2016 Aleksey Garbarev. All rights reserved.
+//  NOTICE: The authors permit you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 //
+////////////////////////////////////////////////////////////////////////////////
 
 import Foundation
 
@@ -88,10 +91,10 @@ class WeakPool : ComponentsPool
     
     func setObject(_ anObject: Any, forKey aKey: String)
     {
-        if let object = anObject as? AnyObject {
+        if let object = anObject as AnyObject? {
             dictionary[aKey] = WeakContainer(instance: object)
         } else {
-            fatalError("Cannot use weak singletone scopes with structures, since structures are not referemces")
+            fatalError("Cannot use weak singletone scopes with structures, since structures are not referenced")
         }
     }
     

@@ -1,10 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
 //
-//  ActivatedAssembly.swift
-//  TyphoonPlayground
+//  TYPHOON FRAMEWORK
+//  Copyright 2016, TyphoonSwift Framework Contributors
+//  All Rights Reserved.
 //
-//  Created by Aleksey Garbarev on 19/04/16.
-//  Copyright © 2016 Aleksey Garbarev. All rights reserved.
+//  NOTICE: The authors permit you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 //
+////////////////////////////////////////////////////////////////////////////////
 
 import Foundation
 
@@ -73,7 +76,7 @@ class ActivatedAssemblyContainer
         
         if definition.scope == Definition.Scope.Singletone {
             eagerSingletoneActivations.append({
-                self.component(forDefinition: definition)
+                _ = self.component(forDefinition: definition)
             })
         }
     }
@@ -150,7 +153,7 @@ class ActivatedAssemblyContainer
             configure(&instance)
         }
         
-        instanceStack.pop()
+        _ = instanceStack.pop()
         
         if instanceStack.isEmpty() {
             clearObjectGraphPool()
@@ -171,7 +174,7 @@ class ActivatedAssemblyContainer
         
         initializationStack.push(element)
         let instance = definition.initialization!()
-        initializationStack.pop()
+        _ = initializationStack.pop()
         
         
         let configureElement = StackElement(withKey: definition.key)
@@ -205,7 +208,7 @@ class ActivatedAssemblyContainer
                 }
             }
             
-            instanceStack.pop()
+            _ = instanceStack.pop()
             
             if instanceStack.isEmpty() {
                 clearObjectGraphPool()

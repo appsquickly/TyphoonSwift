@@ -40,7 +40,7 @@ class Launcher {
             throw ConfigError.pathNotExists(path: self.config.inputPath)
         }
         if !fileManager.fileExists(atPath: self.config.outputFilePath) {
-            throw ConfigError.pathNotExists(path: self.config.outputFilePath)
+            try fileManager.createDirectory(atPath: self.config.outputFilePath, withIntermediateDirectories: true, attributes: nil)
         }
     }
     
@@ -49,24 +49,22 @@ class Launcher {
         var assemblies: [AssemblyDefinition] = []
         
         enumerateSources(atPath: self.config.inputPath) { source in
-            print("source: \(source)")
-            
-            let time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
+//            print("source: \(source)")
+//            let time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
             
             let fileDefinitionBuilder = FileDefinitionBuilder(filePath: source)
             
             if let file = fileDefinitionBuilder.build() {
                 assemblies.append(contentsOf: file.assemblies)
-            }   
-            
-            print("elapsed time: \(CFAbsoluteTimeGetCurrent() - time)")
+            }
+//            print("elapsed time: \(CFAbsoluteTimeGetCurrent() - time)")
         }
         
-        let resultFile = FileDefinition(fileName: self.config.outputFilePath.lastPathComponent())
+        let resultFile = FileDefinition(fileName: "assemblies.swift")
         resultFile.assemblies = assemblies
         
         let generator = FileGenerator(file: resultFile)
-        generator.generate(to: self.config.outputFilePath)
+        generator.generate(to: "\(self.config.outputFilePath)/assemblies.swift")
     }
     
     func enumerateSources(withExtension suffix: String = ".swift", atPath path: String, block:(String) -> ()) {
