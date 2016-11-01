@@ -1,44 +1,14 @@
 import Foundation
 
 
-
-
-
-let fileManager = FileManager.default
-
 let env = ProcessInfo.processInfo.environment
 let currentPath = env["PWD"] ?? ""
-
 let arguments = CommandLine.arguments
-
-print("arguments: \(arguments)")
-
-func loadConfig() -> Config? {
-    
-    let configPath = "\(currentPath)/Typhoon.plist"
-    
-    var inputPath = ""
-    var outputPath = ""
-    
-    do {
-        let data = try Data(contentsOf: URL(fileURLWithPath: configPath))
-        let plist = try PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as! [String:AnyObject]
-        
-        inputPath = plist["assemblesDirPath"] as! String
-        outputPath = plist["resultDirPath"] as! String
-    } catch {
-        return nil
-    }
-    
-    let config = Config(inputPath: inputPath,
-                        outputFilePath: outputPath,
-                        shouldMonitorChanges: true)
-    
-    return config
-}
 
 if arguments.contains("setup")
 {
+    let fileManager = FileManager.default
+
     var sourcesPath = ""
     var defaultInputPath = ""
     var defaultOutputPath = ""
@@ -76,10 +46,10 @@ if arguments.contains("setup")
     print("Typhoon configured successfully. Try run `typhoon run` now")
     
 }
-
-if arguments.contains("run")
+else if arguments.contains("run")
 {
-    if let config = loadConfig() {
+    let configPath = "\(currentPath)/Typhoon.plist"
+    if let config = Config.load(fromPath: configPath) {
         do {
             let launcher = try Launcher(withConfig: config)
             launcher.run()
@@ -89,7 +59,6 @@ if arguments.contains("run")
     } else {
         print("Typhoon is not configured for this project. Run `typhoon setup` first")
     }
-    
 }
 
 

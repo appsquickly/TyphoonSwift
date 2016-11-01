@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FAF9B2B91DB6BC780024BB7D /* Assemblies.stencil in CopyFiles */ = {isa = PBXBuildFile; fileRef = FAA53C671DB6B84E00C06D77 /* Assemblies.stencil */; };
-		FAF9B2BB1DB6C4B00024BB7D /* Definition.stencil in CopyFiles */ = {isa = PBXBuildFile; fileRef = FAF9B2BA1DB6C4A60024BB7D /* Definition.stencil */; };
+		FA2EBB3C1DC864A500E5F75A /* Assemblies.stencil in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA2EBB3A1DC8649000E5F75A /* Assemblies.stencil */; };
+		FA2EBB3D1DC864A700E5F75A /* Definition.stencil in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA2EBB3B1DC8649000E5F75A /* Definition.stencil */; };
 		_LinkFileRef_PathKit_via_Stencil /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathKit" /* PathKit.framework */; };
 		_LinkFileRef_PathKit_via_TyphoonPackageTests /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathKit" /* PathKit.framework */; };
 		_LinkFileRef_PathKit_via_TyphoonSwift /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathKit" /* PathKit.framework */; };
@@ -106,16 +106,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				FAF9B2B91DB6BC780024BB7D /* Assemblies.stencil in CopyFiles */,
-				FAF9B2BB1DB6C4B00024BB7D /* Definition.stencil in CopyFiles */,
+				FA2EBB3C1DC864A500E5F75A /* Assemblies.stencil in CopyFiles */,
+				FA2EBB3D1DC864A700E5F75A /* Definition.stencil in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FAA53C671DB6B84E00C06D77 /* Assemblies.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Assemblies.stencil; sourceTree = "<group>"; };
-		FAF9B2BA1DB6C4A60024BB7D /* Definition.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Definition.stencil; sourceTree = "<group>"; };
+		FA2EBB3A1DC8649000E5F75A /* Assemblies.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Assemblies.stencil; sourceTree = "<group>"; };
+		FA2EBB3B1DC8649000E5F75A /* Definition.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Definition.stencil; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/PathKit-0.7.0/Sources/PathKit.swift" /* PathKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathKit.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/Spectre-0.7.1/Sources/Case.swift" /* Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
@@ -240,6 +240,15 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
+		FA2EBB391DC8649000E5F75A /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				FA2EBB3A1DC8649000E5F75A /* Assemblies.stencil */,
+				FA2EBB3B1DC8649000E5F75A /* Definition.stencil */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 		FAA53C601DB6B70500C06D77 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,7 +272,7 @@
 		FAA53C621DB6B71900C06D77 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
-				FAA53C661DB6B78400C06D77 /* Templates */,
+				FA2EBB391DC8649000E5F75A /* Templates */,
 				__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */,
 			);
 			name = Generator;
@@ -298,15 +307,6 @@
 				__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */,
 			);
 			name = Utils;
-			sourceTree = "<group>";
-		};
-		FAA53C661DB6B78400C06D77 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-				FAA53C671DB6B84E00C06D77 /* Assemblies.stencil */,
-				FAF9B2BA1DB6C4A60024BB7D /* Definition.stencil */,
-			);
-			name = Templates;
 			sourceTree = "<group>";
 		};
 		TestProducts_ /* Tests */ = {
