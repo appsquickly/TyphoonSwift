@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA2EBB3C1DC864A500E5F75A /* Assemblies.stencil in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA2EBB3A1DC8649000E5F75A /* Assemblies.stencil */; };
-		FA2EBB3D1DC864A700E5F75A /* Definition.stencil in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA2EBB3B1DC8649000E5F75A /* Definition.stencil */; };
+		FA2EBB4D1DC87A0F00E5F75A /* ActivatedAssembly.swift in Copy Runtime Sources */ = {isa = PBXBuildFile; fileRef = FA2EBB451DC879F200E5F75A /* ActivatedAssembly.swift */; };
+		FA2EBB4E1DC87A1200E5F75A /* ActivatedDefinition.swift in Copy Runtime Sources */ = {isa = PBXBuildFile; fileRef = FA2EBB461DC879F200E5F75A /* ActivatedDefinition.swift */; };
+		FA2EBB4F1DC87A1400E5F75A /* Model.swift in Copy Runtime Sources */ = {isa = PBXBuildFile; fileRef = FA2EBB471DC879F200E5F75A /* Model.swift */; };
+		FA2EBB501DC87A1600E5F75A /* Pools.swift in Copy Runtime Sources */ = {isa = PBXBuildFile; fileRef = FA2EBB481DC879F200E5F75A /* Pools.swift */; };
+		FA2EBB511DC87A1800E5F75A /* Stack.swift in Copy Runtime Sources */ = {isa = PBXBuildFile; fileRef = FA2EBB491DC879F200E5F75A /* Stack.swift */; };
+		FA2EBB521DC87A2A00E5F75A /* Assemblies.stencil in Copy Templates */ = {isa = PBXBuildFile; fileRef = FA2EBB4B1DC879F200E5F75A /* Assemblies.stencil */; };
+		FA2EBB531DC87A2A00E5F75A /* Definition.stencil in Copy Templates */ = {isa = PBXBuildFile; fileRef = FA2EBB4C1DC879F200E5F75A /* Definition.stencil */; };
 		_LinkFileRef_PathKit_via_Stencil /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathKit" /* PathKit.framework */; };
 		_LinkFileRef_PathKit_via_TyphoonPackageTests /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathKit" /* PathKit.framework */; };
 		_LinkFileRef_PathKit_via_TyphoonSwift /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_PathKit" /* PathKit.framework */; };
@@ -100,22 +105,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FAF9B2B81DB6BC6B0024BB7D /* CopyFiles */ = {
+		FA2EBB421DC8789800E5F75A /* Copy Runtime Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
+			dstPath = Resources/Runtime;
 			dstSubfolderSpec = 16;
 			files = (
-				FA2EBB3C1DC864A500E5F75A /* Assemblies.stencil in CopyFiles */,
-				FA2EBB3D1DC864A700E5F75A /* Definition.stencil in CopyFiles */,
+				FA2EBB511DC87A1800E5F75A /* Stack.swift in Copy Runtime Sources */,
+				FA2EBB4D1DC87A0F00E5F75A /* ActivatedAssembly.swift in Copy Runtime Sources */,
+				FA2EBB501DC87A1600E5F75A /* Pools.swift in Copy Runtime Sources */,
+				FA2EBB4F1DC87A1400E5F75A /* Model.swift in Copy Runtime Sources */,
+				FA2EBB4E1DC87A1200E5F75A /* ActivatedDefinition.swift in Copy Runtime Sources */,
 			);
+			name = "Copy Runtime Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAF9B2B81DB6BC6B0024BB7D /* Copy Templates */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Resources/Templates;
+			dstSubfolderSpec = 16;
+			files = (
+				FA2EBB521DC87A2A00E5F75A /* Assemblies.stencil in Copy Templates */,
+				FA2EBB531DC87A2A00E5F75A /* Definition.stencil in Copy Templates */,
+			);
+			name = "Copy Templates";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FA2EBB3A1DC8649000E5F75A /* Assemblies.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Assemblies.stencil; sourceTree = "<group>"; };
-		FA2EBB3B1DC8649000E5F75A /* Definition.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Definition.stencil; sourceTree = "<group>"; };
+		FA2EBB451DC879F200E5F75A /* ActivatedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatedAssembly.swift; sourceTree = "<group>"; };
+		FA2EBB461DC879F200E5F75A /* ActivatedDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatedDefinition.swift; sourceTree = "<group>"; };
+		FA2EBB471DC879F200E5F75A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FA2EBB481DC879F200E5F75A /* Pools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pools.swift; sourceTree = "<group>"; };
+		FA2EBB491DC879F200E5F75A /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		FA2EBB4B1DC879F200E5F75A /* Assemblies.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Assemblies.stencil; sourceTree = "<group>"; };
+		FA2EBB4C1DC879F200E5F75A /* Definition.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Definition.stencil; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/PathKit-0.7.0/Sources/PathKit.swift" /* PathKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathKit.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/Spectre-0.7.1/Sources/Case.swift" /* Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
@@ -168,7 +194,7 @@
 		"_____Product_Spectre" /* Spectre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Spectre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_Stencil" /* Stencil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stencil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_TyphoonPackageTests" /* TyphoonPackageTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = TyphoonPackageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_TyphoonSwift" /* TyphoonSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = TyphoonSwift; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_TyphoonSwift" /* typhoon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = typhoon; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_Witness" /* Witness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Witness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -240,11 +266,32 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		FA2EBB391DC8649000E5F75A /* Templates */ = {
+		FA2EBB431DC879BE00E5F75A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA2EBB3A1DC8649000E5F75A /* Assemblies.stencil */,
-				FA2EBB3B1DC8649000E5F75A /* Definition.stencil */,
+				FA2EBB441DC879F200E5F75A /* Runtime */,
+				FA2EBB4A1DC879F200E5F75A /* Templates */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FA2EBB441DC879F200E5F75A /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				FA2EBB451DC879F200E5F75A /* ActivatedAssembly.swift */,
+				FA2EBB461DC879F200E5F75A /* ActivatedDefinition.swift */,
+				FA2EBB471DC879F200E5F75A /* Model.swift */,
+				FA2EBB481DC879F200E5F75A /* Pools.swift */,
+				FA2EBB491DC879F200E5F75A /* Stack.swift */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
+		FA2EBB4A1DC879F200E5F75A /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				FA2EBB4B1DC879F200E5F75A /* Assemblies.stencil */,
+				FA2EBB4C1DC879F200E5F75A /* Definition.stencil */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -272,7 +319,6 @@
 		FAA53C621DB6B71900C06D77 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
-				FA2EBB391DC8649000E5F75A /* Templates */,
 				__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */,
 			);
 			name = Generator;
@@ -323,6 +369,7 @@
 				__PBXFileRef_Package.swift /* Package.swift */,
 				"_____Configs_" /* Configs */,
 				"_____Sources_" /* Sources */,
+				FA2EBB431DC879BE00E5F75A /* Resources */,
 				Dependencies_ /* Dependencies */,
 				"_______Tests_" /* Tests */,
 				"____Products_" /* Products */,
@@ -337,7 +384,7 @@
 				"_____Product_PathKit" /* PathKit.framework */,
 				"_____Product_Stencil" /* Stencil.framework */,
 				"_____Product_Witness" /* Witness.framework */,
-				"_____Product_TyphoonSwift" /* TyphoonSwift */,
+				"_____Product_TyphoonSwift" /* typhoon */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -529,7 +576,8 @@
 			buildPhases = (
 				CompilePhase_TyphoonSwift /* Sources */,
 				"___LinkPhase_TyphoonSwift" /* Frameworks */,
-				FAF9B2B81DB6BC6B0024BB7D /* CopyFiles */,
+				FA2EBB421DC8789800E5F75A /* Copy Runtime Sources */,
+				FAF9B2B81DB6BC6B0024BB7D /* Copy Templates */,
 			);
 			buildRules = (
 			);
@@ -541,7 +589,7 @@
 			);
 			name = TyphoonSwift;
 			productName = TyphoonSwift;
-			productReference = "_____Product_TyphoonSwift" /* TyphoonSwift */;
+			productReference = "_____Product_TyphoonSwift" /* typhoon */;
 			productType = "com.apple.product-type.tool";
 		};
 		"______Target_Witness" /* Witness */ = {
@@ -773,6 +821,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = typhoon;
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 3.0;
@@ -867,6 +916,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = typhoon;
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

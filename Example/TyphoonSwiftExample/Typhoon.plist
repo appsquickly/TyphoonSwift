@@ -6,5 +6,7 @@
 	<string>TyphoonSwiftExample/Assemblies</string>
 	<key>resultDirPath</key>
 	<string>TyphoonSwiftExample/Typhoon</string>
+	<key>verbose</key>
+	<true/>
 </dict>
 </plist>

@@ -8,6 +8,7 @@
 
 import Foundation
 import Witness
+import PathKit
 
 enum ConfigError : Error {
     case pathNotExists(path: String)
@@ -24,10 +25,11 @@ class Launcher {
     }
     
     func run() {
+        prepareToRun()
         build()
         if config.shouldMonitorChanges {
+            log("Monitoring filesystem changes in \(config.inputPath)")
             self.monitor = Witness(paths: [config.inputPath], flags: .FileEvents, latency: 0.3) { events in
-                print("file system events received: \(events)")
                 self.build()
             }
             RunLoop.current.run()
@@ -44,20 +46,41 @@ class Launcher {
         }
     }
     
-    func build() {
+    func prepareToRun() {
+        log("Running in verbose mode!")
+        copyRuntime()
+    }
+    
+    func copyRuntime() {
+        let fileManager = FileManager.default
         
+        let sourceDirectory = "\(ResourceDir)/Runtime"
+        let destinationDirectory = "\(config.outputFilePath)/Runtime"
+        
+        do {
+            try? fileManager.removeItem(atPath: destinationDirectory)
+            try? fileManager.createDirectory(atPath: destinationDirectory, withIntermediateDirectories: true, attributes: nil)
+            
+            for fileName in try fileManager.contentsOfDirectory(atPath: sourceDirectory) {
+                try fileManager.copyItem(atPath: "\(sourceDirectory)/\(fileName)", toPath: "\(destinationDirectory)/\(fileName)")
+            }
+        } catch {
+            print("Error while coping runtime: \(error)")
+        }
+        
+        log("Runtime copied")
+    }
+    
+    func build() {
         var assemblies: [AssemblyDefinition] = []
         
         enumerateSources(atPath: self.config.inputPath) { source in
-//            print("source: \(source)")
-//            let time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
-            
+            let time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
             let fileDefinitionBuilder = FileDefinitionBuilder(filePath: source)
-            
             if let file = fileDefinitionBuilder.build() {
                 assemblies.append(contentsOf: file.assemblies)
             }
-//            print("elapsed time: \(CFAbsoluteTimeGetCurrent() - time)")
+            log("\(Path(source).lastComponent) | processed : \(CFAbsoluteTimeGetCurrent() - time)")
         }
         
         let resultFile = FileDefinition(fileName: "assemblies.swift")
@@ -85,6 +108,12 @@ class Launcher {
         }
     }
     
+    
+    fileprivate func log(_ text: String) {
+        if config.verbose {
+            print(text)
+        }
+    }
     
     
 }

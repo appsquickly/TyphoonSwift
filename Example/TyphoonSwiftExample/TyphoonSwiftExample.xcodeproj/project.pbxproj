@@ -7,22 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0B0FC31DC9A3B4006CA763 /* assemblies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B0FBC1DC9A3B4006CA763 /* assemblies.swift */; };
+		FA0B0FC41DC9A3B4006CA763 /* ActivatedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B0FBE1DC9A3B4006CA763 /* ActivatedAssembly.swift */; };
+		FA0B0FC51DC9A3B4006CA763 /* ActivatedDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B0FBF1DC9A3B4006CA763 /* ActivatedDefinition.swift */; };
+		FA0B0FC61DC9A3B4006CA763 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B0FC01DC9A3B4006CA763 /* Model.swift */; };
+		FA0B0FC71DC9A3B4006CA763 /* Pools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B0FC11DC9A3B4006CA763 /* Pools.swift */; };
+		FA0B0FC81DC9A3B4006CA763 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B0FC21DC9A3B4006CA763 /* Stack.swift */; };
 		FA1952BD1DBCD9B8002E0FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952BC1DBCD9B8002E0FE1 /* AppDelegate.swift */; };
 		FA1952BF1DBCD9B8002E0FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952BE1DBCD9B8002E0FE1 /* ViewController.swift */; };
 		FA1952C21DBCD9B8002E0FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1952C01DBCD9B8002E0FE1 /* Main.storyboard */; };
 		FA1952C41DBCD9B8002E0FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1952C31DBCD9B8002E0FE1 /* Assets.xcassets */; };
 		FA1952C71DBCD9B8002E0FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1952C51DBCD9B8002E0FE1 /* LaunchScreen.storyboard */; };
-		FA1952D41DBCDA25002E0FE1 /* ActivatedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952CF1DBCDA25002E0FE1 /* ActivatedAssembly.swift */; };
-		FA1952D51DBCDA25002E0FE1 /* ActivatedDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952D01DBCDA25002E0FE1 /* ActivatedDefinition.swift */; };
-		FA1952D61DBCDA25002E0FE1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952D11DBCDA25002E0FE1 /* Model.swift */; };
-		FA1952D71DBCDA25002E0FE1 /* Pools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952D21DBCDA25002E0FE1 /* Pools.swift */; };
-		FA1952D81DBCDA25002E0FE1 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952D31DBCDA25002E0FE1 /* Stack.swift */; };
 		FA1952DE1DBCDBDE002E0FE1 /* input.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952DC1DBCDBDE002E0FE1 /* input.swift */; };
-		FA1952E01DBCDBEE002E0FE1 /* typhoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1952DF1DBCDBEE002E0FE1 /* typhoon.swift */; };
 		FA2EBB361DC5D55400E5F75A /* Typhoon.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA2EBB351DC5D55400E5F75A /* Typhoon.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA0B0FBC1DC9A3B4006CA763 /* assemblies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assemblies.swift; sourceTree = "<group>"; };
+		FA0B0FBE1DC9A3B4006CA763 /* ActivatedAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedAssembly.swift; sourceTree = "<group>"; };
+		FA0B0FBF1DC9A3B4006CA763 /* ActivatedDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedDefinition.swift; sourceTree = "<group>"; };
+		FA0B0FC01DC9A3B4006CA763 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FA0B0FC11DC9A3B4006CA763 /* Pools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pools.swift; sourceTree = "<group>"; };
+		FA0B0FC21DC9A3B4006CA763 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		FA1952B91DBCD9B8002E0FE1 /* TyphoonSwiftExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TyphoonSwiftExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1952BC1DBCD9B8002E0FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA1952BE1DBCD9B8002E0FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,13 +36,7 @@
 		FA1952C31DBCD9B8002E0FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA1952C61DBCD9B8002E0FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA1952C81DBCD9B8002E0FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA1952CF1DBCDA25002E0FE1 /* ActivatedAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedAssembly.swift; sourceTree = "<group>"; };
-		FA1952D01DBCDA25002E0FE1 /* ActivatedDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatedDefinition.swift; sourceTree = "<group>"; };
-		FA1952D11DBCDA25002E0FE1 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		FA1952D21DBCDA25002E0FE1 /* Pools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pools.swift; sourceTree = "<group>"; };
-		FA1952D31DBCDA25002E0FE1 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		FA1952DC1DBCDBDE002E0FE1 /* input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = input.swift; sourceTree = "<group>"; };
-		FA1952DF1DBCDBEE002E0FE1 /* typhoon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typhoon.swift; sourceTree = "<group>"; };
 		FA2EBB351DC5D55400E5F75A /* Typhoon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Typhoon.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +51,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA0B0FBB1DC9A3B4006CA763 /* Typhoon */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B0FBC1DC9A3B4006CA763 /* assemblies.swift */,
+				FA0B0FBD1DC9A3B4006CA763 /* Runtime */,
+			);
+			path = Typhoon;
+			sourceTree = "<group>";
+		};
+		FA0B0FBD1DC9A3B4006CA763 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B0FBE1DC9A3B4006CA763 /* ActivatedAssembly.swift */,
+				FA0B0FBF1DC9A3B4006CA763 /* ActivatedDefinition.swift */,
+				FA0B0FC01DC9A3B4006CA763 /* Model.swift */,
+				FA0B0FC11DC9A3B4006CA763 /* Pools.swift */,
+				FA0B0FC21DC9A3B4006CA763 /* Stack.swift */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
 		FA1952B01DBCD9B8002E0FE1 = {
 			isa = PBXGroup;
 			children = (
@@ -71,9 +92,8 @@
 		FA1952BB1DBCD9B8002E0FE1 /* TyphoonSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
+				FA0B0FBB1DC9A3B4006CA763 /* Typhoon */,
 				FA1952DB1DBCDBDE002E0FE1 /* Assemblies */,
-				FA1952DD1DBCDBDE002E0FE1 /* TyphoonOutput */,
-				FA1952CE1DBCDA25002E0FE1 /* Runtime */,
 				FA1952BC1DBCD9B8002E0FE1 /* AppDelegate.swift */,
 				FA1952BE1DBCD9B8002E0FE1 /* ViewController.swift */,
 				FA1952C01DBCD9B8002E0FE1 /* Main.storyboard */,
@@ -84,33 +104,12 @@
 			path = TyphoonSwiftExample;
 			sourceTree = "<group>";
 		};
-		FA1952CE1DBCDA25002E0FE1 /* Runtime */ = {
-			isa = PBXGroup;
-			children = (
-				FA1952CF1DBCDA25002E0FE1 /* ActivatedAssembly.swift */,
-				FA1952D01DBCDA25002E0FE1 /* ActivatedDefinition.swift */,
-				FA1952D11DBCDA25002E0FE1 /* Model.swift */,
-				FA1952D21DBCDA25002E0FE1 /* Pools.swift */,
-				FA1952D31DBCDA25002E0FE1 /* Stack.swift */,
-			);
-			name = Runtime;
-			path = ../../../Runtime;
-			sourceTree = "<group>";
-		};
 		FA1952DB1DBCDBDE002E0FE1 /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
 				FA1952DC1DBCDBDE002E0FE1 /* input.swift */,
 			);
 			path = Assemblies;
-			sourceTree = "<group>";
-		};
-		FA1952DD1DBCDBDE002E0FE1 /* TyphoonOutput */ = {
-			isa = PBXGroup;
-			children = (
-				FA1952DF1DBCDBEE002E0FE1 /* typhoon.swift */,
-			);
-			path = TyphoonOutput;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,15 +185,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1952D61DBCDA25002E0FE1 /* Model.swift in Sources */,
-				FA1952E01DBCDBEE002E0FE1 /* typhoon.swift in Sources */,
-				FA1952D71DBCDA25002E0FE1 /* Pools.swift in Sources */,
-				FA1952D81DBCDA25002E0FE1 /* Stack.swift in Sources */,
+				FA0B0FC61DC9A3B4006CA763 /* Model.swift in Sources */,
+				FA0B0FC81DC9A3B4006CA763 /* Stack.swift in Sources */,
+				FA0B0FC51DC9A3B4006CA763 /* ActivatedDefinition.swift in Sources */,
 				FA1952BF1DBCD9B8002E0FE1 /* ViewController.swift in Sources */,
-				FA1952D41DBCDA25002E0FE1 /* ActivatedAssembly.swift in Sources */,
-				FA1952D51DBCDA25002E0FE1 /* ActivatedDefinition.swift in Sources */,
+				FA0B0FC71DC9A3B4006CA763 /* Pools.swift in Sources */,
 				FA1952DE1DBCDBDE002E0FE1 /* input.swift in Sources */,
 				FA1952BD1DBCD9B8002E0FE1 /* AppDelegate.swift in Sources */,
+				FA0B0FC41DC9A3B4006CA763 /* ActivatedAssembly.swift in Sources */,
+				FA0B0FC31DC9A3B4006CA763 /* assemblies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,13 +2,22 @@ import Foundation
 
 
 let env = ProcessInfo.processInfo.environment
-let currentPath = env["PWD"] ?? ""
+var currentPath = env["PWD"] ?? ""
 let arguments = CommandLine.arguments
+
+let configFilename = "Typhoon.plist"
+
+if let currentPathOverride = env["CURRENT_PATH"] {
+    currentPath = currentPathOverride
+    FileManager.default.changeCurrentDirectoryPath(currentPath)
+}
+
+let ResourceDir = "\(Bundle.main.bundlePath)/Resources"
 
 if arguments.contains("setup")
 {
     let fileManager = FileManager.default
-
+    
     var sourcesPath = ""
     var defaultInputPath = ""
     var defaultOutputPath = ""
@@ -37,18 +46,18 @@ if arguments.contains("setup")
         outputDirectory = defaultOutputPath
     }
     
-    let configList = [ "assemblesDirPath": inputDirectory, "resultDirPath": outputDirectory ]
+    let configList: [String: Any] = [ "assemblesDirPath": inputDirectory, "resultDirPath": outputDirectory, "verbose": false ]
     
     let data = try! PropertyListSerialization.data(fromPropertyList: configList, format: .xml, options: PropertyListSerialization.WriteOptions.allZeros)
     
-    try! data.write(to: URL(fileURLWithPath: "Typhoon.plist"))
+    try! data.write(to: URL(fileURLWithPath: configFilename))
     
     print("Typhoon configured successfully. Try run `typhoon run` now")
     
 }
 else if arguments.contains("run")
 {
-    let configPath = "\(currentPath)/Typhoon.plist"
+    let configPath = "\(currentPath)/\(configFilename)"
     if let config = Config.load(fromPath: configPath) {
         do {
             let launcher = try Launcher(withConfig: config)
