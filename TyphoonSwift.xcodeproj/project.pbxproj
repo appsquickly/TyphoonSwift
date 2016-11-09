@@ -193,7 +193,7 @@
 		"_____Product_PathKit" /* PathKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PathKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_Spectre" /* Spectre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Spectre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_Stencil" /* Stencil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stencil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_TyphoonPackageTests" /* TyphoonPackageTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = TyphoonPackageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_TyphoonPackageTests" /* TyphoonPackageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TyphoonPackageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_TyphoonSwift" /* typhoon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = typhoon; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_Witness" /* Witness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Witness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
