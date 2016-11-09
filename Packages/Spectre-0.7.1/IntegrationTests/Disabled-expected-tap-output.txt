@@ -1,3 +1,0 @@
-ok 1 - a person named kyle is Kyle
-ok 2 - # skip a person named kyle has a description
-1..2
