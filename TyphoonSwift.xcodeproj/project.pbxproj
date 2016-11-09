@@ -520,6 +520,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = "_______Confs_Spectre" /* Build configuration list for PBXNativeTarget "Spectre" */;
 			buildPhases = (
+				FA0B07D81DD33C61007E608D /* Build dependencies */,
 				CompilePhase_Spectre /* Sources */,
 				"___LinkPhase_Spectre" /* Frameworks */,
 			);
@@ -637,6 +638,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA0B07D81DD33C61007E608D /* Build dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build dependencies";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$(SRCROOT)\"\nswift build";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CompilePhase_PathKit /* Sources */ = {
