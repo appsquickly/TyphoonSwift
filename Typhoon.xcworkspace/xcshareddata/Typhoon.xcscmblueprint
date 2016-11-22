@@ -7,14 +7,14 @@
     "D5602034A6EC2DF365788189E89A0E085E0D67AC" : 9223372036854775807,
     "C31D8AB0CD08545FBA1C879D4E697302077E523A" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C161C585-FAA9-48E2-BEC8-7546C647F354",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B7693BD7-27FC-4080-A484-AD497FD38464",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "D5602034A6EC2DF365788189E89A0E085E0D67AC" : "typhoon-swift\/Dependencies\/Packages\/Witness-0.4.0\/",
     "C31D8AB0CD08545FBA1C879D4E697302077E523A" : "typhoon-swift\/"
   },
-  "DVTSourceControlWorkspaceBlueprintNameKey" : "TyphoonSwift",
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Typhoon",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TyphoonSwift.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Typhoon.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/git.appsquick.ly\/typhoon\/typhoon-swift.git",
