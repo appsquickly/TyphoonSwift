@@ -1,0 +1,51 @@
+xcode_workspace: Commandant.xcworkspace
+git:
+  submodules: false
+before_install:
+  - git submodule update --init --recursive
+script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+matrix:
+  exclude:
+    - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+  include:
+    - script: set -o pipefail && xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" test | xcpretty
+      xcode_scheme: Commandant
+      os: osx
+      osx_image: xcode8
+      language: objective-c
+      env: JOB=Xcode8
+    - script: SWIFT_GIT=`xcrun --find git` swift build
+      os: osx
+      osx_image: xcode8
+      language: objective-c
+      env: JOB=SPM
+    - script:
+        - mv .Package.test.swift Package.swift
+        - swift build
+        - swift test
+      env: JOB=Linux
+      sudo: required
+      dist: trusty
+      language: generic
+      install:
+        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
+
+notifications:
+  email: false
+  slack:
+    secure: DBDJCDEfXVb4g1/vziIYpjwCE5dh75SwBGZAcqbk6wOl6KFS9lA+fk/PtAbuXAEkRNr5qv56aQ+NPRnjSdqmhKB9bwywxUI7LA1JlvxAk6HUya0XWLLH0dvkRJG1o6QWiOnZ79gjWvl/VuN/YH9X7SgwdTTA4xush8ogP+ku8YE=
+before_deploy:
+  - brew update
+  - brew install carthage
+  - carthage build --no-skip-current --platform mac
+  - carthage archive Commandant
+deploy:
+  provider: releases
+  api_key:
+    secure: C5x9Hj0fip8nfrke4AhGNDsmpQsjiB/Mbu6yKwW0MFn46cys64uPajKMDmwcK0512h4eW1HxkmKkaiqfv42gN3Qq+iDmmC7+DNSXgZQ/bj2h5O/t85L6Y+JQGhqbZ6XwAoEcyzFvmkbczR+Xtd0RwQR4WUhqIRElmlCfHe20ST8=
+  file: Commandant.framework.zip
+  skip_cleanup: true
+  on:
+    repo: Carthage/Commandant
+    tags: true
+    condition: $JOB = Xcode8

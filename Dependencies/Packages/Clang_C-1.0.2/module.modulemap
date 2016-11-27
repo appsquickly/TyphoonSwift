@@ -1,0 +1,11 @@
+module Clang_C {
+  module documentation {
+    header "Documentation.h"
+    export *
+  }
+
+  module database {
+    header "CXCompilationDatabase.h"
+    export *
+  }
+}
