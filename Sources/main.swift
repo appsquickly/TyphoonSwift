@@ -12,7 +12,22 @@ if let currentPathOverride = env["CURRENT_PATH"] {
     FileManager.default.changeCurrentDirectoryPath(currentPath)
 }
 
-let ResourceDir = "\(Bundle.main.bundlePath)/Resources"
+func resourceDir() -> String {
+    let debugPath = "\(Bundle.main.bundlePath)/Resources"
+    if FileManager.default.fileExists(atPath: debugPath) {
+        return debugPath
+    }
+    let releasePath = "../Resources"
+    if FileManager.default.fileExists(atPath: releasePath) {
+        return releasePath
+    }
+    print("Can't find Resource directory!")
+    exit(-1)
+}
+
+let ResourceDir = resourceDir()
+
+// TODO: Rewrite arguments parsing via Commandant or something
 
 if arguments.contains("setup")
 {
