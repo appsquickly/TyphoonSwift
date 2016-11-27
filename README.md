@@ -11,7 +11,7 @@ brew install appsquickly/core/typhoon
 
 # Concept
 
-TyphoonSwift uses code generation to build your assembly. 
+TyphoonSwift uses code generation to build your assembly. It runs as separate process (via terminal) and parses your source files on change. Once you change your assembly file and save, it parses it and generate "activated assembly" automatically.
 
 
 # Project setup
