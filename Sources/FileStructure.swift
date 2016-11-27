@@ -10,6 +10,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 import Foundation
+import SourceKittenFramework
 
 class FileStructure {
     
@@ -23,14 +24,14 @@ class FileStructure {
     
     fileprivate func requestStructure() -> (String, JSON)? {
         
-        //TODO: Fix crash when text contains emoji and other nonascii symbols
-        
         var text: String, json: JSON
         
         do {
             text = try String(contentsOf: self.filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-            let parsedString = Terminal.bash("/usr/local/bin/sourcekitten", arguments: ["structure", "--text", text])
-            let data = parsedString.data(using: String.Encoding.utf8) as Data!
+            
+            let structure = SourceKittenFramework.Structure(file: File(contents: text))
+            let data = structure.description.data(using: String.Encoding.utf8) as Data!
+            
             json = JSON(data!)
         } catch {
             debugPrint("Failed request structure with file path:" + "\(self.filePath.absoluteString)")

@@ -34,7 +34,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         definition.configuration = { instance in
         
             instance.setAdultAge()
-            instance.setValues("John", withAge: 20)
+            instance.setValues("John", withAge: 21)
         }
 
         return definition

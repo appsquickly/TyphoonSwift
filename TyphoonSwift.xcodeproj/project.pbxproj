@@ -33,7 +33,6 @@
 		__src_cc_ref_Sources/SourceLangSwift.swift /* SourceLangSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SourceLangSwift.swift /* SourceLangSwift.swift */; };
 		__src_cc_ref_Sources/StringUtils.swift /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */; };
 		__src_cc_ref_Sources/SwiftDocumentKey.swift /* SwiftDocumentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftDocumentKey.swift /* SwiftDocumentKey.swift */; };
-		__src_cc_ref_Sources/Terminal.swift /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Terminal.swift /* Terminal.swift */; };
 		__src_cc_ref_Sources/main.swift /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/main.swift /* main.swift */; };
 		__src_cc_ref_Tests/TyphoonPackageTests/TyphoonPackageTests.swift /* TyphoonPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/TyphoonPackageTests/TyphoonPackageTests.swift /* TyphoonPackageTests.swift */; };
 /* End PBXBuildFile section */
@@ -83,6 +82,12 @@
 		FA2EBB4B1DC879F200E5F75A /* Assemblies.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Assemblies.stencil; sourceTree = "<group>"; };
 		FA2EBB4C1DC879F200E5F75A /* Definition.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Definition.stencil; sourceTree = "<group>"; };
 		FA69A6121DEB1A7D0081E05C /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = Dependencies/build/Debug/SourceKittenFramework.framework; sourceTree = "<group>"; };
+		FA69A6481DEB1B260081E05C /* Commandant.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Commandant.framework; path = "../../Library/Developer/Xcode/DerivedData/Typhoon-efckerazrcuqusgfurqresemwzss/Build/Products/Debug/Commandant.framework"; sourceTree = "<group>"; };
+		FA69A6491DEB1B260081E05C /* PathKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PathKit.framework; path = "../../Library/Developer/Xcode/DerivedData/Typhoon-efckerazrcuqusgfurqresemwzss/Build/Products/Debug/PathKit.framework"; sourceTree = "<group>"; };
+		FA69A64A1DEB1B260081E05C /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../../Library/Developer/Xcode/DerivedData/Typhoon-efckerazrcuqusgfurqresemwzss/Build/Products/Debug/Result.framework"; sourceTree = "<group>"; };
+		FA69A64B1DEB1B260081E05C /* Spectre.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spectre.framework; path = "../../Library/Developer/Xcode/DerivedData/Typhoon-efckerazrcuqusgfurqresemwzss/Build/Products/Debug/Spectre.framework"; sourceTree = "<group>"; };
+		FA69A64C1DEB1B260081E05C /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = "../../Library/Developer/Xcode/DerivedData/Typhoon-efckerazrcuqusgfurqresemwzss/Build/Products/Debug/SWXMLHash.framework"; sourceTree = "<group>"; };
+		FA69A64D1DEB1B260081E05C /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = "../../Library/Developer/Xcode/DerivedData/Typhoon-efckerazrcuqusgfurqresemwzss/Build/Products/Debug/Yaml.framework"; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift /* AssemblyDefinitionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyDefinitionBuilder.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyGenerator.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Config.swift /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -99,7 +104,6 @@
 		__PBXFileRef_Sources/SourceLangSwift.swift /* SourceLangSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLangSwift.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftDocumentKey.swift /* SwiftDocumentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDocumentKey.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/main.swift /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/TyphoonPackageTests/TyphoonPackageTests.swift /* TyphoonPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyphoonPackageTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_TyphoonSwift.xcodeproj/Configs/Project.xcconfig /* TyphoonSwift.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TyphoonSwift.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
@@ -131,6 +135,12 @@
 		DF7A22781DE3F9CD001BD798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA69A6481DEB1B260081E05C /* Commandant.framework */,
+				FA69A6491DEB1B260081E05C /* PathKit.framework */,
+				FA69A64A1DEB1B260081E05C /* Result.framework */,
+				FA69A64B1DEB1B260081E05C /* Spectre.framework */,
+				FA69A64C1DEB1B260081E05C /* SWXMLHash.framework */,
+				FA69A64D1DEB1B260081E05C /* Yaml.framework */,
 				FA69A6121DEB1A7D0081E05C /* SourceKittenFramework.framework */,
 				DFEFC9FA1DE4010F008166D8 /* Stencil.framework */,
 				DFEFC9FB1DE4010F008166D8 /* Witness.framework */,
@@ -226,7 +236,6 @@
 			children = (
 				__PBXFileRef_Sources/RegularExpressionExtensions.swift /* RegularExpressionExtensions.swift */,
 				__PBXFileRef_Sources/StringUtils.swift /* StringUtils.swift */,
-				__PBXFileRef_Sources/Terminal.swift /* Terminal.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -419,7 +428,6 @@
 				__src_cc_ref_Sources/SourceLangSwift.swift /* SourceLangSwift.swift in Sources */,
 				__src_cc_ref_Sources/StringUtils.swift /* StringUtils.swift in Sources */,
 				__src_cc_ref_Sources/SwiftDocumentKey.swift /* SwiftDocumentKey.swift in Sources */,
-				__src_cc_ref_Sources/Terminal.swift /* Terminal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +454,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(PROJECT_DIR)/Dependencies/build/Debug",
 				);
+				HEADER_SEARCH_PATHS = Dependencies/Packages;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path @executable_path/Frameworks @executable_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -477,6 +486,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(PROJECT_DIR)/Dependencies/build/Debug",
 				);
+				HEADER_SEARCH_PATHS = Dependencies/Packages;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path @executable_path/Frameworks @executable_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
