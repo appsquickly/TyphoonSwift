@@ -17,8 +17,7 @@ func resourceDir() -> String {
     if FileManager.default.fileExists(atPath: debugPath) {
         return debugPath
     }
-    let executablePath = Bundle.main.executablePath!
-    let releasePath = "\(executablePath)../share"
+    let releasePath = "\(Bundle.main.bundlePath)/../share"
     if FileManager.default.fileExists(atPath: releasePath) {
         return releasePath
     }
