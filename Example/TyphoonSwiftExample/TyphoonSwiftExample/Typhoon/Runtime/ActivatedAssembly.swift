@@ -33,6 +33,16 @@ class ActivatedAssembly
         __container.inject(&instance)
     }
     
+    func component<ComponentType: Any>(forKey key: String) -> ComponentType?
+    {
+        return __container.component(forKey: key)
+    }
+    
+    func allComponentsForType<ComponentType: Any>() -> [ComponentType]
+    {
+        return __container.allComponentForType()
+    }
+    
     class func container(_ forAssembly: ActivatedAssembly) -> ActivatedAssemblyContainer {
         return forAssembly.__container
     }

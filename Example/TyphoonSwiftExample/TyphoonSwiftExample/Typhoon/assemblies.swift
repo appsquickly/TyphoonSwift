@@ -49,6 +49,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
             return Man()
         }
         definition.configuration = { instance in
+            instance.name = "ManWithMethods"
         
             instance.setPet(pet: "Barsik")
             instance.setCompany("Apple")
@@ -58,16 +59,16 @@ class CoreComponentsImplementation : ActivatedAssembly {
     }
     
     
-    private func definitionForRootController() -> ActivatedGenericDefinition<Woman>
+    private func definitionForOneWoman() -> ActivatedGenericDefinition<Woman>
     {
-        let definition = ActivatedGenericDefinition<Woman>(withKey: "rootController")
+        let definition = ActivatedGenericDefinition<Woman>(withKey: "oneWoman")
         definition.scope = Definition.Scope.Prototype
         definition.initialization = {
             return Woman()
         }
         definition.configuration = { instance in
+            instance.name = "Anna"
             instance.age = 23
-            instance.name = "Steve"
         
         }
 
@@ -100,7 +101,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
             return Man()
         }
         definition.configuration = { instance in
-            instance.name = "John"
+            instance.name = "Tom"
             instance.brother = self.manWith("Alex")
         
         }
@@ -192,8 +193,8 @@ class CoreComponentsImplementation : ActivatedAssembly {
         return ActivatedAssembly.container(self).component(forKey: "manWithMethods") as Man!
     }
     
-    func rootController() -> Woman { 
-        return ActivatedAssembly.container(self).component(forKey: "rootController") as Woman!
+    func oneWoman() -> Woman { 
+        return ActivatedAssembly.container(self).component(forKey: "oneWoman") as Woman!
     }
     
     func shareService2() -> Service { 
@@ -232,7 +233,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
     private func registerAllDefinitions() {
         ActivatedAssembly.container(self).registerDefinition(definitionForManWithInitializer())
         ActivatedAssembly.container(self).registerDefinition(definitionForManWithMethods())
-        ActivatedAssembly.container(self).registerDefinition(definitionForRootController())
+        ActivatedAssembly.container(self).registerDefinition(definitionForOneWoman())
         ActivatedAssembly.container(self).registerDefinition(definitionForShareService2())
         ActivatedAssembly.container(self).registerDefinition(definitionForMan())
         ActivatedAssembly.container(self).registerDefinition(definitionForName())
