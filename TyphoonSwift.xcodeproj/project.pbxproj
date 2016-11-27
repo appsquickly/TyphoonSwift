@@ -16,6 +16,7 @@
 		FA2EBB511DC87A1800E5F75A /* Stack.swift in Copy Runtime Sources */ = {isa = PBXBuildFile; fileRef = FA2EBB491DC879F200E5F75A /* Stack.swift */; };
 		FA2EBB521DC87A2A00E5F75A /* Assemblies.stencil in Copy Templates */ = {isa = PBXBuildFile; fileRef = FA2EBB4B1DC879F200E5F75A /* Assemblies.stencil */; };
 		FA2EBB531DC87A2A00E5F75A /* Definition.stencil in Copy Templates */ = {isa = PBXBuildFile; fileRef = FA2EBB4C1DC879F200E5F75A /* Definition.stencil */; };
+		FA69A6131DEB1A7D0081E05C /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA69A6121DEB1A7D0081E05C /* SourceKittenFramework.framework */; };
 		__src_cc_ref_Sources/AssemblyDefinitionBuilder.swift /* AssemblyDefinitionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/AssemblyDefinitionBuilder.swift /* AssemblyDefinitionBuilder.swift */; };
 		__src_cc_ref_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */; };
 		__src_cc_ref_Sources/Config.swift /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Config.swift /* Config.swift */; };
@@ -81,6 +82,7 @@
 		FA2EBB491DC879F200E5F75A /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		FA2EBB4B1DC879F200E5F75A /* Assemblies.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Assemblies.stencil; sourceTree = "<group>"; };
 		FA2EBB4C1DC879F200E5F75A /* Definition.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Definition.stencil; sourceTree = "<group>"; };
+		FA69A6121DEB1A7D0081E05C /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = Dependencies/build/Debug/SourceKittenFramework.framework; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/AssemblyDefinitionBuilder.swift /* AssemblyDefinitionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyDefinitionBuilder.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/AssemblyGenerator.swift /* AssemblyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyGenerator.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Config.swift /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				FA69A6131DEB1A7D0081E05C /* SourceKittenFramework.framework in Frameworks */,
 				DFEFC9FC1DE4010F008166D8 /* Stencil.framework in Frameworks */,
 				DFEFC9FD1DE4010F008166D8 /* Witness.framework in Frameworks */,
 			);
@@ -128,6 +131,7 @@
 		DF7A22781DE3F9CD001BD798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA69A6121DEB1A7D0081E05C /* SourceKittenFramework.framework */,
 				DFEFC9FA1DE4010F008166D8 /* Stencil.framework */,
 				DFEFC9FB1DE4010F008166D8 /* Witness.framework */,
 				DF7A227D1DE3FB02001BD798 /* Stencil.framework */,
@@ -327,6 +331,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = "_______Confs_TyphoonSwift" /* Build configuration list for PBXNativeTarget "TyphoonSwift" */;
 			buildPhases = (
+				FA69A6011DEB19A00081E05C /* Fetch Dependencies */,
 				CompilePhase_TyphoonSwift /* Sources */,
 				"___LinkPhase_TyphoonSwift" /* Frameworks */,
 				FA2EBB421DC8789800E5F75A /* Copy Runtime Sources */,
@@ -366,6 +371,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA69A6011DEB19A00081E05C /* Fetch Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fetch Dependencies";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pushd Dependencies\nswift package generate-xcodeproj\npopd";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CompilePhase_TyphoonPackageTests /* Sources */ = {

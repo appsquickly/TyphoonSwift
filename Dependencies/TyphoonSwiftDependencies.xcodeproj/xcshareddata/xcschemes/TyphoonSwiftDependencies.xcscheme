@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_45"
+               BlueprintIdentifier = "OBJ_118"
                BuildableName = "Spectre.framework"
                BlueprintName = "Spectre"
                ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_59"
+               BlueprintIdentifier = "OBJ_132"
                BuildableName = "PathKit.framework"
                BlueprintName = "PathKit"
                ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_68"
+               BlueprintIdentifier = "OBJ_141"
                BuildableName = "Stencil.framework"
                BlueprintName = "Stencil"
                ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
@@ -56,9 +56,93 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_93"
+               BlueprintIdentifier = "OBJ_166"
                BuildableName = "Witness.framework"
                BlueprintName = "Witness"
+               ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_175"
+               BuildableName = "Result.framework"
+               BlueprintName = "Result"
+               ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_183"
+               BuildableName = "Commandant.framework"
+               BlueprintName = "Commandant"
+               ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_200"
+               BuildableName = "SWXMLHash.framework"
+               BlueprintName = "SWXMLHash"
+               ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_208"
+               BuildableName = "Yaml.framework"
+               BlueprintName = "Yaml"
+               ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_220"
+               BuildableName = "sourcekitten"
+               BlueprintName = "sourcekitten"
+               ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_245"
+               BuildableName = "SourceKittenFramework.framework"
+               BlueprintName = "SourceKittenFramework"
                ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -87,7 +171,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_45"
+            BlueprintIdentifier = "OBJ_118"
             BuildableName = "Spectre.framework"
             BlueprintName = "Spectre"
             ReferencedContainer = "container:TyphoonSwiftDependencies.xcodeproj">
