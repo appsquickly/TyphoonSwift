@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Dependencies/TyphoonSwiftDependencies.xcodeproj">
+      location = "group:TyphoonSwift.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:TyphoonSwift.xcodeproj">
+      location = "group:Dependencies/TyphoonSwiftDependencies.xcodeproj">
    </FileRef>
 </Workspace>

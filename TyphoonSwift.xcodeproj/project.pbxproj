@@ -340,7 +340,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = "_______Confs_TyphoonSwift" /* Build configuration list for PBXNativeTarget "TyphoonSwift" */;
 			buildPhases = (
-				FA69A6011DEB19A00081E05C /* Fetch Dependencies */,
 				CompilePhase_TyphoonSwift /* Sources */,
 				"___LinkPhase_TyphoonSwift" /* Frameworks */,
 				FA2EBB421DC8789800E5F75A /* Copy Runtime Sources */,
@@ -380,23 +379,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		FA69A6011DEB19A00081E05C /* Fetch Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fetch Dependencies";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "pushd Dependencies\nswift package generate-xcodeproj\npopd";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CompilePhase_TyphoonPackageTests /* Sources */ = {
