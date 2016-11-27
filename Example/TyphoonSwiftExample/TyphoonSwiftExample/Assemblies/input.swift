@@ -83,8 +83,6 @@ class ViewsFactory : Assembly
 
 class CoreComponents : Assembly {
     
-    var relatedAssembly: ViewsFactory?
-    
     func manWith(_ name: String) -> Definition {
         return Definition(withClass: Man.self) {
             $0.injectProperty("name", with: name)
@@ -113,17 +111,17 @@ class CoreComponents : Assembly {
                 m.injectArgument("Barsik")
             }
             $0.injectMethod("setCompany(_:)") { m in
-                m.injectArgument("Loud&Clear")
+                m.injectArgument("Apple")
             }
         }
     }
     
     func rootController() -> Definition {
         let definitnion = Definition(withClass:Woman.self, configuration: { (d) -> (Void) in
-            d.injectProperty("name", with: "Aleksey")
+            d.injectProperty("name", with: "John")
             d.injectProperty("age", with: 23)
         })
-        definitnion.injectProperty("name", with: "Anna")
+        definitnion.injectProperty("name", with: "Steve")
         return definitnion
     }
     
@@ -145,7 +143,7 @@ class CoreComponents : Assembly {
     func man() -> Definition
     {
         return Definition(withClass: Man.self) { configuration in
-            configuration.injectProperty("name", with: "Vit")
+            configuration.injectProperty("name", with: "John")
             configuration.injectProperty("brother", with: self.manWith("Alex"))
         }
     }

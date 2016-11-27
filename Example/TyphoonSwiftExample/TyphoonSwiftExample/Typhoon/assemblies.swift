@@ -51,7 +51,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         definition.configuration = { instance in
         
             instance.setPet(pet: "Barsik")
-            instance.setCompany("Loud&Clear")
+            instance.setCompany("Apple")
         }
 
         return definition
@@ -67,7 +67,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
         }
         definition.configuration = { instance in
             instance.age = 23
-            instance.name = "Anna"
+            instance.name = "Steve"
         
         }
 
@@ -100,7 +100,7 @@ class CoreComponentsImplementation : ActivatedAssembly {
             return Man()
         }
         definition.configuration = { instance in
-            instance.name = "Vit"
+            instance.name = "John"
             instance.brother = self.manWith("Alex")
         
         }
