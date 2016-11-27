@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Typhoon.activateAssemblies()
         
+        
         let men = CoreComponents.assembly.allComponentsForType() as [Man]
         for aMan in men {
             print("name = \(aMan.name)")
@@ -51,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Can't get gependency")
         }
         
+        let byTypeWoman = CoreComponents.assembly.componentForType() as Woman?
         
         var woman = Woman()
         CoreComponents.assembly.inject(&woman)
