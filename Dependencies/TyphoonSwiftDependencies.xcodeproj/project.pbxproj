@@ -111,96 +111,96 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FA1B618E1DEB2490004599FB /* PBXContainerItemProxy */ = {
+		FA1B61A81DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_118;
 			remoteInfo = Spectre;
 		};
-		FA1B618F1DEB2490004599FB /* PBXContainerItemProxy */ = {
+		FA1B61A91DEB58D4004599FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_118;
+			remoteInfo = Spectre;
+		};
+		FA1B61AA1DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_132;
 			remoteInfo = PathKit;
 		};
-		FA1B61901DEB2490004599FB /* PBXContainerItemProxy */ = {
+		FA1B61AB1DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_175;
 			remoteInfo = Result;
 		};
-		FA1B61911DEB2490004599FB /* PBXContainerItemProxy */ = {
+		FA1B61AC1DEB58D4004599FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_175;
+			remoteInfo = Result;
+		};
+		FA1B61AD1DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_183;
 			remoteInfo = Commandant;
 		};
-		FA1B61921DEB2490004599FB /* PBXContainerItemProxy */ = {
+		FA1B61AE1DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_200;
 			remoteInfo = SWXMLHash;
 		};
-		FA1B61931DEB2490004599FB /* PBXContainerItemProxy */ = {
+		FA1B61AF1DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_208;
 			remoteInfo = Yaml;
 		};
-		FA1B61941DEB2490004599FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = OBJ_118;
-			remoteInfo = Spectre;
-		};
-		FA1B61951DEB2490004599FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = OBJ_175;
-			remoteInfo = Result;
-		};
-		FA1B61961DEB2491004599FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = OBJ_175;
-			remoteInfo = Result;
-		};
-		FA1B61971DEB2491004599FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = OBJ_183;
-			remoteInfo = Commandant;
-		};
-		FA1B61981DEB2491004599FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = OBJ_200;
-			remoteInfo = SWXMLHash;
-		};
-		FA1B61991DEB2491004599FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = OBJ_208;
-			remoteInfo = Yaml;
-		};
-		FA1B619A1DEB2491004599FB /* PBXContainerItemProxy */ = {
+		FA1B61B01DEB58D4004599FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_245;
 			remoteInfo = SourceKittenFramework;
+		};
+		FA1B61B11DEB58D4004599FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_175;
+			remoteInfo = Result;
+		};
+		FA1B61B21DEB58D4004599FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_183;
+			remoteInfo = Commandant;
+		};
+		FA1B61B31DEB58D4004599FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_200;
+			remoteInfo = SWXMLHash;
+		};
+		FA1B61B41DEB58D4004599FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_208;
+			remoteInfo = Yaml;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -222,7 +222,7 @@
 		OBJ_114 /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_115 /* Yaml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Yaml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_116 /* sourcekitten */ = {isa = PBXFileReference; lastKnownFileType = text; path = sourcekitten; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_117 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SourceKittenFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_117 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SourceKittenFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_12 /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
 		OBJ_13 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		OBJ_14 /* GlobalContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContext.swift; sourceTree = "<group>"; };
@@ -988,67 +988,67 @@
 		OBJ_140 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_118 /* Spectre */;
-			targetProxy = FA1B61941DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61A81DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_164 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_118 /* Spectre */;
-			targetProxy = FA1B618E1DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61A91DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_165 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_132 /* PathKit */;
-			targetProxy = FA1B618F1DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61AA1DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_199 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_175 /* Result */;
-			targetProxy = FA1B61951DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61AB1DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_240 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_175 /* Result */;
-			targetProxy = FA1B61961DEB2491004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61AC1DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_241 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_183 /* Commandant */;
-			targetProxy = FA1B61971DEB2491004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61AD1DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_242 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_200 /* SWXMLHash */;
-			targetProxy = FA1B61981DEB2491004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61AE1DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_243 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_208 /* Yaml */;
-			targetProxy = FA1B61991DEB2491004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61AF1DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_244 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_245 /* SourceKittenFramework */;
-			targetProxy = FA1B619A1DEB2491004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61B01DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_288 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_175 /* Result */;
-			targetProxy = FA1B61901DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61B11DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_289 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_183 /* Commandant */;
-			targetProxy = FA1B61911DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61B21DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_290 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_200 /* SWXMLHash */;
-			targetProxy = FA1B61921DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61B31DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 		OBJ_291 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_208 /* Yaml */;
-			targetProxy = FA1B61931DEB2490004599FB /* PBXContainerItemProxy */;
+			targetProxy = FA1B61B41DEB58D4004599FB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
