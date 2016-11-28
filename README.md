@@ -135,8 +135,8 @@ If you still have questions how to use it, try Example project (see Example subd
 
 - [Aleksey Garbarev](https://github.com/alexgarbarev) - main idea and implementation
 - [Igor Vasilenko](https://github.com/vasilenkoigor) - huge effort and outcome in refactoring
-- [Valeiy Popov](https://github.com/complexityclass) - swift2 -> swift 3 convertation. Moving dependencies to SPM
-- [German Saprykin](https://github.com/mogol) - moving SPM dependencies to separate project to keep main project untouced on SPM updates
+- [Valeriy Popov](https://github.com/complexityclass) - swift2 -> swift 3 convertation. Moving dependencies to SPM
+- [German Saprykin](https://github.com/mogol) - moving SPM dependencies to separate project to keep main project untouched on SPM updates
 - You are welcome to be here :-)
 
 
