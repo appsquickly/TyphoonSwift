@@ -139,6 +139,7 @@ If you still have questions how to use it, try Example project (see Example subd
 - [German Saprykin](https://github.com/mogol) - moving SPM dependencies to separate project to keep main project untouched on SPM updates
 - You are welcome to be here :-)
 
-TyphoonSwift is highly inspired by original Typhoon founded by Jasper Blues.
+TyphoonSwift is highly inspired by original Typhoon founded by [Jasper Blues](https://github.com/jasperblues).
+
 Solving circular references solution inspired by FieryCrucible DI framework.
 
